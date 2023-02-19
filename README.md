@@ -1,3 +1,4 @@
+(readme file written in chinese)
 # Minecraft-server-auto-setup
 基本上是專為新手設計，對已經熟悉的人反而會覺得很多餘。  
 如果您熟悉 bat 語法，歡迎使用 PR 做出貢獻，我將不勝感激。
