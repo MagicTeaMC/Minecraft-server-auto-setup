@@ -5,7 +5,7 @@
 ## 使用方法
 完全自動化，直接執行`.bat`即可
 ## TODO
-- [ ] 版本選擇
+- [ ] Minecraft版本選擇
 - [ ] Spigot/Paper/Purpur選擇
 - [ ] 自動架設ngrok
 - [ ] Bungeecord/Waterfall自動架設
