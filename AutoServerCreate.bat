@@ -1,7 +1,7 @@
 color 7
 @echo off
 echo:
-echo       ���b�w�˦��A���ɮ� [server.jar]
+echo       正在安裝伺服器檔案 [server.jar]
 echo:
 echo:                                                     
 echo:                       
@@ -13,10 +13,10 @@ echo:
 :labe50
 cd %~dp0
 curl https://download.getbukkit.org/craftbukkit/craftbukkit-1.19.3.jar -o C:server
-ren server server.jar
+ren *.jar Server.jar
 :labe51
 @echo off
-rem �]�wtitle
+rem 設定title
 title=Minecraft Server auto set
 mode con cols=70 lines=30
 echo:
@@ -24,7 +24,7 @@ echo:
 echo:
 echo:
 color 3                
-echo                  Server.jar�ɮפw�w�˧���
+echo                  Server.jar檔案已安裝完成
 echo:  
 echo:              
 echo:
@@ -36,21 +36,21 @@ if not exist server.jar goto label1
 :label1
 color 4
 echo   ERROR     
-echo         ���~���e:�����server.jar�A�нT�{server.jar�P���u��b�P�@�Ӹ�Ƨ�����                                                           
+echo         錯誤內容:未找到server.jar，請確認server.jar與此工具在同一個資料夾重試                                                           
 color
 pause
 exit
 :label2
-echo = �нT�O"Minecraft���A���[�]�u��"�P"server.jar"�A���P�@��Ƨ� =
+echo = 請確保"Minecraft伺服器架設工具"與"server.jar"，放於同一資料夾 =
 echo:
 echo:
-echo �@�B�ˬd���A�����Ҥ�
+echo 一、檢查伺服器環境中
 ping -n 2 127.0.0.1 >NUL
 @echo off
 echo:
-echo �G�B���b�]�w���A���ɮ�
+echo 二、正在設定伺服器檔案
 if not exist StartServer.bat goto label4
-if exist ���A���[�]��.bat goto label3
+if exist 伺服器架設中.bat goto label3
 :label3
 if not exist usercache.json goto label5
 if exist usercache.json goto label6
@@ -62,11 +62,11 @@ call StartServer.bat
 echo:
 ping -n 3 127.0.0.1 >NUL
 @echo off
-echo �T�B���A���ɮ׳Ыا��� "StartServer.bat"
+echo 三、伺服器檔案創建完成 "StartServer.bat"
 ping -n 3 127.0.0.1 >NUL
 @echo off
 echo:
-echo �|�B���A���Y�N�B��...
+echo 四、伺服器即將運行...
 ping -n 6 127.0.0.1 >NUL
 @echo off
 cls
@@ -75,7 +75,7 @@ echo:
 echo:
 echo:
 echo:
-echo                      �иԲӾ\ŪMinecraft EULA
+echo                      請詳細閱讀Minecraft EULA
 echo:                                                                  
 echo:                              
 echo        https://account.mojang.com/documents/minecraft_eula      
@@ -83,7 +83,7 @@ echo:
 echo:                                                                  
 echo:  
 echo:                                                                
-echo                          ���ݤT��                 
+echo                          等待三秒                 
 echo:                                                                 
 echo:   
 ping -n 6 127.0.0.1 >NUL
@@ -92,17 +92,17 @@ echo:
 echo:
 pause
 :label6
-rem �w�q�ܼƩ������ҡA�����^��
+rem 定義變數延遲環境，關閉回顯
 @echo off&setlocal enabledelayedexpansion
-rem Ū��eula.txt�Ҧ����e
+rem 讀取eula.txt所有內容
 for /f "eol=* tokens=*" %%i in (eula.txt) do (
-rem �]�w�ܼ�a���C�椺�e
+rem 設定變數a為每行內容
 set a=%%i
-rem �p�G�Ӧ榳false�A�h�N��אּtrue
+rem 如果該行有false，則將其改為true
 set "a=!a:false=true!"
-rem ��ק�᪺������s�J$
+rem 把修改後的全部行存入$
 echo !a!>>$)
-rem ��$�����e�������eula.txt���e
+rem 用$的內容替換原來eula.txt內容
 move $ eula.txt
 cls
 echo:
@@ -113,12 +113,12 @@ echo:
 echo: 
 echo:                                                             
 echo:                                                                  
-echo                          ���A�����\�[�]����                
+echo                          伺服器成功架設完成                
 echo:                                                                 
 echo:                                                                  
 echo:   
 echo:                                                                  
-echo                           �N�۰ʱҰʦ��A��...                
+echo                           將自動啟動伺服器...                
 echo:                                                                 
 echo:  
 echo:
