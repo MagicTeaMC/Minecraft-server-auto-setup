@@ -1,6 +1,7 @@
 color 97
 @echo off
-rem ³]©wtitle
+rem è¨­å®štitle
+ren *.jar Server.jar
 title=Minecraft Server auto set
 mode con cols=70 lines=30
 cd %~dp0
@@ -13,15 +14,15 @@ echo   =                                                               =
 echo   =                  Minecraft Server Auto set                    =
 echo   =                                                               =
 echo   =                                                               =
-echo   =                          «ö¤UEnterÄ~Äò                         =
+echo   =                          æŒ‰ä¸‹Enterç¹¼çºŒ                         =
 echo   =                                                               =
 echo   =================================================================
 echo   =                                                               =
-echo   =                 ¤U¸üServer.jar    ¨Ã©ñ¤J¦¹¸ê®Æ§¨                 =
+echo   =                 ä¸‹è¼‰Server.jar    ä¸¦æ”¾å…¥æ­¤è³‡æ–™å¤¾                 =
 echo   =                                                               =
 echo   =================================================================
 echo:
-echo   = ½Ğ½T«O"Minecraft¦øªA¾¹¬[³]¤u¨ã"»P"server.jar"¡A©ñ©ó¦P¤@¸ê®Æ§¨ ¤~¯à¥¿±`¹B§@ =
+echo   = è«‹ç¢ºä¿"Minecraftä¼ºæœå™¨æ¶è¨­å·¥å…·"èˆ‡"server.jar"ï¼Œæ”¾æ–¼åŒä¸€è³‡æ–™å¤¾ æ‰èƒ½æ­£å¸¸é‹ä½œ =
 echo:
 echo:
 echo:
@@ -32,63 +33,63 @@ if not exist server.jar goto label1
 :label1
 color 4
 echo   ERROR     
-echo         ¿ù»~¤º®e:¥¼§ä¨ìserver.jar¡A½Ğ½T»{server.jar»P¦¹¤u¨ã¦b¦P¤@­Ó¸ê®Æ§¨­«¸Õ                                                           
+echo         éŒ¯èª¤å…§å®¹:æœªæ‰¾åˆ°server.jarï¼Œè«‹ç¢ºèªserver.jarèˆ‡æ­¤å·¥å…·åœ¨åŒä¸€å€‹è³‡æ–™å¤¾é‡è©¦                                                           
 color
 pause
 exit
 :label2
-echo = ½Ğ½T«O"Minecraft¦øªA¾¹¬[³]¤u¨ã"»P"server.jar"¡A©ñ©ó¦P¤@¸ê®Æ§¨ =
+echo = è«‹ç¢ºä¿"Minecraftä¼ºæœå™¨æ¶è¨­å·¥å…·"èˆ‡"server.jar"ï¼Œæ”¾æ–¼åŒä¸€è³‡æ–™å¤¾ =
 echo:
 echo:
-echo ¤@¡BÀË¬d¦øªA¾¹Àô¹Ò¤¤
+echo ä¸€ã€æª¢æŸ¥ä¼ºæœå™¨ç’°å¢ƒä¸­
 ping -n 2 127.0.0.1 >NUL
 @echo off
 echo:
-echo ¤G¡B¥¿¦b³]©w¦øªA¾¹ÀÉ®×
-if not exist ÂI¦¹±Ò°Ê¦øªA¾¹.bat goto label4
-if exist ¦øªA¾¹¬[³]¤¤.bat goto label3
+echo äºŒã€æ­£åœ¨è¨­å®šä¼ºæœå™¨æª”æ¡ˆ
+if not exist é»æ­¤å•Ÿå‹•ä¼ºæœå™¨.bat goto label4
+if exist ä¼ºæœå™¨æ¶è¨­ä¸­.bat goto label3
 :label3
 if not exist usercache.json goto label5
 if exist usercache.json goto label6
 :label4
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> ÂI¦¹±Ò°Ê¦øªA¾¹.bat
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> é»æ­¤å•Ÿå‹•ä¼ºæœå™¨.bat
 echo:
 :label5
-call ÂI¦¹±Ò°Ê¦øªA¾¹.bat
+call é»æ­¤å•Ÿå‹•ä¼ºæœå™¨.bat
 echo:
 ping -n 3 127.0.0.1 >NUL
 @echo off
-echo ¤T¡B¦øªA¾¹ÀÉ®×³Ğ«Ø§¹¦¨ "ÂI¦¹±Ò°Ê¦øªA¾¹.bat"
+echo ä¸‰ã€ä¼ºæœå™¨æª”æ¡ˆå‰µå»ºå®Œæˆ "é»æ­¤å•Ÿå‹•ä¼ºæœå™¨.bat"
 ping -n 3 127.0.0.1 >NUL
 @echo off
 echo:
-echo ¥|¡B¦øªA¾¹§Y±N¹B¦æ...
+echo å››ã€ä¼ºæœå™¨å³å°‡é‹è¡Œ...
 ping -n 6 127.0.0.1 >NUL
 @echo off
 cls
 echo:
 echo:
-echo ¥|¡B¦øªA¾¹§Y±N¹B¦æ.
+echo å››ã€ä¼ºæœå™¨å³å°‡é‹è¡Œ.
 ping -n 6 127.0.0.1 >NUL
 @echo off
 cls
-echo ¥|¡B¦øªA¾¹§Y±N¹B¦æ..
+echo å››ã€ä¼ºæœå™¨å³å°‡é‹è¡Œ..
 ping -n 6 127.0.0.1 >NUL
 @echo off
 cls
-echo ¥|¡B¦øªA¾¹§Y±N¹B¦æ...
+echo å››ã€ä¼ºæœå™¨å³å°‡é‹è¡Œ...
 ping -n 6 127.0.0.1 >NUL
 @echo off
 cls
-echo ¥|¡B¦øªA¾¹§Y±N¹B¦æ.
+echo å››ã€ä¼ºæœå™¨å³å°‡é‹è¡Œ.
 ping -n 6 127.0.0.1 >NUL
 @echo off
 cls
-echo ¥|¡B¦øªA¾¹§Y±N¹B¦æ..
+echo å››ã€ä¼ºæœå™¨å³å°‡é‹è¡Œ..
 ping -n 6 127.0.0.1 >NUL
 @echo off
 cls
-echo ¥|¡B¦øªA¾¹§Y±N¹B¦æ...
+echo å››ã€ä¼ºæœå™¨å³å°‡é‹è¡Œ...
 echo:
 echo:
 echo:
@@ -96,13 +97,13 @@ echo:
 echo   =================================================================
 echo   =                                                               =
 echo   =                                                               =
-echo   =               ½Ğ¸Ô¾\¨Ã¦P·NMinecraft¨Ï¥ÎªÌ±ÂÅv¦X¬ù             =
+echo   =               è«‹è©³é–±ä¸¦åŒæ„Minecraftä½¿ç”¨è€…æˆæ¬Šåˆç´„             =
 echo   =      https://account.mojang.com/documents/minecraft_eula      =
 echo   =                                                               =
 echo   =                                                               =
 echo   =================================================================
 echo   =                                                               =
-echo   =                   ¤T¬í«á¡A½ĞÂI¿ï¥ô·NÁäÄ~Äò...                 =
+echo   =                   ä¸‰ç§’å¾Œï¼Œè«‹é»é¸ä»»æ„éµç¹¼çºŒ...                 =
 echo   =                                                               =
 echo   =================================================================
 ping -n 6 127.0.0.1 >NUL
@@ -111,17 +112,17 @@ echo:
 echo:
 pause
 :label6
-rem ©w¸qÅÜ¼Æ©µ¿ğÀô¹Ò¡AÃö³¬¦^Åã
+rem å®šç¾©è®Šæ•¸å»¶é²ç’°å¢ƒï¼Œé—œé–‰å›é¡¯
 @echo off&setlocal enabledelayedexpansion
-rem Åª¨úeula.txt©Ò¦³¤º®e
+rem è®€å–eula.txtæ‰€æœ‰å…§å®¹
 for /f "eol=* tokens=*" %%i in (eula.txt) do (
-rem ³]©wÅÜ¼Æa¬°¨C¦æ¤º®e
+rem è¨­å®šè®Šæ•¸aç‚ºæ¯è¡Œå…§å®¹
 set a=%%i
-rem ¦pªG¸Ó¦æ¦³false¡A«h±N¨ä§ï¬°true
+rem å¦‚æœè©²è¡Œæœ‰falseï¼Œå‰‡å°‡å…¶æ”¹ç‚ºtrue
 set "a=!a:false=true!"
-rem §â­×§ï«áªº¥ş³¡¦æ¦s¤J$
+rem æŠŠä¿®æ”¹å¾Œçš„å…¨éƒ¨è¡Œå­˜å…¥$
 echo !a!>>$)
-rem ¥Î$ªº¤º®e´À´«­ì¨Óeula.txt¤º®e
+rem ç”¨$çš„å…§å®¹æ›¿æ›åŸä¾†eula.txtå…§å®¹
 move $ eula.txt
 cls
 echo:
@@ -132,16 +133,16 @@ echo:
 echo   =================================================================
 echo   =                                                               =
 echo   =                                                               =
-echo   =                 ¤w¦P·NMinecraft¨Ï¥ÎªÌ±ÂÅv¦X¬ù                 =
+echo   =                 å·²åŒæ„Minecraftä½¿ç”¨è€…æˆæ¬Šåˆç´„                 =
 echo   =                                                               =
 echo   =                                                               =
 echo   =================================================================
 echo   =                                                               =
-echo   =                   ¤T¬í«á¡A±N¦Û°Ê±Ò°Ê¦øªA¾¹...                 =
+echo   =                   ä¸‰ç§’å¾Œï¼Œå°‡è‡ªå‹•å•Ÿå‹•ä¼ºæœå™¨...                 =
 echo   =                                                               =
 echo   =================================================================
 echo:
 echo:
 ping -n 5 127.0.0.1 >NUL
 @echo off
-start ÂI¦¹±Ò°Ê¦øªA¾¹.bat
+start é»æ­¤å•Ÿå‹•ä¼ºæœå™¨.bat
