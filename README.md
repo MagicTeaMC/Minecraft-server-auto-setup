@@ -1,5 +1,8 @@
 (readme file written in chinese)
 # Minecraft-server-auto-setup-v2
+**注意！此版本尚未完工，可能有意想不到的問題發生**  
+  
+   
 完全為新手設計，幾乎不用用腦就能架設伺服器。  
 如果您熟悉 bat 語法，歡迎使用 PR 做出貢獻，我將不勝感激。
 ## 使用方法
