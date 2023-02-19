@@ -12,8 +12,8 @@ echo:
 echo:                             
 :labe50
 cd %~dp0
-curl https://api.purpurmc.org/v2/purpur/1.19.3/latest/download -o C:server
-ren *.jar Server.jar
+curl -O https://api.purpurmc.org/v2/purpur/1.19.3/latest/download
+ren *.jar server.jar
 :labe51
 @echo off
 rem 設定title
@@ -24,7 +24,7 @@ echo:
 echo:
 echo:
 color 3                
-echo                  Server.jar檔案已安裝完成
+echo                  server.jar檔案已安裝完成
 echo:  
 echo:              
 echo:
@@ -83,7 +83,7 @@ echo:
 echo:                                                                  
 echo:  
 echo:                                                                
-echo                          等待三秒                 
+echo                          請稍後三秒                 
 echo:                                                                 
 echo:   
 ping -n 6 127.0.0.1 >NUL
