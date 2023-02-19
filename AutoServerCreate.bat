@@ -12,7 +12,7 @@ echo:
 echo:                             
 :labe50
 cd %~dp0
-curl https://download.getbukkit.org/craftbukkit/craftbukkit-1.19.3.jar -o C:server
+curl https://api.purpurmc.org/v2/purpur/1.19.3/latest/download -o C:server
 ren *.jar Server.jar
 :labe51
 @echo off
