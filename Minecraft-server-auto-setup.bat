@@ -37,7 +37,7 @@ cls
 echo:
 echo:
 echo:
-echo       server.jar(Paper) (MC version 1.19.3) 更Θ
+echo       server.jar(Paper) (MC version 1.19.3) 更ЧΘ
 goto labe51
 
 :dpurpur
@@ -51,7 +51,7 @@ cls
 echo:
 echo:
 echo:
-echo       server.jar(Purpur) (MC version 1.19.3) 更Θ
+echo       server.jar(Purpur) (MC version 1.19.3) 更ЧΘ
 goto labe51
 
 :dcraftbukkit
@@ -65,7 +65,7 @@ cls
 echo:
 echo:
 echo:
-echo       server.jar(CraftBukkit) (MC version 1.19.3) 更Θ
+echo       server.jar(CraftBukkit) (MC version 1.19.3) 更ЧΘ
 goto labe51
 
 :dspigot
@@ -79,7 +79,7 @@ cls
 echo:
 echo:
 echo:
-echo       server.jar(Spigot) (MC version 1.19.3) 更Θ
+echo       server.jar(Spigot) (MC version 1.19.3) 更ЧΘ
 goto labe51
 
 :dbungeecord
@@ -93,7 +93,7 @@ cls
 echo:
 echo:
 echo:
-echo       server.jar(BungeeCord) (MC version 1.19.X) 更Θ
+echo       server.jar(BungeeCord) (MC version 1.19.X) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeecordskip
 
@@ -108,7 +108,7 @@ cls
 echo:
 echo:
 echo:
-echo       server.jar(Waterfall) (MC version 1.19.X) 更Θ
+echo       server.jar(Waterfall) (MC version 1.19.X) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeecord skip
 
