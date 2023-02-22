@@ -15,7 +15,7 @@
 - [ ] 自動架設ngrok
 - [ ] Bungeecord/Waterfall自動架設
 ## 聲明
-部分內容修改自 `ARCRღ#5202` 所製作的 `Minecraft Server Auto Set`。  
+本項目部分內容修改自 `ARCRღ#5202` 所製作的 `Minecraft Server Auto Set`。  
 本項目使用 GNU General Public License v3.0 許可證。  
 本項目如果造成您的電腦產生任何問題，請自行負責。  
 本項目不以任何方式隸屬於 Mojang AB，也不以任何方式得到 Mojang AB 的認可或支持。
