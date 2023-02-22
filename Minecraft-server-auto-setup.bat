@@ -1,11 +1,11 @@
-color B
 @echo off
+color B
 echo       歡迎使用  Minecraft server auto setup tool
 echo       請先選擇一個核心版本
 echo       1 為 Spigot(建議)
 echo       2 為 CraftBukkit
-echo       2 為 Paper
-echo       3 為 Purpur
+echo       3 為 Paper
+echo       4 為 Purpur
 set choice=
 set /p choice=請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
@@ -13,44 +13,68 @@ if '%choice%'=='1' goto dspigot
 if '%choice%'=='2' goto dcraftbukkit
 if '%choice%'=='3' goto dpaper
 if '%choice%'=='4' goto dpurpur
-echo "%choice%" 輸入錯誤，請再試一次
-echo.
-echo:
-echo:
-echo:
-echo       開始下載 server.jar (MC version 1.19.3)                   
-echo:  
-echo:
-echo:                           
+echo 輸入錯誤，請再試一次                          
 cd %~dp0
 goto start
 :dpaper
+echo:
+echo:
+echo:
+echo       開始下載 server.jar(Paper) (MC version 1.19.3)
 curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/413/downloads/paper-1.19.3-413.jar
 ren paper-1.19.3-413.jar server.jar
-goto end
+cls
+echo:
+echo:
+echo:
+echo       server.jar(Paper) (MC version 1.19.3) 下載成功
+
 :dpurpur
+echo:
+echo:
+echo:
+echo       開始下載 server.jar(Purpur) (MC version 1.19.3)
 curl -O https://api.purpurmc.org/v2/purpur/1.19.3/latest/download
 ren download server.jar
-goto end
+cls
+echo:
+echo:
+echo:
+echo       server.jar(Purpur) (MC version 1.19.3) 下載成功
+
 :dcraftbukkit
+echo:
+echo:
+echo:
+echo       開始下載 server.jar(CraftBukkit) (MC version 1.19.3)
 curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-1.19.3.jar
 ren craftbukkit-1.19.3.jar server.jar
-goto end
+cls
+echo:
+echo:
+echo:
+echo       server.jar(CraftBukkit) (MC version 1.19.3) 下載成功
+
 :dspigot
+echo:
+echo:
+echo:
+echo       開始下載 server.jar(Spigot) (MC version 1.19.3)
 curl -O https://download.getbukkit.org/spigot/spigot-1.19.3.jar
 ren spigot-1.19.3.jar server.jar
-goto end
+cls
+echo:
+echo:
+echo:
+echo       server.jar(Spigot) (MC version 1.19.3) 下載成功
+
 :labe51
 @echo off
-rem setting title
 title=Minecraft server auto setup tool
 mode con cols=70 lines=30
 color B                
-echo       server.jar(MC version:1.19.3) 下載成功
-pause
 cls
 @echo off
-echo:
 echo:
 echo:
 echo:
@@ -87,12 +111,14 @@ echo       請詳細閱讀 Minecraft EULA
 echo:                                                                  
 echo:                              
 echo       https://account.mojang.com/documents/minecraft_eula                                                                      
-echo:   
-ping -n 3 127.0.0.1 >NUL
 @echo off
 echo:
 echo:
-pause
+set eulayn=
+set /p eulayn=請輸入"1"同意 Minecraft EULA：
+if not '%eulayn%'=='' set choice=%choice:~0,1%
+if '%eulayn%'=='1' goto label6
+echo 輸入錯誤，請再試一次 
 :label6
 @echo off&setlocal enabledelayedexpansion
 for /f "eol=* tokens=*" %%i in (eula.txt) do (
