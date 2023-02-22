@@ -11,7 +11,7 @@
 ## TODO
 - [x] 自動下載
 - [ ] Minecraft版本選擇
-- [ ] Spigot/Paper/Purpur選擇
+- [x] Spigot/Paper/Purpur選擇
 - [ ] 自動架設ngrok
 - [ ] Bungeecord/Waterfall自動架設
 ## 聲明
