@@ -1,113 +1,71 @@
 color B
 @echo off
 echo:
-echo       é–‹å§‹ä¸‹è¼‰ purpur.jar | MC version 1.19.3
-echo:                                                     
-echo:                       
-echo:                                                                             
-echo:                 
-echo:                   
-echo:                   
+echo       ¶}©l¤U¸ü purpur.jar (MC version 1.19.3)                   
 echo:                             
 :labe50
 cd %~dp0
 curl -O https://api.purpurmc.org/v2/purpur/1.19.3/latest/download
-ren *.jar purpur.jar
+ren download purpur.jar
 :labe51
 @echo off
 rem setting title
-title=Minecraft server setup tool
+title=Minecraft server auto setup tool
 mode con cols=70 lines=30
-echo:
-echo:
-echo:
-echo:
 color B                
-echo                  purpur.jar(MC version:1.19.3) ä¸‹è¼‰æˆåŠŸ
-echo:  
-echo:              
-echo:
-echo:
+echo                  purpur.jar(MC version:1.19.3) ¤U¸ü¦¨¥\
 pause
 cls
-echo 1.æ­£åœ¨æª¢æŸ¥ä¼ºæœå™¨ç’°å¢ƒ
-ping -n 2 127.0.0.1:25565 >NUL
 @echo off
 echo:
-echo 2.æ­£åœ¨è¨­å®šä¼ºæœå™¨æª”æ¡ˆ
+echo ¥¿¦b³]©wÀÉ®×......
 if not exist StartServer.bat goto label4
-if exist ä¼ºæœå™¨æž¶è¨­ä¸­.bat goto label3
+if exist ¦øªA¾¹¬[³]¤¤.bat goto label3
 :label3
 if not exist usercache.json goto label5
 if exist usercache.json goto label6
 :label4
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+echo java -Xmx4096M -Xms1024M -jar purpur.jar nogui> StartServer.bat
 echo:
 :label5
 call StartServer.bat
 echo:
-ping -n 3 127.0.0.1:25565 >NUL
 @echo off
-echo ä¼ºæœå™¨æª”æ¡ˆå‰µå»ºå®Œæˆ "StartServer.bat"
-ping -n 3 127.0.0.1:25565 >NUL
+echo ³]©w§¹¦¨¡I
+cls
 @echo off
 echo:
-echo å››ã€ä¼ºæœå™¨å³å°‡é‹è¡Œ...
-ping -n 6 127.0.0.1:25565 >NUL
+echo ¦øªA¾¹§Y±N¶}©l¹B¦æ......
+ping -n 6 127.0.0.1 >NUL
 @echo off
 cls
-color 4
-echo:
-echo:
-echo:
-echo:
-echo                      è«‹è©³ç´°é–±è®€ Minecraft EULA
+color B
+echo                      ½Ð¸Ô²Ó¾\Åª Minecraft EULA
 echo:                                                                  
 echo:                              
-echo        https://account.mojang.com/documents/minecraft_eula      
-echo:                                                                  
-echo:                                                                  
-echo:  
-echo:                                                                
-echo                                           
-echo:                                                                 
+echo        https://account.mojang.com/documents/minecraft_eula                                                                      
 echo:   
-ping -n 3 127.0.0.1:25565 >NUL
+ping -n 3 127.0.0.1 >NUL
 @echo off
 echo:
 echo:
 pause
 :label6
 @echo off&setlocal enabledelayedexpansion
-rem è®€å–eula.txtæ‰€æœ‰å…§å®¹
+rem Åª¨úeula.txt©Ò¦³¤º®e
 for /f "eol=* tokens=*" %%i in (eula.txt) do (
-rem è®Šæ•¸aç‚ºæ¯è¡Œå…§å®¹
+rem ÅÜ¼Æa¬°¨C¦æ¤º®e
 set a=%%i
-rem å¦‚æžœè©²è¡Œæœ‰falseï¼Œå‰‡å°‡å…¶æ”¹ç‚ºtrue
+rem ¦pªG¸Ó¦æ¦³false¡A«h±N¨ä§ï¬°true
 set "a=!a:false=true!"
-rem æŠŠä¿®æ”¹å¾Œçš„å…¨éƒ¨è¡Œå­˜å…¥$
+rem §â­×§ï«áªº¥þ³¡¦æ¦s¤J$
 echo !a!>>$)
-rem ç”¨$çš„å…§å®¹æ›¿æ›åŽŸä¾†eula.txtå…§å®¹
+rem ¥Î$ªº¤º®e´À´«­ì¨Óeula.txt¤º®e
 move $ eula.txt
 cls
-echo:
-echo:
-echo:
-echo:
-echo:
-echo: 
-echo:                                                             
-echo:                                                                  
-echo                          ä¼ºæœå™¨è¨­å®šæˆåŠŸ                
-echo:                                                                 
-echo:                                                                  
-echo:   
-echo:                                                                  
-echo                           å³å°‡è‡ªå‹•å•Ÿå‹•ä¼ºæœå™¨...                
-echo:                                                                 
-echo:  
-echo:
-echo:
-ping -n 5 127.0.0.1:25565 >NUL
+echo:                                                                
+echo ¦øªA¾¹³]©w¦¨¥\¡I  
+cls                                                                               
+echo                           §Y±N±Ò°Ê¦øªA¾¹...                
 @echo off
 start StartServer.bat
