@@ -1,7 +1,7 @@
 color B
 @echo off
 echo:
-echo       downloading purpur.jar | MC version 1.19.3
+echo       開始下載 purpur.jar | MC version 1.19.3
 echo:                                                     
 echo:                       
 echo:                                                                             
@@ -61,7 +61,7 @@ echo:
 echo:
 echo:
 echo:
-echo                      請詳細閱讀Minecraft EULA
+echo                      請詳細閱讀 Minecraft EULA
 echo:                                                                  
 echo:                              
 echo        https://account.mojang.com/documents/minecraft_eula      
@@ -69,10 +69,10 @@ echo:
 echo:                                                                  
 echo:  
 echo:                                                                
-echo                          請稍後三秒                 
+echo                                           
 echo:                                                                 
 echo:   
-ping -n 6 127.0.0.1:25565 >NUL
+ping -n 3 127.0.0.1:25565 >NUL
 @echo off
 echo:
 echo:
