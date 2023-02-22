@@ -2,6 +2,7 @@
 color B
 echo       歡迎使用  Minecraft server auto setup tool
 echo       請先選擇一個核心
+echo:
 echo       一般伺服器核心
 echo       1 為 Spigot(建議)
 echo       2 為 CraftBukkit
@@ -9,8 +10,8 @@ echo       3 為 Paper
 echo       4 為 Purpur
 echo:
 echo       分流系統核心
-echo                  5 為 BungeeCord(建議)
-echo                  6 為 Waterfall
+echo       5 為 BungeeCord(建議)
+echo       6 為 Waterfall
 set choice=
 set /p choice=請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
@@ -87,6 +88,8 @@ echo:
 echo:
 echo:
 echo       server.jar(BungeeCord) (MC version 1.19.X) 下載成功
+echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
+goto bungeecordskip
 
 :dwaterfall
 echo:
@@ -100,6 +103,8 @@ echo:
 echo:
 echo:
 echo       server.jar(Waterfall) (MC version 1.19.X) 下載成功
+echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
+goto bungeecord skip
 
 :labe51
 @echo off
@@ -133,7 +138,6 @@ cls
 @echo off
 echo:
 echo 伺服器即將開始運行......
-ping -n 6 127.0.0.1 >NUL
 @echo off
 cls
 color B
@@ -160,6 +164,8 @@ set "a=!a:false=true!"
 echo !a!>>$)
 move $ eula.txt
 cls
+goto bungeecordskip
+:bungeecordskip
 echo:                                                                
 echo       伺服器設定成功！  
 cls                                                                               
