@@ -110,7 +110,7 @@ echo:
 echo:
 echo       server.jar(Waterfall) (MC version 1.19.X) ¤U¸ü§¹¦¨
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
-goto bungeecord skip
+goto bungeecordskip
 
 :labe51
 @echo off
