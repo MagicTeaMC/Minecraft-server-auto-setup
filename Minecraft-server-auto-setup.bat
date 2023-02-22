@@ -46,14 +46,14 @@ echo:
 :label5
 call StartServer.bat
 echo:
-ping -n 3 127.0.0.1 >NUL
+ping -n 3 127.0.0.1:25565 >NUL
 @echo off
 echo 伺服器檔案創建完成 "StartServer.bat"
-ping -n 3 127.0.0.1 >NUL
+ping -n 3 127.0.0.1:25565 >NUL
 @echo off
 echo:
 echo 四、伺服器即將運行...
-ping -n 6 127.0.0.1 >NUL
+ping -n 6 127.0.0.1:25565 >NUL
 @echo off
 cls
 color 4
@@ -108,6 +108,6 @@ echo:
 echo:  
 echo:
 echo:
-ping -n 5 127.0.0.1 >NUL
+ping -n 5 127.0.0.1:25565 >NUL
 @echo off
 start StartServer.bat
