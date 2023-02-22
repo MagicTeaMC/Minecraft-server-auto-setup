@@ -1,7 +1,8 @@
 @echo off
 if exist StartServer.bat start StartServer.bat
 color B
-echo       歡迎使用  Minecraft server auto setup tool
+echo       歡迎使用  Minecraft server auto setup tool (v1.0.1)
+echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo       請先選擇一個核心
 echo:
 echo       一般伺服器核心
