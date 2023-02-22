@@ -1,4 +1,4 @@
-color 7
+color B
 @echo off
 echo:
 echo       正在安裝伺服器檔案 [server.jar]
@@ -23,7 +23,7 @@ echo:
 echo:
 echo:
 echo:
-color 3                
+color B                
 echo                  server.jar檔案已安裝完成
 echo:  
 echo:              
