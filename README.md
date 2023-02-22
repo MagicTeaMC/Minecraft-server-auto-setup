@@ -6,7 +6,8 @@
 完全為新手設計，幾乎不用用腦就能架設伺服器。  
 如果您熟悉 bat 語法，歡迎使用 PR 做出貢獻，我將不勝感激。
 ## 使用方法
-完全自動化，直接執行`.bat`即可
+請前往 [Releases](https://github.com/MagicTeaMC/Minecraft-server-auto-setup/releases/) 下載 `Minecraft-server-auto-setup.bat`  
+並且放在一個乾淨的資料夾中執行
 ## TODO
 - [x] 自動下載
 - [ ] Minecraft版本選擇
