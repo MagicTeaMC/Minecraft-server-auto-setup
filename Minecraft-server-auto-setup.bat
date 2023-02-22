@@ -1,11 +1,16 @@
 @echo off
 color B
 echo       歡迎使用  Minecraft server auto setup tool
-echo       請先選擇一個核心版本
+echo       請先選擇一個核心
+echo       一般伺服器核心
 echo       1 為 Spigot(建議)
 echo       2 為 CraftBukkit
 echo       3 為 Paper
 echo       4 為 Purpur
+echo:
+echo       分流系統核心
+echo                  5 為 BungeeCord(建議)
+echo                  6 為 Waterfall
 set choice=
 set /p choice=請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
@@ -13,6 +18,8 @@ if '%choice%'=='1' goto dspigot
 if '%choice%'=='2' goto dcraftbukkit
 if '%choice%'=='3' goto dpaper
 if '%choice%'=='4' goto dpurpur
+if '%choice%'=='5' goto dbungeecord
+if '%choice%'=='6' goto dwaterfall
 echo 輸入錯誤，請再試一次                          
 cd %~dp0
 goto start
@@ -67,6 +74,32 @@ echo:
 echo:
 echo:
 echo       server.jar(Spigot) (MC version 1.19.3) 下載成功
+
+:dbungeecord
+echo:
+echo:
+echo:
+echo       開始下載 server.jar(BungeeCord) (MC version 1.19.X)
+curl -O https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar
+ren BungeeCord.jar server.jar
+cls
+echo:
+echo:
+echo:
+echo       server.jar(BungeeCord) (MC version 1.19.X) 下載成功
+
+:dwaterfall
+echo:
+echo:
+echo:
+echo       開始下載 server.jar(Waterfall) (MC version 1.19.X)
+curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/511/downloads/waterfall-1.19-511.jar
+ren waterfall-1.19-511.jar server.jar
+cls
+echo:
+echo:
+echo:
+echo       server.jar(Waterfall) (MC version 1.19.X) 下載成功
 
 :labe51
 @echo off
