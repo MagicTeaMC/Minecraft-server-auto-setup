@@ -1,6 +1,6 @@
 (readme file written in chinese)
 # Minecraft-server-auto-setup-v2
-**注意！此項目已經盡量完善，但是可能還有一些我們沒注意到的問題，可能導致意想不到的問題發生**  
+**注意！此項目已經盡量完善，但是可能還有一些我們沒注意到的問題，可能導致意想不到的問題發生！**  
   
    
 完全為新手設計，幾乎不用用腦就能架設伺服器。  
@@ -8,7 +8,7 @@
 ## 使用方法
 1.前往 [Releases](https://github.com/MagicTeaMC/Minecraft-server-auto-setup/releases/) 下載 `Minecraft-server-auto-setup.bat`  
 2.安裝 [Java 17](https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.6%2B10/OpenJDK17U-jdk_x64_windows_hotspot_17.0.6_10.msi)  
-3.將 `Minecraft-server-auto-setup.bat` 放在一個乾淨的資料夾中執行病灶著上面步驟進行即可
+3.將 `Minecraft-server-auto-setup.bat` 放在一個乾淨的資料夾中執行，依照顯示的步驟進行即可
 ## TODO
 - [x] 自動下載
 - [ ] Minecraft版本選擇
