@@ -8,6 +8,7 @@
 ## 使用方法
 完全自動化，直接執行`.bat`即可
 ## TODO
+- [x] 自動下載
 - [ ] Minecraft版本選擇
 - [ ] Spigot/Paper/Purpur選擇
 - [ ] 自動架設ngrok
