@@ -1,4 +1,5 @@
 @echo off
+if exist StartServer.bat start StartServer.bat
 color B
 echo       舧ㄏノ  Minecraft server auto setup tool
 echo       叫匡拒み
@@ -36,6 +37,7 @@ echo:
 echo:
 echo:
 echo       server.jar(Paper) (MC version 1.19.3) 更Θ
+goto labe51
 
 :dpurpur
 echo:
@@ -49,6 +51,7 @@ echo:
 echo:
 echo:
 echo       server.jar(Purpur) (MC version 1.19.3) 更Θ
+goto labe51
 
 :dcraftbukkit
 echo:
@@ -62,6 +65,7 @@ echo:
 echo:
 echo:
 echo       server.jar(CraftBukkit) (MC version 1.19.3) 更Θ
+goto labe51
 
 :dspigot
 echo:
@@ -75,6 +79,7 @@ echo:
 echo:
 echo:
 echo       server.jar(Spigot) (MC version 1.19.3) 更Θ
+goto labe51
 
 :dbungeecord
 echo:
