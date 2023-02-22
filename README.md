@@ -13,7 +13,7 @@
 - [ ] Minecraft版本選擇
 - [x] Spigot/Paper/Purpur選擇
 - [ ] 自動架設ngrok
-- [ ] Bungeecord/Waterfall自動架設
+- [x] Bungeecord/Waterfall自動架設
 ## 聲明
 本項目部分內容修改自 `ARCRღ#5202` 所製作的 `Minecraft Server Auto Set`。  
 本項目使用 GNU General Public License v3.0 許可證。  
