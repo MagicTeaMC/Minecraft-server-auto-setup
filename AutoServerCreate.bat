@@ -1,8 +1,7 @@
 color B
 @echo off
 echo:
-echo       開始安裝伺服器 .jar [purpur.jar]
-echo:
+echo       downloading purpur.jar | MC version 1.19.3
 echo:                                                     
 echo:                       
 echo:                                                                             
@@ -17,33 +16,20 @@ ren *.jar purpur.jar
 :labe51
 @echo off
 rem setting title
-title=Minecraft Server auto setup tool
+title=Minecraft server setup tool
 mode con cols=70 lines=30
 echo:
 echo:
 echo:
 echo:
 color B                
-echo                  purpur.jar 下載完成
+echo                  purpur.jar(MC version:1.19.3) 下載成功
 echo:  
 echo:              
 echo:
 echo:
 pause
 cls
-if exist purpur.jar goto label2
-if not exist purpur.jar goto label1
-:label1
-color 4
-echo   ERROR     
-echo         ERROR: 找不到 purpur.jar，請確認 purpur.jar 與此工具在同一個資料夾重試                                                           
-color
-pause
-exit
-:label2
-echo = 請確認 purpur.jar，放於同一資料夾
-echo:
-echo:
 echo 1.正在檢查伺服器環境
 ping -n 2 127.0.0.1:25565 >NUL
 @echo off
@@ -86,13 +72,12 @@ echo:
 echo                          請稍後三秒                 
 echo:                                                                 
 echo:   
-ping -n 6 127.0.0.1 >NUL
+ping -n 6 127.0.0.1:25565 >NUL
 @echo off
 echo:
 echo:
 pause
 :label6
-rem 定義變數延遲環境，關閉回顯
 @echo off&setlocal enabledelayedexpansion
 rem 讀取eula.txt所有內容
 for /f "eol=* tokens=*" %%i in (eula.txt) do (
