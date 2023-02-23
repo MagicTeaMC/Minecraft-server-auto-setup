@@ -1,7 +1,8 @@
+
 @echo off
-if exist StartServer.bat start StartServer.bat
+if exist StartServer.bat goto bungeecordskip
 color B
-echo       歡迎使用  Minecraft server auto setup tool (v1.0.1)
+echo       歡迎使用  Minecraft server auto setup tool (v1.0.2)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo       請先選擇一個核心
 echo:
@@ -133,6 +134,7 @@ echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 echo:
 :label5
 call StartServer.bat
+color B
 echo:
 @echo off
 echo:
@@ -172,9 +174,16 @@ move $ eula.txt
 cls
 goto bungeecordskip
 :bungeecordskip
+color B
 echo:                                                                
 echo       伺服器設定成功！  
 cls                                                                               
 echo       即將啟動伺服器...                
 @echo off
 start StartServer.bat
+ping -n 5 127.0.0.1 >NUL
+cls
+powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('伺服器已經安裝完成，之後只要啟動"StartServer.bat"即可，並且可使用"stop"指令關閉伺服器(BungeeCord請用"end")。', 'Minecraft server auto setup tool', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}"
+cls
+echo 感謝您的使用，請按任意鍵關閉本程式
+PAUSE
