@@ -33,7 +33,7 @@ echo:
 echo:
 echo       ¶}©l¤U¸ü server.jar(Paper) (MC version 1.19.3)
 curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/417/downloads/paper-1.19.3-417.jar
-ren paper-1.19.3-413.jar server.jar
+ren paper-1.19.3-417.jar server.jar
 cls
 echo:
 echo:
