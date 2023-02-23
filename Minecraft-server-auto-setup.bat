@@ -1,8 +1,9 @@
 @echo off
 if exist StartServer.bat goto bungeecordskip
 color B
-echo       歡迎使用  Minecraft server auto setup tool (v1.0.2)
+echo       歡迎使用  Minecraft server auto setup tool (v1.1.0)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
+echo:
 echo       請先選擇一個核心
 echo:
 echo       一般伺服器核心
@@ -113,8 +114,9 @@ echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :ngrok
-echo 要設定NGROK嗎?(尚在測試中，不建議使用，您可在稍後手動設定)
-echo 要請輸入1，輸入2即跳過
+echo       要設定NGROK嗎?(beta)
+echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
+echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
 set /p nchoice=請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
@@ -124,42 +126,46 @@ if '%nchoice%'=='2' goto labe51
 echo:
 echo:
 echo:
-echo 即將開始下載NGROK
+echo       即將開始下載NGROK
 curl -O https://download-ngrok.pages.dev/ngrok.exe
+cls
 echo:
 echo:
 echo:
-echo 請前往 NGROK 面板獲取Auth token
-echo 網址： https://dashboard.ngrok.com/get-started/your-authtoken
+echo       請前往 NGROK 面板獲取Auth token
+echo       網址： https://dashboard.ngrok.com/get-started/your-authtoken
 set nchoice2=
 set /p nchoice2=請輸入Auth token：
 .\ngrok.exe config add-authtoken %nchoice2%
 echo ngrok.exe tcp 25565 >> StartNgrok.bat
-echo start StartNgrok.bat >> StartServer.bat
 echo NGROK設定完成
 goto labe51
 
 :bungeengrok
-echo 要設定NGROK嗎?(beta)
-echo 要請輸入1，輸入2即跳過
+echo       要設定NGROK嗎?(beta)
+echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
+echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
 set /p nchoice=請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto ybngrok
 if '%nchoice%'=='2' goto allsetup
 :ybngrok
-echo 請先登入NGROK面板
-echo https://dashboard.ngrok.com
 echo:
 echo:
 echo:
-echo 即將開始下載NGROK
+echo       即將開始下載NGROK
 curl -O https://download-ngrok.pages.dev/ngrok.exe
+cls
+echo:
+echo:
+echo:
+echo       請前往 NGROK 面板獲取Auth token
+echo       網址： https://dashboard.ngrok.com/get-started/your-authtoken
 set nchoice2=
 set /p nchoice2=請輸入Auth token：
 .\ngrok.exe config add-authtoken %nchoice2%
 echo ngrok.exe tcp 25565 >> StartNgrok.bat
-echo start StartNgrok.bat >> StartServer.bat
 echo NGROK設定完成
 goto allsetup
 
@@ -233,7 +239,7 @@ echo       即將啟動伺服器...
 start StartServer.bat
 ping -n 5 127.0.0.1 >NUL
 cls
-powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('伺服器已經安裝完成，之後只要啟動"StartServer.bat"即可，並且可使用"stop"指令關閉伺服器(BungeeCord請用"end")。如果您有設定NGROK，請在每次開服時自行啟動StartNgrok.bat，才能讓玩家連線至外網', 'Minecraft server auto setup tool', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}"
+powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('伺服器已經安裝完成，之後只要啟動"StartServer.bat"即可，並且可使用"stop"指令關閉伺服器(BungeeCord請用"end")。如果您有設定NGROK，請在每次開服時自行啟動StartNgrok.bat，才能讓玩家連線至外網', 'Minecraft server auto setup tool (重要訊息，請詳細閱讀)', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}"
 cls
 echo 感謝您的使用，請按任意鍵關閉本程式
 PAUSE
