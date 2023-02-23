@@ -114,7 +114,7 @@ echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :ngrok
-echo       要設定NGROK嗎?(beta)
+echo       要設定NGROK嗎?(測試版)
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
@@ -142,7 +142,7 @@ echo NGROK設定完成
 goto labe51
 
 :bungeengrok
-echo       要設定NGROK嗎?(beta)
+echo       要設定NGROK嗎?(測試版)
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
