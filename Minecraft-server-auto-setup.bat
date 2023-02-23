@@ -1,4 +1,3 @@
-
 @echo off
 if exist StartServer.bat goto bungeecordskip
 color B
@@ -39,7 +38,7 @@ echo:
 echo:
 echo:
 echo       server.jar(Paper) (MC version 1.19.3) 下載完成
-goto labe51
+goto ngrok
 
 :dpurpur
 echo:
@@ -53,7 +52,7 @@ echo:
 echo:
 echo:
 echo       server.jar(Purpur) (MC version 1.19.3) 下載完成
-goto labe51
+goto ngrok
 
 :dcraftbukkit
 echo:
@@ -67,7 +66,7 @@ echo:
 echo:
 echo:
 echo       server.jar(CraftBukkit) (MC version 1.19.3) 下載完成
-goto labe51
+goto ngrok
 
 :dspigot
 echo:
@@ -81,7 +80,7 @@ echo:
 echo:
 echo:
 echo       server.jar(Spigot) (MC version 1.19.3) 下載完成
-goto labe51
+goto ngrok
 
 :dbungeecord
 echo:
@@ -96,7 +95,7 @@ echo:
 echo:
 echo       server.jar(BungeeCord) (MC version 1.19.X) 下載完成
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
-goto bungeecordskip
+goto bungeengrok
 
 :dwaterfall
 echo:
@@ -111,7 +110,58 @@ echo:
 echo:
 echo       server.jar(Waterfall) (MC version 1.19.X) 下載完成
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
-goto bungeecordskip
+goto bungeengrok
+
+:ngrok
+echo 要設定NGROK嗎?(尚在測試中，不建議使用，您可在稍後手動設定)
+echo 要請輸入1，輸入2即跳過
+set nchoice=
+set /p nchoice=請選擇一個：
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%nchoice%'=='1' goto yngrok
+if '%nchoice%'=='2' goto labe51
+:yngrok
+echo:
+echo:
+echo:
+echo 即將開始下載NGROK
+curl -O https://download-ngrok.pages.dev/ngrok.exe
+echo:
+echo:
+echo:
+echo 請前往 NGROK 面板獲取Auth token
+echo 網址： https://dashboard.ngrok.com/get-started/your-authtoken
+set nchoice2=
+set /p nchoice2=請輸入Auth token：
+.\ngrok.exe config add-authtoken %nchoice2%
+echo ngrok.exe tcp 25565 >> StartNgrok.bat
+echo start StartNgrok.bat >> StartServer.bat
+echo NGROK設定完成
+goto labe51
+
+:bungeengrok
+echo 要設定NGROK嗎?(beta)
+echo 要請輸入1，輸入2即跳過
+set nchoice=
+set /p nchoice=請選擇一個：
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%nchoice%'=='1' goto ybngrok
+if '%nchoice%'=='2' goto allsetup
+:ybngrok
+echo 請先登入NGROK面板
+echo https://dashboard.ngrok.com
+echo:
+echo:
+echo:
+echo 即將開始下載NGROK
+curl -O https://download-ngrok.pages.dev/ngrok.exe
+set nchoice2=
+set /p nchoice2=請輸入Auth token：
+.\ngrok.exe config add-authtoken %nchoice2%
+echo ngrok.exe tcp 25565 >> StartNgrok.bat
+echo start StartNgrok.bat >> StartServer.bat
+echo NGROK設定完成
+goto allsetup
 
 :labe51
 @echo off
@@ -172,8 +222,8 @@ set "a=!a:false=true!"
 echo !a!>>$)
 move $ eula.txt
 cls
-goto bungeecordskip
 :bungeecordskip
+:allsetup
 color B
 echo:                                                                
 echo       伺服器設定成功！  
@@ -183,7 +233,7 @@ echo       即將啟動伺服器...
 start StartServer.bat
 ping -n 5 127.0.0.1 >NUL
 cls
-powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('伺服器已經安裝完成，之後只要啟動"StartServer.bat"即可，並且可使用"stop"指令關閉伺服器(BungeeCord請用"end")。', 'Minecraft server auto setup tool', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}"
+powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('伺服器已經安裝完成，之後只要啟動"StartServer.bat"即可，並且可使用"stop"指令關閉伺服器(BungeeCord請用"end")。如果您有設定NGROK，請在每次開服時自行啟動StartNgrok.bat，才能讓玩家連線至外網', 'Minecraft server auto setup tool', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}"
 cls
 echo 感謝您的使用，請按任意鍵關閉本程式
 PAUSE
