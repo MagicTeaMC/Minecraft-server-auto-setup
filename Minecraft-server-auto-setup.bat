@@ -32,7 +32,7 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Paper) (MC version 1.19.3)
-curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/417/downloads/paper-1.19.3-417.jar
+curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/424/downloads/paper-1.19.3-424.jar
 ren paper-1.19.3-417.jar server.jar
 cls
 echo:
@@ -186,7 +186,7 @@ if exist 伺服器架設中.bat goto label3
 if not exist usercache.json goto label5
 if exist usercache.json goto label6
 :label4
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+echo java -Xmx4096M -Xms1024M -Dpaper.useLegacyPluginLoading=true -jar server.jar nogui> StartServer.bat
 echo:
 :label5
 call StartServer.bat
