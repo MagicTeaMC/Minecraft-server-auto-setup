@@ -1,7 +1,7 @@
 @echo off
 if exist StartServer.bat goto bungeecordskip
 color B
-echo       歡迎使用  Minecraft server auto setup tool (v1.1.2)
+echo       歡迎使用  Minecraft server auto setup tool (v1.1.0)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo       請先選擇一個核心
@@ -32,14 +32,13 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Paper) (MC version 1.19.3)
-curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/424/downloads/paper-1.19.3-424.jar
-ren paper-1.19.3-424.jar server.jar
+curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/413/downloads/paper-1.19.3-413.jar
+ren paper-1.19.3-413.jar server.jar
 cls
 echo:
 echo:
 echo:
 echo       server.jar(Paper) (MC version 1.19.3) 下載完成
-echo java -Xmx4096M -Xms1024M -Dpaper.useLegacyPluginLoading=true -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dpurpur
@@ -54,7 +53,6 @@ echo:
 echo:
 echo:
 echo       server.jar(Purpur) (MC version 1.19.3) 下載完成
-echo java -Xmx4096M -Xms1024M -Dpaper.useLegacyPluginLoading=true -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dcraftbukkit
@@ -69,7 +67,6 @@ echo:
 echo:
 echo:
 echo       server.jar(CraftBukkit) (MC version 1.19.3) 下載完成
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dspigot
@@ -84,7 +81,6 @@ echo:
 echo:
 echo:
 echo       server.jar(Spigot) (MC version 1.19.3) 下載完成
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dbungeecord
@@ -190,7 +186,19 @@ if exist 伺服器架設中.bat goto label3
 if not exist usercache.json goto label5
 if exist usercache.json goto label6
 :label4
+echo.> StartServer.bat
+echo java -Xmx2048M -Xms1024M -jar server.jar nogui>> StartServer.bat
 echo:
+:setram
+@echo off
+echo 不要將記憶體設定在總記憶體的80%以上 請使用MB(1024M=1G)
+set /p ram=請輸入要給予伺服器的記憶體大小:
+
+powershell -Command "& { $content = Get-Content 'StartServer.bat'; $content -replace 'Xmx\d+M', 'Xmx%ram%M' | Set-Content 'StartServer.bat'; }"
+
+echo 成功給予伺服器 %ram% MB 的記憶體.
+
+pause
 :label5
 call StartServer.bat
 color B
