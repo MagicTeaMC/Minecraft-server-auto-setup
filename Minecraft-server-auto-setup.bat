@@ -1,7 +1,7 @@
 @echo off
 if exist StartServer.bat goto bungeecordskip
 color B
-echo       舧ㄏノ  Minecraft server auto setup tool (v1.1.0)
+echo       舧ㄏノ  Minecraft server auto setup tool (v1.2.0)
 echo       GitHub https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo       叫匡拒み
@@ -32,13 +32,14 @@ echo:
 echo:
 echo:
 echo       秨﹍更 server.jar(Paper) (MC version 1.19.3)
-curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/413/downloads/paper-1.19.3-413.jar
-ren paper-1.19.3-413.jar server.jar
+curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/413/downloads/paper-1.19.3-446.jar
+ren paper-1.19.3-446.jar server.jar
 cls
 echo:
 echo:
 echo:
 echo       server.jar(Paper) (MC version 1.19.3) 更ЧΘ
+java -Xmx4096M -Xms1024M -Dpaper.useLegacyPluginLoading=true -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dpurpur
@@ -53,6 +54,7 @@ echo:
 echo:
 echo:
 echo       server.jar(Purpur) (MC version 1.19.3) 更ЧΘ
+java -Xmx4096M -Xms1024M -Dpaper.useLegacyPluginLoading=true -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dcraftbukkit
@@ -67,6 +69,7 @@ echo:
 echo:
 echo:
 echo       server.jar(CraftBukkit) (MC version 1.19.3) 更ЧΘ
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dspigot
@@ -81,6 +84,7 @@ echo:
 echo:
 echo:
 echo       server.jar(Spigot) (MC version 1.19.3) 更ЧΘ
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dbungeecord
@@ -186,8 +190,6 @@ if exist 狝竟琜砞い.bat goto label3
 if not exist usercache.json goto label5
 if exist usercache.json goto label6
 :label4
-echo.> StartServer.bat
-echo java -Xmx2048M -Xms1024M -jar server.jar nogui>> StartServer.bat
 echo:
 :setram
 @echo off
