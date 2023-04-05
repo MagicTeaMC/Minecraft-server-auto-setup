@@ -1,19 +1,19 @@
 @echo off
 if exist StartServer.bat goto bungeecordskip
 color B
-echo       歡迎使用  Minecraft server auto setup tool (v1.2.0)
+echo       歡迎使用  Minecraft server auto setup tool (v1.1.3)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo       請先選擇一個核心
 echo:
-echo       一般伺服器核心
+echo       插件伺服器核心
 echo       1 為 Spigot(建議)
 echo       2 為 CraftBukkit
 echo       3 為 Paper
 echo       4 為 Purpur
 echo:
-echo       分流系統核心
-echo       5 為 BungeeCord(建議)
+echo       分流伺服器核心
+echo       5 為 BungeeCord
 echo       6 為 Waterfall
 set choice=
 set /p choice=請選擇一個：
@@ -31,44 +31,44 @@ goto start
 echo:
 echo:
 echo:
-echo       開始下載 server.jar(Paper) (MC version 1.19.3)
-curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/413/downloads/paper-1.19.3-446.jar
-ren paper-1.19.3-446.jar server.jar
+echo       開始下載 server.jar(Paper) (MC version 1.19.4)
+curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/492/downloads/paper-1.19.4-492.jar
+ren paper-1.19.4-492.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Paper) (MC version 1.19.3) 下載完成
-java -Xmx4096M -Xms1024M -Dpaper.useLegacyPluginLoading=true -jar server.jar nogui> StartServer.bat
+echo       server.jar(Paper) (MC version 1.19.4) 下載完成
+echo java -Xmx4096M -Xms1024M -Dpaper.useLegacyPluginLoading=true -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dpurpur
 echo:
 echo:
 echo:
-echo       開始下載 server.jar(Purpur) (MC version 1.19.3)
-curl -O https://api.purpurmc.org/v2/purpur/1.19.3/latest/download
+echo       開始下載 server.jar(Purpur) (MC version 1.19.4)
+curl -O https://api.purpurmc.org/v2/purpur/1.19.4/latest/download
 ren download server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Purpur) (MC version 1.19.3) 下載完成
-java -Xmx4096M -Xms1024M -Dpaper.useLegacyPluginLoading=true -jar server.jar nogui> StartServer.bat
+echo       server.jar(Purpur) (MC version 1.19.4) 下載完成
+echo java -Xmx4096M -Xms1024M -Dpaper.useLegacyPluginLoading=true -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dcraftbukkit
 echo:
 echo:
 echo:
-echo       開始下載 server.jar(CraftBukkit) (MC version 1.19.3)
-curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-1.19.3.jar
-ren craftbukkit-1.19.3.jar server.jar
+echo       開始下載 server.jar(CraftBukkit) (MC version 1.19.4)
+curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-1.19.4.jar
+ren craftbukkit-1.19.4.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(CraftBukkit) (MC version 1.19.3) 下載完成
+echo       server.jar(CraftBukkit) (MC version 1.19.4) 下載完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -76,14 +76,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       開始下載 server.jar(Spigot) (MC version 1.19.3)
-curl -O https://download.getbukkit.org/spigot/spigot-1.19.3.jar
-ren spigot-1.19.3.jar server.jar
+echo       開始下載 server.jar(Spigot) (MC version 1.19.4)
+curl -O https://download.getbukkit.org/spigot/spigot-1.19.4.jar
+ren spigot-1.19.4.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Spigot) (MC version 1.19.3) 下載完成
+echo       server.jar(Spigot) (MC version 1.19.4) 下載完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -107,8 +107,8 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Waterfall) (MC version 1.19.X)
-curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/511/downloads/waterfall-1.19-511.jar
-ren waterfall-1.19-511.jar server.jar
+curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/520/downloads/waterfall-1.19-520.jar
+ren waterfall-1.19-520.jar server.jar
 cls
 echo:
 echo:
@@ -191,16 +191,6 @@ if not exist usercache.json goto label5
 if exist usercache.json goto label6
 :label4
 echo:
-:setram
-@echo off
-echo 不要將記憶體設定在總記憶體的80%以上 請使用MB(1024M=1G)
-set /p ram=請輸入要給予伺服器的記憶體大小:
-
-powershell -Command "& { $content = Get-Content 'StartServer.bat'; $content -replace 'Xmx\d+M', 'Xmx%ram%M' | Set-Content 'StartServer.bat'; }"
-
-echo 成功給予伺服器 %ram% MB 的記憶體.
-
-pause
 :label5
 call StartServer.bat
 color B
