@@ -1,7 +1,7 @@
 (readme file written in chinese)
 # Minecraft-server-auto-setup
 **注意！此項目已經盡量完善，但是可能還有一些我們沒注意到的問題，可能導致意想不到的問題發生！**  
-對了，目前尚未支援 1.19.4  
+
   
    
 完全為新手設計，可以輕鬆 Minecraft 架設伺服器。  
