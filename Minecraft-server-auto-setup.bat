@@ -152,6 +152,21 @@ echo       server.jar(Waterfall) (MC version 1.19.X) 下載完成
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
+:dcatserver1182
+echo:
+echo:
+echo:
+echo       開始下載 server.jar(CatServer) (MC version 1.18.2)
+curl -O https://github.com/Luohuayu/CatServer/releases/download/23.05.11-1/CatServer-1.18.2-a59ef063-server.jar
+ren CatServer-1.18.2-a59ef063-server.jar server.jar
+cls
+echo:
+echo:
+echo:
+echo       server.jar(CatServer) (MC version 1.18.2) 下載完成
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+goto ngrok
+
 :ngrok
 echo       要設定NGROK嗎?
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
