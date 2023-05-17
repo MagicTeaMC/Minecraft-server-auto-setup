@@ -7,9 +7,9 @@ echo:
 echo       請先選擇一個核心
 echo:
 echo       插件伺服器核心
-echo       1 為 Spigot(建議)
+echo       1 為 Spigot
 echo       2 為 CraftBukkit
-echo       3 為 Paper
+echo       3 為 Paper(建議)
 echo       4 為 Purpur
 echo:
 echo       分流伺服器核心
@@ -32,8 +32,8 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Paper) (MC version 1.19.4)
-curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/492/downloads/paper-1.19.4-492.jar
-ren paper-1.19.4-492.jar server.jar
+curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/538/downloads/paper-1.19.4-538.jar
+ren paper-1.19.4-538.jar server.jar
 cls
 echo:
 echo:
@@ -107,8 +107,8 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Waterfall) (MC version 1.19.X)
-curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/520/downloads/waterfall-1.19-520.jar
-ren waterfall-1.19-520.jar server.jar
+curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/526/downloads/waterfall-1.19-526.jar
+ren waterfall-1.19-526.jar server.jar
 cls
 echo:
 echo:
