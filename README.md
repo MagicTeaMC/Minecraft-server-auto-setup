@@ -16,8 +16,9 @@
 - [x] Spigot/Paper/Purpur選擇
 - [x] 自動架設ngrok
 - [x] Bungeecord/Waterfall自動架設
-- [ ] velocity 支援
-- [ ] 模組服及原版服支援
+- [x] velocity 支援
+- [x] 模組服支援
+- [ ] 原版服支援
 ## 聲明
 本項目部分內容修改自 `SKYYYY#5202` 所製作的 `Minecraft Server Auto Set`。  
 本項目使用 GNU General Public License v3.0 許可證。  
