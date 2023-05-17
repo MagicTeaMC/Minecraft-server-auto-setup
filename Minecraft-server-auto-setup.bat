@@ -27,6 +27,7 @@ echo       11 為 CatServer 1.12.2
 echo       12 為 Mohist 1.12.2
 echo       13 為 Mohist 1.16.5
 echo       14 為 Mohist 1.18.2
+echo       15 為 Folia
 set choice=
 set /p choice=請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
@@ -42,6 +43,7 @@ if '%choice%'=='9' goto dcatserver1122
 if '%choice%'=='10' goto dmohist1122
 if '%choice%'=='11' goto dmohist1165
 if '%choice%'=='12' goto dmohist1182
+if '%choice%'=='13' goto dfolia
 echo 輸入錯誤，請再試一次                          
 cd %~dp0
 goto start
