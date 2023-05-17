@@ -1,7 +1,7 @@
 @echo off
 if exist StartServer.bat goto bungeecordskip
 color B
-echo       歡迎使用  Minecraft server auto setup tool (v1.1.3)
+echo       歡迎使用  Minecraft server auto setup tool (v1.2.0)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo       請先選擇一個核心
@@ -15,6 +15,18 @@ echo:
 echo       分流伺服器核心
 echo       5 為 BungeeCord
 echo       6 為 Waterfall
+echo       7 為 Velocity
+echo:
+echo       模組伺服器核心
+echo       8 為 Fabric
+echo       9 為 Forge
+echo:
+echo       其他類型核心
+echo       10 為 CatServer 1.18.2
+echo       11 為 CatServer 1.12.2
+echo       12 為 Mohist 1.12.2
+echo       13 為 Mohist 1.16.5
+echo       14 為 Mohist 1.18.2
 set choice=
 set /p choice=請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
@@ -24,6 +36,12 @@ if '%choice%'=='3' goto dpaper
 if '%choice%'=='4' goto dpurpur
 if '%choice%'=='5' goto dbungeecord
 if '%choice%'=='6' goto dwaterfall
+if '%choice%'=='7' goto dvelocity
+if '%choice%'=='8' goto dcatserver1182
+if '%choice%'=='9' goto dcatserver1122
+if '%choice%'=='10' goto dmohist1122
+if '%choice%'=='11' goto dmohist1165
+if '%choice%'=='12' goto dmohist1182
 echo 輸入錯誤，請再試一次                          
 cd %~dp0
 goto start
@@ -39,7 +57,7 @@ echo:
 echo:
 echo:
 echo       server.jar(Paper) (MC version 1.19.4) 下載完成
-echo java -Xmx4096M -Xms1024M -Dpaper.useLegacyPluginLoading=true -jar server.jar nogui> StartServer.bat
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dpurpur
@@ -54,7 +72,7 @@ echo:
 echo:
 echo:
 echo       server.jar(Purpur) (MC version 1.19.4) 下載完成
-echo java -Xmx4096M -Xms1024M -Dpaper.useLegacyPluginLoading=true -jar server.jar nogui> StartServer.bat
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dcraftbukkit
@@ -117,8 +135,23 @@ echo       server.jar(Waterfall) (MC version 1.19.X) 下載完成
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
+:dvelocity
+echo:
+echo:
+echo:
+echo       開始下載 server.jar(velocity) (MC version 1.19.X)
+curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/256/downloads/velocity-3.2.0-SNAPSHOT-256.jar
+ren velocity-3.2.0-SNAPSHOT-256.jar server.jar
+cls
+echo:
+echo:
+echo:
+echo       server.jar(Waterfall) (MC version 1.19.X) 下載完成
+echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
+goto bungeengrok
+
 :ngrok
-echo       要設定NGROK嗎?(測試版)
+echo       要設定NGROK嗎?
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
@@ -126,6 +159,7 @@ set /p nchoice=請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto yngrok
 if '%nchoice%'=='2' goto labe51
+
 :yngrok
 echo:
 echo:
@@ -146,7 +180,7 @@ echo NGROK設定完成
 goto labe51
 
 :bungeengrok
-echo       要設定NGROK嗎?(測試版)
+echo       要設定NGROK嗎?
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
@@ -154,6 +188,7 @@ set /p nchoice=請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto ybngrok
 if '%nchoice%'=='2' goto allsetup
+
 :ybngrok
 echo:
 echo:
@@ -204,7 +239,7 @@ echo       設定完成！
 cls
 @echo off
 echo:
-echo 伺服器即將開始運行......
+echo       伺服器即將開始運行......
 @echo off
 cls
 color B
