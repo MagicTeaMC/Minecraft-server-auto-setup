@@ -167,6 +167,36 @@ echo       server.jar(CatServer) (MC version 1.18.2) 下載完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
+:dcatserver1165
+echo:
+echo:
+echo:
+echo       開始下載 server.jar(CatServer) (MC version 1.16.5)
+curl -O https://github.com/Luohuayu/CatServer/releases/download/23.05.14/CatServer-1.16.5-838c8dcc-server.jar
+ren CatServer-1.16.5-838c8dcc-server.jar server.jar
+cls
+echo:
+echo:
+echo:
+echo       server.jar(CatServer) (MC version 1.16.5) 下載完成
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+goto ngrok
+
+:dcatserver1122
+echo:
+echo:
+echo:
+echo       開始下載 server.jar(CatServer) (MC version 1.12.2)
+curl -O https://github.com/Luohuayu/CatServer/releases/download/23.05.09/CatServer-fed56812-universal.jar
+ren CatServer-fed56812-universal.jar server.jar
+cls
+echo:
+echo:
+echo:
+echo       server.jar(CatServer) (MC version 1.12.2) 下載完成
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+goto ngrok
+
 :ngrok
 echo       要設定NGROK嗎?
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
