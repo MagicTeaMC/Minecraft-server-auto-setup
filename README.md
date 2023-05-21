@@ -16,7 +16,7 @@
 - [x] Spigot/Paper/Purpur選擇
 - [x] 自動架設ngrok
 - [x] Bungeecord/Waterfall自動架設
-- [x] velocity 支援
+- [x] Velocity 支援
 - [x] 模組服支援
 - [ ] 原版服支援
 ## 聲明
