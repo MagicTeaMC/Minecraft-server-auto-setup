@@ -38,12 +38,14 @@ if '%choice%'=='4' goto dpurpur
 if '%choice%'=='5' goto dbungeecord
 if '%choice%'=='6' goto dwaterfall
 if '%choice%'=='7' goto dvelocity
-if '%choice%'=='8' goto dcatserver1182
-if '%choice%'=='9' goto dcatserver1122
-if '%choice%'=='10' goto dmohist1122
-if '%choice%'=='11' goto dmohist1165
-if '%choice%'=='12' goto dmohist1182
-if '%choice%'=='13' goto dfolia
+if '%choice%'=='8' goto dfabric
+if '%choice%'=='9' goto dforge
+if '%choice%'=='10' goto dcatserver1182
+if '%choice%'=='11' goto dcatserver1122
+if '%choice%'=='12' goto dmohist1122
+if '%choice%'=='13' goto dmohist1165
+if '%choice%'=='14' goto dmohist1182
+if '%choice%'=='15' goto dfolia
 echo 輸入錯誤，請再試一次                          
 cd %~dp0
 goto start
