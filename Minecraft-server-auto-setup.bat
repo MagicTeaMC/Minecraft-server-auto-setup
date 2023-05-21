@@ -10,7 +10,7 @@ echo:
 echo       插件伺服器核心
 echo       1 為 Spigot
 echo       2 為 CraftBukkit
-echo       3 為 Paper(建議)
+echo       3 為 Paper (建議)
 echo       4 為 Purpur
 echo:
 echo       分流伺服器核心
@@ -35,7 +35,9 @@ if '%choice%'=='6' goto dwaterfall
 if '%choice%'=='7' goto dvelocity
 if '%choice%'=='8' goto dfabric
 if '%choice%'=='9' goto dfolia
-echo 輸入錯誤，請再試一次                          
+echo 輸入錯誤，請再試一次
+PAUSE
+cls                          
 cd %~dp0
 goto mcsasstart
 
@@ -103,14 +105,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       開始下載 server.jar(fabric) (MC version 1.19.4)
+echo       開始下載 server.jar(Fabric) (MC version 1.19.4)
 curl -O https://meta.fabricmc.net/v2/versions/loader/1.19.4/0.14.19/0.11.2/server/jar
 ren jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(fabric) (MC version 1.19.4) 下載完成
+echo       server.jar(Fabric) (MC version 1.19.4) 下載完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -118,14 +120,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       開始下載 server.jar(folia) (MC version 1.19.4)
+echo       開始下載 server.jar(Folia) (MC version 1.19.4)
 curl -O https://github.com/MagicTeaMC/Folia-CI/releases/download/Build-202305182113/folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar
 ren folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(folia) (MC version 1.19.4) 下載完成
+echo       server.jar(Folia) (MC version 1.19.4) 下載完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -175,61 +177,75 @@ echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :ngrok
-echo       要設定NGROK嗎?
+echo       要設定 NGROK 嗎?
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
-set /p nchoice=請選擇一個：
+set /p nchoice=請輸入您的選擇：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto yngrok
 if '%nchoice%'=='2' goto labe51
+echo 輸入錯誤，請再試一次
+PAUSE
+cls                          
+goto ngrok
 
 :yngrok
 echo:
 echo:
 echo:
-echo       即將開始下載NGROK
+echo       即將開始下載 NGROK
 curl -O https://download-ngrok.pages.dev/ngrok.exe
 cls
 echo:
 echo:
 echo:
-echo       請前往 NGROK 面板獲取Auth token
+echo       請前往 NGROK 面板獲取 Auth token
 echo       網址： https://dashboard.ngrok.com/get-started/your-authtoken
 set nchoice2=
-set /p nchoice2=請輸入Auth token：
+set /p nchoice2=請輸入 Auth token：
 .\ngrok.exe config add-authtoken %nchoice2%
 echo ngrok.exe tcp 25565 >> StartNgrok.bat
 echo NGROK設定完成
 goto labe51
 
 :bungeengrok
-echo       要設定NGROK嗎?
+echo       要設定 NGROK 嗎?
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
-set /p nchoice=請選擇一個：
+set /p nchoice=請輸入您的選擇：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto ybngrok
 if '%nchoice%'=='2' goto allsetup
+echo 輸入錯誤，請再試一次
+PAUSE
+cls                          
+goto bungeengrok
 
 :ybngrok
 echo:
 echo:
 echo:
-echo       即將開始下載NGROK
+echo       即將開始下載 NGROK
 curl -O https://download-ngrok.pages.dev/ngrok.exe
 cls
 echo:
 echo:
 echo:
-echo       請前往 NGROK 面板獲取Auth token
-echo       網址： https://dashboard.ngrok.com/get-started/your-authtoken
+echo       請前往 NGROK 面板獲取 Auth token
+echo:
+echo:
+echo       正在自動開啟 NGROK 面板....
+start "" https://dashboard.ngrok.com/get-started/your-authtoken
+echo:
+echo:
+echo       如果沒有自動開啟，請手動前往此網址： https://dashboard.ngrok.com/get-started/your-authtoken
 set nchoice2=
-set /p nchoice2=請輸入Auth token：
+set /p nchoice2=請輸入 Auth token：
 .\ngrok.exe config add-authtoken %nchoice2%
 echo ngrok.exe tcp 25565 >> StartNgrok.bat
-echo NGROK設定完成
+echo NGROK 設定完成
 goto allsetup
 
 :labe51
@@ -243,13 +259,12 @@ echo:
 echo:
 echo:
 echo       正在設定檔案......
-if not exist StartServer.bat goto label4
+if not exist StartServer.bat goto label5
 if exist 伺服器架設中.bat goto label3
 :label3
 if not exist usercache.json goto label5
 if exist usercache.json goto label6
 :label4
-echo:
 :label5
 call StartServer.bat
 color B
@@ -281,7 +296,10 @@ set eulayn=
 set /p eulayn=請輸入"1"同意 Minecraft EULA：
 if not '%eulayn%'=='' set choice=%choice:~0,1%
 if '%eulayn%'=='1' goto label6
-echo 輸入錯誤，請再試一次 
+echo 輸入錯誤，請再試一次
+PAUSE
+cls                          
+goto label5 
 :label6
 @echo off&setlocal enabledelayedexpansion
 for /f "eol=* tokens=*" %%i in (eula.txt) do (
