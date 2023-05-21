@@ -2,9 +2,6 @@
 :mcsasstart
 if exist StartServer.bat goto bungeecordskip
 color B
-echo       歡迎使用  Minecraft server auto setup tool (v1.2.0)
-echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
-echo:
 where java.exe >nul 2>nul
 IF NOT ERRORLEVEL 0 (
     @echo       請先安裝 Java 才能執行本程式
@@ -12,6 +9,16 @@ IF NOT ERRORLEVEL 0 (
 )
 cls
 color B
+cls
+echo       
+echo       #     #  #####   #####     #     #####  ####### 
+echo       ##   ## #     # #     #   # #   #     #    #    
+echo       # # # # #       #        #   #  #          #    
+echo       #  #  # #        #####  #     #  #####     #    
+echo       #     # #             # #######       #    #    
+echo       #     # #     # #     # #     # #     #    #    
+echo       #     #  #####   #####  #     #  #####     #  
+echo                    by Maoyue(MagicTeaMC)
 echo:
 echo       歡迎使用  Minecraft server auto setup tool (v1.2.0)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
@@ -38,7 +45,7 @@ echo       9 為 Folia
 echo:
 echo       10 為使用自訂核心
 set choice=
-set /p choice=請選擇一個：
+set /p choice=       請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto dspigot
 if '%choice%'=='2' goto dcraftbukkit
@@ -50,7 +57,7 @@ if '%choice%'=='7' goto dvelocity
 if '%choice%'=='8' goto dfabric
 if '%choice%'=='9' goto dfolia
 if '%choice%'=='10' goto customcore
-echo 輸入錯誤，請再試一次
+echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
 cd %~dp0
@@ -196,11 +203,11 @@ echo       要設定 NGROK 嗎?
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
-set /p nchoice=請輸入您的選擇：
+set /p nchoice=       請輸入您的選擇：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto yngrok
 if '%nchoice%'=='2' goto labe51
-echo 輸入錯誤，請再試一次
+echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
 goto ngrok
@@ -208,12 +215,12 @@ goto ngrok
 :customcore
 echo:
 echo:
-echo 請將 .jar 檔案放在此程式相同目錄下後按任意建
+echo       請將 .jar 檔案放在此程式相同目錄下後按任意建
 PAUSE
 if exist *.jar (
     goto haveserverjar
 ) else (
-    @echo 找不到 .jar 檔案，請再試一次
+    @echo       找不到 .jar 檔案，請再試一次
 	goto customcore
 )
 :haveserverjar
@@ -249,7 +256,7 @@ set nchoice2=
 set /p nchoice2=請輸入 Auth token：
 .\ngrok.exe config add-authtoken %nchoice2%
 echo ngrok.exe tcp 25565 >> StartNgrok.bat
-echo NGROK設定完成
+echo       NGROK設定完成
 goto labe51
 
 :bungeengrok
@@ -257,11 +264,11 @@ echo       要設定 NGROK 嗎?
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
-set /p nchoice=請輸入您的選擇：
+set /p nchoice=       請輸入您的選擇：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto ybngrok
 if '%nchoice%'=='2' goto allsetup
-echo 輸入錯誤，請再試一次
+echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
 goto bungeengrok
@@ -285,10 +292,10 @@ echo:
 echo:
 echo       如果沒有自動開啟，請手動前往此網址： https://dashboard.ngrok.com/get-started/your-authtoken
 set nchoice2=
-set /p nchoice2=請輸入 Auth token：
+set /p nchoice2=       請輸入 Auth token：
 .\ngrok.exe config add-authtoken %nchoice2%
 echo ngrok.exe tcp 25565 >> StartNgrok.bat
-echo NGROK 設定完成
+echo       NGROK 設定完成
 goto allsetup
 
 :labe51
@@ -338,10 +345,10 @@ echo       https://account.mojang.com/documents/minecraft_eula
 echo:
 echo:
 set eulayn=
-set /p eulayn=請輸入"1"同意 Minecraft EULA：
+set /p eulayn=       請輸入"1"同意 Minecraft EULA：
 if not '%eulayn%'=='' set choice=%choice:~0,1%
 if '%eulayn%'=='1' goto label6
-echo 輸入錯誤，請再試一次
+echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
 goto mceula
@@ -366,6 +373,6 @@ ping -n 5 127.0.0.1 >NUL
 cls
 powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('伺服器已經安裝完成，之後只要啟動"StartServer.bat"即可，並且可使用"stop"指令關閉伺服器(BungeeCord請用"end")。如果您有設定NGROK，請在每次開服時自行啟動StartNgrok.bat，才能讓玩家連線至外網', 'Minecraft server auto setup tool (重要訊息，請詳細閱讀)', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}" >NUL
 cls
-echo 感謝您的使用，請按任意鍵關閉本程式
+echo       感謝您的使用，請按任意鍵關閉本程式
 :youdonthavejava
 PAUSE
