@@ -1,4 +1,5 @@
 @echo off
+:mcsasstart
 if exist StartServer.bat goto bungeecordskip
 color B
 echo       舧ㄏノ  Minecraft server auto setup tool (v1.2.0)
@@ -19,15 +20,9 @@ echo       7  Velocity
 echo:
 echo       家舱狝竟み
 echo       8  Fabric
-echo       9  Forge
 echo:
 echo       ㄤ摸み
-echo       10  CatServer 1.18.2
-echo       11  CatServer 1.12.2
-echo       12  Mohist 1.12.2
-echo       13  Mohist 1.16.5
-echo       14  Mohist 1.18.2
-echo       15  Folia
+echo       9  Folia
 set choice=
 set /p choice=叫匡拒
 if not '%choice%'=='' set choice=%choice:~0,1%
@@ -39,16 +34,11 @@ if '%choice%'=='5' goto dbungeecord
 if '%choice%'=='6' goto dwaterfall
 if '%choice%'=='7' goto dvelocity
 if '%choice%'=='8' goto dfabric
-if '%choice%'=='9' goto dforge
-if '%choice%'=='10' goto dcatserver1182
-if '%choice%'=='11' goto dcatserver1122
-if '%choice%'=='12' goto dmohist1122
-if '%choice%'=='13' goto dmohist1165
-if '%choice%'=='14' goto dmohist1182
-if '%choice%'=='15' goto dfolia
+if '%choice%'=='9' goto dfolia
 echo 块岿粇叫刚Ω                          
 cd %~dp0
-goto start
+goto mcsasstart
+
 :dpaper
 echo:
 echo:
@@ -109,6 +99,36 @@ echo       server.jar(Spigot) (MC version 1.19.4) 更ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
+:dfabric
+echo:
+echo:
+echo:
+echo       秨﹍更 server.jar(fabric) (MC version 1.19.4)
+curl -O https://meta.fabricmc.net/v2/versions/loader/1.19.4/0.14.19/0.11.2/server/jar
+ren jar server.jar
+cls
+echo:
+echo:
+echo:
+echo       server.jar(fabric) (MC version 1.19.4) 更ЧΘ
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+goto ngrok
+
+:dfolia
+echo:
+echo:
+echo:
+echo       秨﹍更 server.jar(folia) (MC version 1.19.4)
+curl -O https://github.com/MagicTeaMC/Folia-CI/releases/download/Build-202305182113/folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar
+ren folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar server.jar
+cls
+echo:
+echo:
+echo:
+echo       server.jar(folia) (MC version 1.19.4) 更ЧΘ
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+goto ngrok
+
 :dbungeecord
 echo:
 echo:
@@ -153,51 +173,6 @@ echo:
 echo       server.jar(Waterfall) (MC version 1.19.X) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
-
-:dcatserver1182
-echo:
-echo:
-echo:
-echo       秨﹍更 server.jar(CatServer) (MC version 1.18.2)
-curl -O https://github.com/Luohuayu/CatServer/releases/download/23.05.11-1/CatServer-1.18.2-a59ef063-server.jar
-ren CatServer-1.18.2-a59ef063-server.jar server.jar
-cls
-echo:
-echo:
-echo:
-echo       server.jar(CatServer) (MC version 1.18.2) 更ЧΘ
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
-goto ngrok
-
-:dcatserver1165
-echo:
-echo:
-echo:
-echo       秨﹍更 server.jar(CatServer) (MC version 1.16.5)
-curl -O https://github.com/Luohuayu/CatServer/releases/download/23.05.14/CatServer-1.16.5-838c8dcc-server.jar
-ren CatServer-1.16.5-838c8dcc-server.jar server.jar
-cls
-echo:
-echo:
-echo:
-echo       server.jar(CatServer) (MC version 1.16.5) 更ЧΘ
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
-goto ngrok
-
-:dcatserver1122
-echo:
-echo:
-echo:
-echo       秨﹍更 server.jar(CatServer) (MC version 1.12.2)
-curl -O https://github.com/Luohuayu/CatServer/releases/download/23.05.09/CatServer-fed56812-universal.jar
-ren CatServer-fed56812-universal.jar server.jar
-cls
-echo:
-echo:
-echo:
-echo       server.jar(CatServer) (MC version 1.12.2) 更ЧΘ
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
-goto ngrok
 
 :ngrok
 echo       璶砞﹚NGROK盾?
