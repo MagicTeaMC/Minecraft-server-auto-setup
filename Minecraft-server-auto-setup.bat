@@ -165,7 +165,7 @@ goto bungeengrok
 echo:
 echo:
 echo:
-echo       開始下載 server.jar(velocity) (MC version 1.19.X)
+echo       開始下載 server.jar(Velocity) (MC version 1.19.X)
 curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/256/downloads/velocity-3.2.0-SNAPSHOT-256.jar
 ren velocity-3.2.0-SNAPSHOT-256.jar server.jar
 cls
