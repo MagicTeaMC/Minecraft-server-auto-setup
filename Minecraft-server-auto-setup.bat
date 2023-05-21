@@ -5,6 +5,14 @@ color B
 echo       歡迎使用  Minecraft server auto setup tool (v1.2.0)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
+echo       正在檢測您的主機...
+where java.exe >nul 2>nul
+IF NOT ERRORLEVEL 0 (
+    @echo       請先安裝 Java 才能執行本程式
+	goto youdonthavejava
+)
+cls
+echo:
 echo       請先選擇一個核心
 echo:
 echo       插件伺服器核心
@@ -46,7 +54,7 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Paper) (MC version 1.19.4)
-curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/538/downloads/paper-1.19.4-538.jar
+curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/538/downloads/paper-1.19.4-538.jar  >NUL 2>NUL
 ren paper-1.19.4-538.jar server.jar
 cls
 echo:
@@ -61,7 +69,7 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Purpur) (MC version 1.19.4)
-curl -O https://api.purpurmc.org/v2/purpur/1.19.4/latest/download
+curl -O https://api.purpurmc.org/v2/purpur/1.19.4/latest/download  >NUL 2>NUL
 ren download server.jar
 cls
 echo:
@@ -76,7 +84,7 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(CraftBukkit) (MC version 1.19.4)
-curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-1.19.4.jar
+curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-1.19.4.jar  >NUL 2>NUL
 ren craftbukkit-1.19.4.jar server.jar
 cls
 echo:
@@ -91,7 +99,7 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Spigot) (MC version 1.19.4)
-curl -O https://download.getbukkit.org/spigot/spigot-1.19.4.jar
+curl -O https://download.getbukkit.org/spigot/spigot-1.19.4.jar  >NUL 2>NUL
 ren spigot-1.19.4.jar server.jar
 cls
 echo:
@@ -106,7 +114,7 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Fabric) (MC version 1.19.4)
-curl -O https://meta.fabricmc.net/v2/versions/loader/1.19.4/0.14.19/0.11.2/server/jar
+curl -O https://meta.fabricmc.net/v2/versions/loader/1.19.4/0.14.19/0.11.2/server/jar  >NUL 2>NUL
 ren jar server.jar
 cls
 echo:
@@ -121,7 +129,7 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Folia) (MC version 1.19.4)
-curl -O https://github.com/MagicTeaMC/Folia-CI/releases/download/Build-202305182113/folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar
+curl -O https://github.com/MagicTeaMC/Folia-CI/releases/download/Build-202305182113/folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
 ren folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
@@ -136,7 +144,7 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(BungeeCord) (MC version 1.19.X)
-curl -O https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar
+curl -O https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar  >NUL 2>NUL
 ren BungeeCord.jar server.jar
 cls
 echo:
@@ -151,7 +159,7 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Waterfall) (MC version 1.19.X)
-curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/526/downloads/waterfall-1.19-526.jar
+curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/526/downloads/waterfall-1.19-526.jar  >NUL 2>NUL
 ren waterfall-1.19-526.jar server.jar
 cls
 echo:
@@ -166,7 +174,7 @@ echo:
 echo:
 echo:
 echo       開始下載 server.jar(Velocity) (MC version 1.19.X)
-curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/256/downloads/velocity-3.2.0-SNAPSHOT-256.jar
+curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/256/downloads/velocity-3.2.0-SNAPSHOT-256.jar  >NUL 2>NUL
 ren velocity-3.2.0-SNAPSHOT-256.jar server.jar
 cls
 echo:
@@ -195,13 +203,19 @@ echo:
 echo:
 echo:
 echo       即將開始下載 NGROK
-curl -O https://download-ngrok.pages.dev/ngrok.exe
+curl -O https://download-ngrok.pages.dev/ngrok.exe >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
 echo       請前往 NGROK 面板獲取 Auth token
-echo       網址： https://dashboard.ngrok.com/get-started/your-authtoken
+echo:
+echo:
+echo       正在自動開啟 NGROK 面板....
+start "" https://dashboard.ngrok.com/get-started/your-authtoken
+echo:
+echo:
+echo       如果沒有自動開啟，請手動前往此網址： https://dashboard.ngrok.com/get-started/your-authtoken
 set nchoice2=
 set /p nchoice2=請輸入 Auth token：
 .\ngrok.exe config add-authtoken %nchoice2%
@@ -228,7 +242,7 @@ echo:
 echo:
 echo:
 echo       即將開始下載 NGROK
-curl -O https://download-ngrok.pages.dev/ngrok.exe
+curl -O https://download-ngrok.pages.dev/ngrok.exe >NUL 2>NUL
 cls
 echo:
 echo:
@@ -259,6 +273,7 @@ echo:
 echo:
 echo:
 echo       正在設定檔案......
+echo       這可能需要一段時間
 if not exist StartServer.bat goto label5
 if exist 伺服器架設中.bat goto label3
 :label3
@@ -266,7 +281,8 @@ if not exist usercache.json goto label5
 if exist usercache.json goto label6
 :label4
 :label5
-call StartServer.bat
+call StartServer.bat >NUL 2>NUL
+:mceula
 color B
 echo:
 @echo off
@@ -299,7 +315,7 @@ if '%eulayn%'=='1' goto label6
 echo 輸入錯誤，請再試一次
 PAUSE
 cls                          
-goto label5 
+goto mceula
 :label6
 @echo off&setlocal enabledelayedexpansion
 for /f "eol=* tokens=*" %%i in (eula.txt) do (
@@ -319,7 +335,8 @@ echo       即將啟動伺服器...
 start StartServer.bat
 ping -n 5 127.0.0.1 >NUL
 cls
-powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('伺服器已經安裝完成，之後只要啟動"StartServer.bat"即可，並且可使用"stop"指令關閉伺服器(BungeeCord請用"end")。如果您有設定NGROK，請在每次開服時自行啟動StartNgrok.bat，才能讓玩家連線至外網', 'Minecraft server auto setup tool (重要訊息，請詳細閱讀)', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}"
+powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('伺服器已經安裝完成，之後只要啟動"StartServer.bat"即可，並且可使用"stop"指令關閉伺服器(BungeeCord請用"end")。如果您有設定NGROK，請在每次開服時自行啟動StartNgrok.bat，才能讓玩家連線至外網', 'Minecraft server auto setup tool (重要訊息，請詳細閱讀)', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}" >NUL
 cls
 echo 感謝您的使用，請按任意鍵關閉本程式
+:youdonthavejava
 PAUSE
