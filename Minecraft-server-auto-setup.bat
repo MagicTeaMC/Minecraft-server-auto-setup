@@ -1,7 +1,7 @@
 @echo off
 if exist StartServer.bat goto bungeecordskip
 color B
-echo       歡迎使用  Minecraft server auto setup tool (v1.1.3)
+echo       歡迎使用  Minecraft server auto setup tool (v1.1.4)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo       請先選擇一個核心
