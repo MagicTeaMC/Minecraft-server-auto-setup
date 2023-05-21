@@ -5,13 +5,17 @@ color B
 echo       歡迎使用  Minecraft server auto setup tool (v1.2.0)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
-echo       正在檢測您的主機...
 where java.exe >nul 2>nul
 IF NOT ERRORLEVEL 0 (
     @echo       請先安裝 Java 才能執行本程式
 	goto youdonthavejava
 )
 cls
+color B
+echo:
+echo       歡迎使用  Minecraft server auto setup tool (v1.2.0)
+echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
+echo:
 echo:
 echo       請先選擇一個核心
 echo:
@@ -31,6 +35,8 @@ echo       8 為 Fabric
 echo:
 echo       其他類型核心
 echo       9 為 Folia
+echo:
+echo       10 為使用自訂核心
 set choice=
 set /p choice=請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
@@ -43,6 +49,7 @@ if '%choice%'=='6' goto dwaterfall
 if '%choice%'=='7' goto dvelocity
 if '%choice%'=='8' goto dfabric
 if '%choice%'=='9' goto dfolia
+if '%choice%'=='10' goto customcore
 echo 輸入錯誤，請再試一次
 PAUSE
 cls                          
@@ -196,6 +203,28 @@ if '%nchoice%'=='2' goto labe51
 echo 輸入錯誤，請再試一次
 PAUSE
 cls                          
+goto ngrok
+
+:customcore
+echo:
+echo:
+echo 請將 .jar 檔案放在此程式相同目錄下後按任意建
+PAUSE
+if exist *.jar (
+    goto haveserverjar
+) else (
+    @echo 找不到 .jar 檔案，請再試一次
+	goto customcore
+)
+:haveserverjar
+echo:
+ren *.jar server.jar
+cls
+echo:
+echo:
+echo:
+echo       server.jar 處理完成
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :yngrok
