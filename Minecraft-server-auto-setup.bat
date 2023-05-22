@@ -4,7 +4,7 @@ if exist StartServer.bat goto bungeecordskip
 color B
 where java.exe >nul 2>nul
 IF NOT ERRORLEVEL 0 (
-    @echo       è«‹å…ˆå®‰è£ Java æ‰èƒ½åŸ·è¡Œæœ¬ç¨‹å¼
+    @echo       ½Ð¥ý¦w¸Ë Java ¤~¯à°õ¦æ¥»µ{¦¡
 	goto youdonthavejava
 )
 cls
@@ -20,33 +20,33 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       æ­¡è¿Žä½¿ç”¨  Minecraft server auto setup tool (v1.2.0)
-echo       GitHubï¼š https://github.com/MagicTeaMC/Minecraft-server-auto-setup
+echo       Åwªï¨Ï¥Î  Minecraft server auto setup tool (v1.2.0-b2)
+echo       GitHub¡G https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo:
-echo       è«‹å…ˆé¸æ“‡ä¸€å€‹æ ¸å¿ƒ
+echo       ½Ð¥ý¿ï¾Ü¤@­Ó®Ö¤ß
 echo:
-echo       æ’ä»¶ä¼ºæœå™¨æ ¸å¿ƒ
-echo       1 ç‚º Spigot
-echo       2 ç‚º CraftBukkit
-echo       3 ç‚º Paper (å»ºè­°)
-echo       4 ç‚º Purpur
+echo       ´¡¥ó¦øªA¾¹®Ö¤ß
+echo       1 ¬° Spigot
+echo       2 ¬° CraftBukkit
+echo       3 ¬° Paper («ØÄ³)
+echo       4 ¬° Purpur
 echo:
-echo       åˆ†æµä¼ºæœå™¨æ ¸å¿ƒ
-echo       5 ç‚º BungeeCord
-echo       6 ç‚º Waterfall
-echo       7 ç‚º Velocity
+echo       ¤À¬y¦øªA¾¹®Ö¤ß
+echo       5 ¬° BungeeCord
+echo       6 ¬° Waterfall
+echo       7 ¬° Velocity
 echo:
-echo       æ¨¡çµ„ä¼ºæœå™¨æ ¸å¿ƒ
-echo       8 ç‚º Fabric
+echo       ¼Ò²Õ¦øªA¾¹®Ö¤ß
+echo       8 ¬° Fabric
 echo:
-echo       å…¶ä»–é¡žåž‹æ ¸å¿ƒ
-echo       9 ç‚º Folia
-echo       10 ç‚º Vanilla(åŽŸç‰ˆæœ)
+echo       ¨ä¥LÃþ«¬®Ö¤ß
+echo       9 ¬° Folia
+echo       10 ¬° Vanilla(­ìª©ªA)
 echo:
-echo       11 ç‚ºä½¿ç”¨è‡ªè¨‚æ ¸å¿ƒ
+echo       11 ¬°¨Ï¥Î¦Û­q®Ö¤ß
 set choice=
-set /p choice=       è«‹é¸æ“‡ä¸€å€‹ï¼š
+set /p choice=       ½Ð¿ï¾Ü¤@­Ó¡G
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto dspigot
 if '%choice%'=='2' goto dcraftbukkit
@@ -59,7 +59,7 @@ if '%choice%'=='8' goto dfabric
 if '%choice%'=='9' goto dfolia
 if '%choice%'=='10' goto dvanilla
 if '%choice%'=='11' goto customcore
-echo       è¼¸å…¥éŒ¯èª¤ï¼Œè«‹å†è©¦ä¸€æ¬¡
+echo       ¿é¤J¿ù»~¡A½Ð¦A¸Õ¤@¦¸
 PAUSE
 cls                          
 cd %~dp0
@@ -70,16 +70,29 @@ echo:
 echo:
 echo:
 :dpaper1194
-echo       é–‹å§‹ä¸‹è¼‰ server.jar(Paper) (MC version 1.19.4)
+echo       ¶}©l¤U¸ü server.jar(Paper) (MC version 1.19.4)
 curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/538/downloads/paper-1.19.4-538.jar  >NUL 2>NUL
 ren paper-1.19.4-538.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Paper) (MC version 1.19.4) ä¸‹è¼‰å®Œæˆ
+echo       server.jar(Paper) (MC version 1.19.4) ¤U¸ü§¹¦¨
 :dpapered
+echo       ­n¨Ï¥Î Aikar Flags ¶Ü?
+echo       ³o¬O¤@­Ó¦b¬Y¨Ç±¡ªp¤U¥i¥HÅý¦øªA¾¹®Ä¯à´£¤Éªº±Ò°Ê°Ñ¼Æ
+echo       ¿é¤J1§Y¨Ï¥Î¡A¿é¤J2§Y¨Ï¥Î¹w³]±Ò°Ê°Ñ¼Æ
+set pachoice=
+set /p pachoice=       ½Ð¿é¤J±zªº¿ï¾Ü¡G
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%nchoice%'=='1' goto paperdontuseaikarflag
+if '%nchoice%'=='2' goto paperuseaikarflag
+echo       ¿é¤J¿ù»~¡A½Ð¦A¸Õ¤@¦¸
+goto dpapered
 :paperuseaikarflag
+echo java -Xms4096M -Xmx4096M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -jar server.jar --nogui> StartServer.bat
+goto ngrok
+:paperdontuseaikarflag
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -88,16 +101,29 @@ echo:
 echo:
 echo:
 :purpur1194
-echo       é–‹å§‹ä¸‹è¼‰ server.jar(Purpur) (MC version 1.19.4)
+echo       ¶}©l¤U¸ü server.jar(Purpur) (MC version 1.19.4)
 curl -O https://api.purpurmc.org/v2/purpur/1.19.4/latest/download  >NUL 2>NUL
 ren download server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Purpur) (MC version 1.19.4) ä¸‹è¼‰å®Œæˆ
+echo       server.jar(Purpur) (MC version 1.19.4) ¤U¸ü§¹¦¨
 :dpurpured
+echo       ­n¨Ï¥Î Aikar Flags ¶Ü?
+echo       ³o¬O¤@­Ó¦b¬Y¨Ç±¡ªp¤U¥i¥HÅý¦øªA¾¹®Ä¯à´£¤Éªº±Ò°Ê°Ñ¼Æ
+echo       ¿é¤J1§Y¨Ï¥Î¡A¿é¤J2§Y¨Ï¥Î¹w³]±Ò°Ê°Ñ¼Æ
+set pachoice=
+set /p pachoice=       ½Ð¿é¤J±zªº¿ï¾Ü¡G
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%nchoice%'=='1' goto purpurdontuseaikarflag
+if '%nchoice%'=='2' goto purpuruseaikarflag
+echo       ¿é¤J¿ù»~¡A½Ð¦A¸Õ¤@¦¸
+goto dpapered
 :purpuruseaikarflag
+echo java -Xms4096M -Xmx4096M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -jar server.jar --nogui> StartServer.bat
+goto ngrok
+:purpurdontuseaikarflag
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -105,14 +131,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       é–‹å§‹ä¸‹è¼‰ server.jar(CraftBukkit) (MC version 1.19.4)
+echo       ¶}©l¤U¸ü server.jar(CraftBukkit) (MC version 1.19.4)
 curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-1.19.4.jar  >NUL 2>NUL
 ren craftbukkit-1.19.4.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(CraftBukkit) (MC version 1.19.4) ä¸‹è¼‰å®Œæˆ
+echo       server.jar(CraftBukkit) (MC version 1.19.4) ¤U¸ü§¹¦¨
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -120,14 +146,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       é–‹å§‹ä¸‹è¼‰ server.jar(Spigot) (MC version 1.19.4)
+echo       ¶}©l¤U¸ü server.jar(Spigot) (MC version 1.19.4)
 curl -O https://download.getbukkit.org/spigot/spigot-1.19.4.jar  >NUL 2>NUL
 ren spigot-1.19.4.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Spigot) (MC version 1.19.4) ä¸‹è¼‰å®Œæˆ
+echo       server.jar(Spigot) (MC version 1.19.4) ¤U¸ü§¹¦¨
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -135,14 +161,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       é–‹å§‹ä¸‹è¼‰ server.jar(Fabric) (MC version 1.19.4)
+echo       ¶}©l¤U¸ü server.jar(Fabric) (MC version 1.19.4)
 curl -O https://meta.fabricmc.net/v2/versions/loader/1.19.4/0.14.19/0.11.2/server/jar  >NUL 2>NUL
 ren jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Fabric) (MC version 1.19.4) ä¸‹è¼‰å®Œæˆ
+echo       server.jar(Fabric) (MC version 1.19.4) ¤U¸ü§¹¦¨
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -150,14 +176,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       é–‹å§‹ä¸‹è¼‰ server.jar(Folia) (MC version 1.19.4)
+echo       ¶}©l¤U¸ü server.jar(Folia) (MC version 1.19.4)
 curl -O https://github.com/MagicTeaMC/Folia-CI/releases/download/Build-202305182113/folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
 ren folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Folia) (MC version 1.19.4) ä¸‹è¼‰å®Œæˆ
+echo       server.jar(Folia) (MC version 1.19.4) ¤U¸ü§¹¦¨
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -165,14 +191,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       é–‹å§‹ä¸‹è¼‰ server.jar(BungeeCord) (MC version 1.19.X)
+echo       ¶}©l¤U¸ü server.jar(BungeeCord) (MC version 1.19.X)
 curl -O https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar  >NUL 2>NUL
 ren BungeeCord.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(BungeeCord) (MC version 1.19.X) ä¸‹è¼‰å®Œæˆ
+echo       server.jar(BungeeCord) (MC version 1.19.X) ¤U¸ü§¹¦¨
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
@@ -180,14 +206,14 @@ goto bungeengrok
 echo:
 echo:
 echo:
-echo       é–‹å§‹ä¸‹è¼‰ server.jar(Waterfall) (MC version 1.19.X)
+echo       ¶}©l¤U¸ü server.jar(Waterfall) (MC version 1.19.X)
 curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/526/downloads/waterfall-1.19-526.jar  >NUL 2>NUL
 ren waterfall-1.19-526.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Waterfall) (MC version 1.19.X) ä¸‹è¼‰å®Œæˆ
+echo       server.jar(Waterfall) (MC version 1.19.X) ¤U¸ü§¹¦¨
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
@@ -195,14 +221,14 @@ goto bungeengrok
 echo:
 echo:
 echo:
-echo       é–‹å§‹ä¸‹è¼‰ server.jar(Velocity) (MC version 1.19.X)
+echo       ¶}©l¤U¸ü server.jar(Velocity) (MC version 1.19.X)
 curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/256/downloads/velocity-3.2.0-SNAPSHOT-256.jar  >NUL 2>NUL
 ren velocity-3.2.0-SNAPSHOT-256.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Waterfall) (MC version 1.19.X) ä¸‹è¼‰å®Œæˆ
+echo       server.jar(Waterfall) (MC version 1.19.X) ¤U¸ü§¹¦¨
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
@@ -210,25 +236,25 @@ goto bungeengrok
 echo:
 echo:
 echo:
-echo       é–‹å§‹ä¸‹è¼‰ server.jar(Vanilla) (MC version 1.19.4)
+echo       ¶}©l¤U¸ü server.jar(Vanilla) (MC version 1.19.4)
 curl -O https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar  >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Vanilla) (MC version 1.19.4) ä¸‹è¼‰å®Œæˆ
+echo       server.jar(Vanilla) (MC version 1.19.4) ¤U¸ü§¹¦¨
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :customcore
 echo:
 echo:
-echo       è«‹å°‡ .jar æª”æ¡ˆæ”¾åœ¨æ­¤ç¨‹å¼ç›¸åŒç›®éŒ„ä¸‹å¾ŒæŒ‰ä»»æ„å»º
+echo       ½Ð±N .jar ÀÉ®×©ñ¦b¦¹µ{¦¡¬Û¦P¥Ø¿ý¤U«á«ö¥ô·N«Ø
 PAUSE
 if exist *.jar (
     goto haveserverjar
 ) else (
-    @echo       æ‰¾ä¸åˆ° .jar æª”æ¡ˆï¼Œè«‹å†è©¦ä¸€æ¬¡
+    @echo       §ä¤£¨ì .jar ÀÉ®×¡A½Ð¦A¸Õ¤@¦¸
 	goto customcore
 )
 :haveserverjar
@@ -238,20 +264,20 @@ cls
 echo:
 echo:
 echo:
-echo       server.jar è™•ç†å®Œæˆ
+echo       server.jar ³B²z§¹¦¨
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :ngrok
-echo       è¦è¨­å®š NGROK å—Ž?
-echo       é€™æ˜¯ä¸€å€‹å¯ä»¥è®“åœ¨ä¸åŒå€‹ç¶²è·¯ç’°å¢ƒä¸‹çš„äººåŠ å…¥ä¼ºæœå™¨çš„å·¥å…·
-echo       è¼¸å…¥1å³é–‹å§‹è¨­å®šï¼Œè¼¸å…¥2å³è·³éŽ
+echo       ­n³]©w NGROK ¶Ü?
+echo       ³o¬O¤@­Ó¥i¥HÅý¦b¤£¦P­Óºô¸ôÀô¹Ò¤Uªº¤H¥[¤J¦øªA¾¹ªº¤u¨ã
+echo       ¿é¤J1§Y¶}©l³]©w¡A¿é¤J2§Y¸õ¹L
 set nchoice=
-set /p nchoice=       è«‹è¼¸å…¥æ‚¨çš„é¸æ“‡ï¼š
+set /p nchoice=       ½Ð¿é¤J±zªº¿ï¾Ü¡G
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto yngrok
 if '%nchoice%'=='2' goto labe51
-echo       è¼¸å…¥éŒ¯èª¤ï¼Œè«‹å†è©¦ä¸€æ¬¡
+echo       ¿é¤J¿ù»~¡A½Ð¦A¸Õ¤@¦¸
 PAUSE
 cls                          
 goto ngrok
@@ -260,37 +286,37 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       å³å°‡é–‹å§‹ä¸‹è¼‰ NGROK
+echo       §Y±N¶}©l¤U¸ü NGROK
 curl -O https://download-ngrok.pages.dev/ngrok.exe >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
-echo       è«‹å‰å¾€ NGROK é¢æ¿ç²å– Auth token
+echo       ½Ð«e©¹ NGROK ­±ªOÀò¨ú Auth token
 echo:
 echo:
-echo       æ­£åœ¨è‡ªå‹•é–‹å•Ÿ NGROK é¢æ¿....
+echo       ¥¿¦b¦Û°Ê¶}±Ò NGROK ­±ªO....
 start "" https://dashboard.ngrok.com/get-started/your-authtoken
 echo:
 echo:
-echo       å¦‚æžœæ²’æœ‰è‡ªå‹•é–‹å•Ÿï¼Œè«‹æ‰‹å‹•å‰å¾€æ­¤ç¶²å€ï¼š https://dashboard.ngrok.com/get-started/your-authtoken
+echo       ¦pªG¨S¦³¦Û°Ê¶}±Ò¡A½Ð¤â°Ê«e©¹¦¹ºô§}¡G https://dashboard.ngrok.com/get-started/your-authtoken
 set nchoice2=
-set /p nchoice2=è«‹è¼¸å…¥ Auth tokenï¼š
+set /p nchoice2=½Ð¿é¤J Auth token¡G
 .\ngrok.exe config add-authtoken %nchoice2%
 echo ngrok.exe tcp 25565 >> StartNgrok.bat
-echo       NGROKè¨­å®šå®Œæˆ
+echo       NGROK³]©w§¹¦¨
 goto labe51
 
 :bungeengrok
-echo       è¦è¨­å®š NGROK å—Ž?
-echo       é€™æ˜¯ä¸€å€‹å¯ä»¥è®“åœ¨ä¸åŒå€‹ç¶²è·¯ç’°å¢ƒä¸‹çš„äººåŠ å…¥ä¼ºæœå™¨çš„å·¥å…·
-echo       è¼¸å…¥1å³é–‹å§‹è¨­å®šï¼Œè¼¸å…¥2å³è·³éŽ
+echo       ­n³]©w NGROK ¶Ü?
+echo       ³o¬O¤@­Ó¥i¥HÅý¦b¤£¦P­Óºô¸ôÀô¹Ò¤Uªº¤H¥[¤J¦øªA¾¹ªº¤u¨ã
+echo       ¿é¤J1§Y¶}©l³]©w¡A¿é¤J2§Y¸õ¹L
 set nchoice=
-set /p nchoice=       è«‹è¼¸å…¥æ‚¨çš„é¸æ“‡ï¼š
+set /p nchoice=       ½Ð¿é¤J±zªº¿ï¾Ü¡G
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto ybngrok
 if '%nchoice%'=='2' goto allsetup
-echo       è¼¸å…¥éŒ¯èª¤ï¼Œè«‹å†è©¦ä¸€æ¬¡
+echo       ¿é¤J¿ù»~¡A½Ð¦A¸Õ¤@¦¸
 PAUSE
 cls                          
 goto bungeengrok
@@ -299,25 +325,25 @@ goto bungeengrok
 echo:
 echo:
 echo:
-echo       å³å°‡é–‹å§‹ä¸‹è¼‰ NGROK
+echo       §Y±N¶}©l¤U¸ü NGROK
 curl -O https://download-ngrok.pages.dev/ngrok.exe >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
-echo       è«‹å‰å¾€ NGROK é¢æ¿ç²å– Auth token
+echo       ½Ð«e©¹ NGROK ­±ªOÀò¨ú Auth token
 echo:
 echo:
-echo       æ­£åœ¨è‡ªå‹•é–‹å•Ÿ NGROK é¢æ¿....
+echo       ¥¿¦b¦Û°Ê¶}±Ò NGROK ­±ªO....
 start "" https://dashboard.ngrok.com/get-started/your-authtoken
 echo:
 echo:
-echo       å¦‚æžœæ²’æœ‰è‡ªå‹•é–‹å•Ÿï¼Œè«‹æ‰‹å‹•å‰å¾€æ­¤ç¶²å€ï¼š https://dashboard.ngrok.com/get-started/your-authtoken
+echo       ¦pªG¨S¦³¦Û°Ê¶}±Ò¡A½Ð¤â°Ê«e©¹¦¹ºô§}¡G https://dashboard.ngrok.com/get-started/your-authtoken
 set nchoice2=
-set /p nchoice2=       è«‹è¼¸å…¥ Auth tokenï¼š
+set /p nchoice2=       ½Ð¿é¤J Auth token¡G
 .\ngrok.exe config add-authtoken %nchoice2%
 echo ngrok.exe tcp 25565 >> StartNgrok.bat
-echo       NGROK è¨­å®šå®Œæˆ
+echo       NGROK ³]©w§¹¦¨
 goto allsetup
 
 :labe51
@@ -330,10 +356,10 @@ cls
 echo:
 echo:
 echo:
-echo       æ­£åœ¨è¨­å®šæª”æ¡ˆ......
-echo       é€™å¯èƒ½éœ€è¦ä¸€æ®µæ™‚é–“
+echo       ¥¿¦b³]©wÀÉ®×......
+echo       ³o¥i¯à»Ý­n¤@¬q®É¶¡
 if not exist StartServer.bat goto label5
-if exist ä¼ºæœå™¨æž¶è¨­ä¸­.bat goto label3
+if exist ¦øªA¾¹¬[³]¤¤.bat goto label3
 :label3
 if not exist usercache.json goto label5
 if exist usercache.json goto label6
@@ -348,18 +374,18 @@ echo:
 echo:
 echo:
 echo:
-echo       è¨­å®šå®Œæˆï¼
+echo       ³]©w§¹¦¨¡I
 cls
 @echo off
 echo:
-echo       ä¼ºæœå™¨å³å°‡é–‹å§‹é‹è¡Œ......
+echo       ¦øªA¾¹§Y±N¶}©l¹B¦æ......
 @echo off
 cls
 color B
 echo:
 echo:
 echo:
-echo       è«‹è©³ç´°é–±è®€ Minecraft EULA
+echo       ½Ð¸Ô²Ó¾\Åª Minecraft EULA
 echo:                                                                  
 echo:                              
 echo       https://account.mojang.com/documents/minecraft_eula                                                                      
@@ -367,10 +393,10 @@ echo       https://account.mojang.com/documents/minecraft_eula
 echo:
 echo:
 set eulayn=
-set /p eulayn=       è«‹è¼¸å…¥"1"åŒæ„ Minecraft EULAï¼š
+set /p eulayn=       ½Ð¿é¤J"1"¦P·N Minecraft EULA¡G
 if not '%eulayn%'=='' set choice=%choice:~0,1%
 if '%eulayn%'=='1' goto label6
-echo       è¼¸å…¥éŒ¯èª¤ï¼Œè«‹å†è©¦ä¸€æ¬¡
+echo       ¿é¤J¿ù»~¡A½Ð¦A¸Õ¤@¦¸
 PAUSE
 cls                          
 goto mceula
@@ -386,15 +412,15 @@ cls
 :allsetup
 color B
 echo:                                                                
-echo       ä¼ºæœå™¨è¨­å®šæˆåŠŸï¼  
+echo       ¦øªA¾¹³]©w¦¨¥\¡I  
 cls                                                                               
-echo       å³å°‡å•Ÿå‹•ä¼ºæœå™¨...                
+echo       §Y±N±Ò°Ê¦øªA¾¹...                
 @echo off
 start StartServer.bat
 ping -n 5 127.0.0.1 >NUL
 cls
-powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('ä¼ºæœå™¨å·²ç¶“å®‰è£å®Œæˆï¼Œä¹‹å¾Œåªè¦å•Ÿå‹•"StartServer.bat"å³å¯ï¼Œä¸¦ä¸”å¯ä½¿ç”¨"stop"æŒ‡ä»¤é—œé–‰ä¼ºæœå™¨(BungeeCordè«‹ç”¨"end")ã€‚å¦‚æžœæ‚¨æœ‰è¨­å®šNGROKï¼Œè«‹åœ¨æ¯æ¬¡é–‹æœæ™‚è‡ªè¡Œå•Ÿå‹•StartNgrok.batï¼Œæ‰èƒ½è®“çŽ©å®¶é€£ç·šè‡³å¤–ç¶²', 'Minecraft server auto setup tool (é‡è¦è¨Šæ¯ï¼Œè«‹è©³ç´°é–±è®€)', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}" >NUL
+powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('¦øªA¾¹¤w¸g¦w¸Ë§¹¦¨¡A¤§«á¥u­n±Ò°Ê"StartServer.bat"§Y¥i¡A¨Ã¥B¥i¨Ï¥Î"stop"«ü¥OÃö³¬¦øªA¾¹(BungeeCord½Ð¥Î"end")¡C¦pªG±z¦³³]©wNGROK¡A½Ð¦b¨C¦¸¶}ªA®É¦Û¦æ±Ò°ÊStartNgrok.bat¡A¤~¯àÅýª±®a³s½u¦Ü¥~ºô', 'Minecraft server auto setup tool (­«­n°T®§¡A½Ð¸Ô²Ó¾\Åª)', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}" >NUL
 cls
-echo       æ„Ÿè¬æ‚¨çš„ä½¿ç”¨ï¼Œè«‹æŒ‰ä»»æ„éµé—œé–‰æœ¬ç¨‹å¼
+echo       ·PÁÂ±zªº¨Ï¥Î¡A½Ð«ö¥ô·NÁäÃö³¬¥»µ{¦¡
 :youdonthavejava
 PAUSE
