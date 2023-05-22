@@ -278,6 +278,8 @@ echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :ngrok
+cls
+echo:
 echo       要設定 NGROK 嗎?
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
@@ -317,6 +319,8 @@ echo       NGROK設定完成
 goto labe51
 
 :bungeengrok
+cls
+echo:
 echo       要設定 NGROK 嗎?
 echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
