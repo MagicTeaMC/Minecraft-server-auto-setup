@@ -42,8 +42,9 @@ echo       8 為 Fabric
 echo:
 echo       其他類型核心
 echo       9 為 Folia
+echo       10 為 Vanilla(原版服)
 echo:
-echo       10 為使用自訂核心
+echo       11 為使用自訂核心
 set choice=
 set /p choice=       請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
@@ -56,7 +57,8 @@ if '%choice%'=='6' goto dwaterfall
 if '%choice%'=='7' goto dvelocity
 if '%choice%'=='8' goto dfabric
 if '%choice%'=='9' goto dfolia
-if '%choice%'=='10' goto customcore
+if '%choice%'=='10' goto dvanilla
+if '%choice%'=='11' goto customcore
 echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
@@ -198,18 +200,18 @@ echo       server.jar(Waterfall) (MC version 1.19.X) 下載完成
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
-:ngrok
-echo       要設定 NGROK 嗎?
-echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
-echo       輸入1即開始設定，輸入2即跳過
-set nchoice=
-set /p nchoice=       請輸入您的選擇：
-if not '%choice%'=='' set choice=%choice:~0,1%
-if '%nchoice%'=='1' goto yngrok
-if '%nchoice%'=='2' goto labe51
-echo       輸入錯誤，請再試一次
-PAUSE
-cls                          
+:dvanilla
+echo:
+echo:
+echo:
+echo       開始下載 server.jar(Vanilla) (MC version 1.19.4)
+curl -O https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar  >NUL 2>NUL
+cls
+echo:
+echo:
+echo:
+echo       server.jar(Vanilla) (MC version 1.19.4) 下載完成
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :customcore
@@ -232,6 +234,20 @@ echo:
 echo:
 echo       server.jar 處理完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+goto ngrok
+
+:ngrok
+echo       要設定 NGROK 嗎?
+echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
+echo       輸入1即開始設定，輸入2即跳過
+set nchoice=
+set /p nchoice=       請輸入您的選擇：
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%nchoice%'=='1' goto yngrok
+if '%nchoice%'=='2' goto labe51
+echo       輸入錯誤，請再試一次
+PAUSE
+cls                          
 goto ngrok
 
 :yngrok
