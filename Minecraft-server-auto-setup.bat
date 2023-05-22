@@ -4,7 +4,7 @@ if exist StartServer.bat goto bungeecordskip
 color B
 where java.exe >nul 2>nul
 IF NOT ERRORLEVEL 0 (
-    @echo       �Х��w�� Java �~����楻�{��
+    @echo       請先安裝 Java 才能執行本程式
 	goto youdonthavejava
 )
 cls
@@ -20,33 +20,33 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       �w��ϥ�  Minecraft server auto setup tool (v1.2.0)
-echo       GitHub�G https://github.com/MagicTeaMC/Minecraft-server-auto-setup
+echo       歡迎使用  Minecraft server auto setup tool (v1.2.0)
+echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo:
-echo       �Х���ܤ@�Ӯ֤�
+echo       請先選擇一個核心
 echo:
-echo       ������A���֤�
-echo       1 �� Spigot
-echo       2 �� CraftBukkit
-echo       3 �� Paper (��ĳ)
-echo       4 �� Purpur
+echo       插件伺服器核心
+echo       1 為 Spigot
+echo       2 為 CraftBukkit
+echo       3 為 Paper (建議)
+echo       4 為 Purpur
 echo:
-echo       ���y���A���֤�
-echo       5 �� BungeeCord
-echo       6 �� Waterfall
-echo       7 �� Velocity
+echo       分流伺服器核心
+echo       5 為 BungeeCord
+echo       6 為 Waterfall
+echo       7 為 Velocity
 echo:
-echo       �Ҳզ��A���֤�
-echo       8 �� Fabric
+echo       模組伺服器核心
+echo       8 為 Fabric
 echo:
-echo       ��L�����֤�
-echo       9 �� Folia
-echo       10 �� Vanilla(�쪩�A)
+echo       其他類型核心
+echo       9 為 Folia
+echo       10 為 Vanilla(原版服)
 echo:
-echo       11 ���ϥΦۭq�֤�
+echo       11 為使用自訂核心
 set choice=
-set /p choice=       �п�ܤ@�ӡG
+set /p choice=       請選擇一個：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto dspigot
 if '%choice%'=='2' goto dcraftbukkit
@@ -59,7 +59,7 @@ if '%choice%'=='8' goto dfabric
 if '%choice%'=='9' goto dfolia
 if '%choice%'=='10' goto dvanilla
 if '%choice%'=='11' goto customcore
-echo       ��J���~�A�ЦA�դ@��
+echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
 cd %~dp0
@@ -70,14 +70,14 @@ echo:
 echo:
 echo:
 :dpaper1194
-echo       �}�l�U�� server.jar(Paper) (MC version 1.19.4)
+echo       開始下載 server.jar(Paper) (MC version 1.19.4)
 curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/538/downloads/paper-1.19.4-538.jar  >NUL 2>NUL
 ren paper-1.19.4-538.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Paper) (MC version 1.19.4) �U������
+echo       server.jar(Paper) (MC version 1.19.4) 下載完成
 :dpapered
 :paperuseaikarflag
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
@@ -88,14 +88,14 @@ echo:
 echo:
 echo:
 :purpur1194
-echo       �}�l�U�� server.jar(Purpur) (MC version 1.19.4)
+echo       開始下載 server.jar(Purpur) (MC version 1.19.4)
 curl -O https://api.purpurmc.org/v2/purpur/1.19.4/latest/download  >NUL 2>NUL
 ren download server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Purpur) (MC version 1.19.4) �U������
+echo       server.jar(Purpur) (MC version 1.19.4) 下載完成
 :dpurpured
 :purpuruseaikarflag
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
@@ -105,14 +105,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       �}�l�U�� server.jar(CraftBukkit) (MC version 1.19.4)
+echo       開始下載 server.jar(CraftBukkit) (MC version 1.19.4)
 curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-1.19.4.jar  >NUL 2>NUL
 ren craftbukkit-1.19.4.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(CraftBukkit) (MC version 1.19.4) �U������
+echo       server.jar(CraftBukkit) (MC version 1.19.4) 下載完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -120,14 +120,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       �}�l�U�� server.jar(Spigot) (MC version 1.19.4)
+echo       開始下載 server.jar(Spigot) (MC version 1.19.4)
 curl -O https://download.getbukkit.org/spigot/spigot-1.19.4.jar  >NUL 2>NUL
 ren spigot-1.19.4.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Spigot) (MC version 1.19.4) �U������
+echo       server.jar(Spigot) (MC version 1.19.4) 下載完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -135,14 +135,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       �}�l�U�� server.jar(Fabric) (MC version 1.19.4)
+echo       開始下載 server.jar(Fabric) (MC version 1.19.4)
 curl -O https://meta.fabricmc.net/v2/versions/loader/1.19.4/0.14.19/0.11.2/server/jar  >NUL 2>NUL
 ren jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Fabric) (MC version 1.19.4) �U������
+echo       server.jar(Fabric) (MC version 1.19.4) 下載完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -150,14 +150,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       �}�l�U�� server.jar(Folia) (MC version 1.19.4)
+echo       開始下載 server.jar(Folia) (MC version 1.19.4)
 curl -O https://github.com/MagicTeaMC/Folia-CI/releases/download/Build-202305182113/folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
 ren folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Folia) (MC version 1.19.4) �U������
+echo       server.jar(Folia) (MC version 1.19.4) 下載完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -165,14 +165,14 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       �}�l�U�� server.jar(BungeeCord) (MC version 1.19.X)
+echo       開始下載 server.jar(BungeeCord) (MC version 1.19.X)
 curl -O https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar  >NUL 2>NUL
 ren BungeeCord.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(BungeeCord) (MC version 1.19.X) �U������
+echo       server.jar(BungeeCord) (MC version 1.19.X) 下載完成
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
@@ -180,14 +180,14 @@ goto bungeengrok
 echo:
 echo:
 echo:
-echo       �}�l�U�� server.jar(Waterfall) (MC version 1.19.X)
+echo       開始下載 server.jar(Waterfall) (MC version 1.19.X)
 curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/526/downloads/waterfall-1.19-526.jar  >NUL 2>NUL
 ren waterfall-1.19-526.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Waterfall) (MC version 1.19.X) �U������
+echo       server.jar(Waterfall) (MC version 1.19.X) 下載完成
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
@@ -195,14 +195,14 @@ goto bungeengrok
 echo:
 echo:
 echo:
-echo       �}�l�U�� server.jar(Velocity) (MC version 1.19.X)
+echo       開始下載 server.jar(Velocity) (MC version 1.19.X)
 curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/256/downloads/velocity-3.2.0-SNAPSHOT-256.jar  >NUL 2>NUL
 ren velocity-3.2.0-SNAPSHOT-256.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Waterfall) (MC version 1.19.X) �U������
+echo       server.jar(Waterfall) (MC version 1.19.X) 下載完成
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
@@ -210,25 +210,25 @@ goto bungeengrok
 echo:
 echo:
 echo:
-echo       �}�l�U�� server.jar(Vanilla) (MC version 1.19.4)
+echo       開始下載 server.jar(Vanilla) (MC version 1.19.4)
 curl -O https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar  >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Vanilla) (MC version 1.19.4) �U������
+echo       server.jar(Vanilla) (MC version 1.19.4) 下載完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :customcore
 echo:
 echo:
-echo       �бN .jar �ɮש�b���{���ۦP�ؿ��U������N��
+echo       請將 .jar 檔案放在此程式相同目錄下後按任意建
 PAUSE
 if exist *.jar (
     goto haveserverjar
 ) else (
-    @echo       �䤣�� .jar �ɮסA�ЦA�դ@��
+    @echo       找不到 .jar 檔案，請再試一次
 	goto customcore
 )
 :haveserverjar
@@ -238,20 +238,20 @@ cls
 echo:
 echo:
 echo:
-echo       server.jar �B�z����
+echo       server.jar 處理完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :ngrok
-echo       �n�]�w NGROK ��?
-echo       �o�O�@�ӥi�H���b���P�Ӻ������ҤU���H�[�J���A�����u��
-echo       ��J1�Y�}�l�]�w�A��J2�Y���L
+echo       要設定 NGROK 嗎?
+echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
+echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
-set /p nchoice=       �п�J�z����ܡG
+set /p nchoice=       請輸入您的選擇：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto yngrok
 if '%nchoice%'=='2' goto labe51
-echo       ��J���~�A�ЦA�դ@��
+echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
 goto ngrok
@@ -260,37 +260,37 @@ goto ngrok
 echo:
 echo:
 echo:
-echo       �Y�N�}�l�U�� NGROK
+echo       即將開始下載 NGROK
 curl -O https://download-ngrok.pages.dev/ngrok.exe >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
-echo       �Ыe�� NGROK ���O��� Auth token
+echo       請前往 NGROK 面板獲取 Auth token
 echo:
 echo:
-echo       ���b�۰ʶ}�� NGROK ���O....
+echo       正在自動開啟 NGROK 面板....
 start "" https://dashboard.ngrok.com/get-started/your-authtoken
 echo:
 echo:
-echo       �p�G�S���۰ʶ}�ҡA�Ф�ʫe�������}�G https://dashboard.ngrok.com/get-started/your-authtoken
+echo       如果沒有自動開啟，請手動前往此網址： https://dashboard.ngrok.com/get-started/your-authtoken
 set nchoice2=
-set /p nchoice2=�п�J Auth token�G
+set /p nchoice2=請輸入 Auth token：
 .\ngrok.exe config add-authtoken %nchoice2%
 echo ngrok.exe tcp 25565 >> StartNgrok.bat
-echo       NGROK�]�w����
+echo       NGROK設定完成
 goto labe51
 
 :bungeengrok
-echo       �n�]�w NGROK ��?
-echo       �o�O�@�ӥi�H���b���P�Ӻ������ҤU���H�[�J���A�����u��
-echo       ��J1�Y�}�l�]�w�A��J2�Y���L
+echo       要設定 NGROK 嗎?
+echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
+echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
-set /p nchoice=       �п�J�z����ܡG
+set /p nchoice=       請輸入您的選擇：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto ybngrok
 if '%nchoice%'=='2' goto allsetup
-echo       ��J���~�A�ЦA�դ@��
+echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
 goto bungeengrok
@@ -299,25 +299,25 @@ goto bungeengrok
 echo:
 echo:
 echo:
-echo       �Y�N�}�l�U�� NGROK
+echo       即將開始下載 NGROK
 curl -O https://download-ngrok.pages.dev/ngrok.exe >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
-echo       �Ыe�� NGROK ���O��� Auth token
+echo       請前往 NGROK 面板獲取 Auth token
 echo:
 echo:
-echo       ���b�۰ʶ}�� NGROK ���O....
+echo       正在自動開啟 NGROK 面板....
 start "" https://dashboard.ngrok.com/get-started/your-authtoken
 echo:
 echo:
-echo       �p�G�S���۰ʶ}�ҡA�Ф�ʫe�������}�G https://dashboard.ngrok.com/get-started/your-authtoken
+echo       如果沒有自動開啟，請手動前往此網址： https://dashboard.ngrok.com/get-started/your-authtoken
 set nchoice2=
-set /p nchoice2=       �п�J Auth token�G
+set /p nchoice2=       請輸入 Auth token：
 .\ngrok.exe config add-authtoken %nchoice2%
 echo ngrok.exe tcp 25565 >> StartNgrok.bat
-echo       NGROK �]�w����
+echo       NGROK 設定完成
 goto allsetup
 
 :labe51
@@ -330,10 +330,10 @@ cls
 echo:
 echo:
 echo:
-echo       ���b�]�w�ɮ�......
-echo       �o�i��ݭn�@�q�ɶ�
+echo       正在設定檔案......
+echo       這可能需要一段時間
 if not exist StartServer.bat goto label5
-if exist ���A���[�]��.bat goto label3
+if exist 伺服器架設中.bat goto label3
 :label3
 if not exist usercache.json goto label5
 if exist usercache.json goto label6
@@ -348,18 +348,18 @@ echo:
 echo:
 echo:
 echo:
-echo       �]�w�����I
+echo       設定完成！
 cls
 @echo off
 echo:
-echo       ���A���Y�N�}�l�B��......
+echo       伺服器即將開始運行......
 @echo off
 cls
 color B
 echo:
 echo:
 echo:
-echo       �иԲӾ\Ū Minecraft EULA
+echo       請詳細閱讀 Minecraft EULA
 echo:                                                                  
 echo:                              
 echo       https://account.mojang.com/documents/minecraft_eula                                                                      
@@ -367,10 +367,10 @@ echo       https://account.mojang.com/documents/minecraft_eula
 echo:
 echo:
 set eulayn=
-set /p eulayn=       �п�J"1"�P�N Minecraft EULA�G
+set /p eulayn=       請輸入"1"同意 Minecraft EULA：
 if not '%eulayn%'=='' set choice=%choice:~0,1%
 if '%eulayn%'=='1' goto label6
-echo       ��J���~�A�ЦA�դ@��
+echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
 goto mceula
@@ -386,15 +386,15 @@ cls
 :allsetup
 color B
 echo:                                                                
-echo       ���A���]�w���\�I  
+echo       伺服器設定成功！  
 cls                                                                               
-echo       �Y�N�Ұʦ��A��...                
+echo       即將啟動伺服器...                
 @echo off
 start StartServer.bat
 ping -n 5 127.0.0.1 >NUL
 cls
-powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('���A���w�g�w�˧����A����u�n�Ұ�"StartServer.bat"�Y�i�A�åB�i�ϥ�"stop"���O�������A��(BungeeCord�Х�"end")�C�p�G�z���]�wNGROK�A�Цb�C���}�A�ɦۦ�Ұ�StartNgrok.bat�A�~�������a�s�u�ܥ~��', 'Minecraft server auto setup tool (���n�T���A�иԲӾ\Ū)', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}" >NUL
+powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('伺服器已經安裝完成，之後只要啟動"StartServer.bat"即可，並且可使用"stop"指令關閉伺服器(BungeeCord請用"end")。如果您有設定NGROK，請在每次開服時自行啟動StartNgrok.bat，才能讓玩家連線至外網', 'Minecraft server auto setup tool (重要訊息，請詳細閱讀)', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}" >NUL
 cls
-echo       �P�±z���ϥΡA�Ы����N���������{��
+echo       感謝您的使用，請按任意鍵關閉本程式
 :youdonthavejava
 PAUSE
