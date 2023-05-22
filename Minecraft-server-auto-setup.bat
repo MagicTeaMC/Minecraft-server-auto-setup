@@ -69,6 +69,7 @@ goto mcsasstart
 echo:
 echo:
 echo:
+:dpaper1194
 echo       秨﹍更 server.jar(Paper) (MC version 1.19.4)
 curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/538/downloads/paper-1.19.4-538.jar  >NUL 2>NUL
 ren paper-1.19.4-538.jar server.jar
@@ -77,6 +78,8 @@ echo:
 echo:
 echo:
 echo       server.jar(Paper) (MC version 1.19.4) 更ЧΘ
+:dpapered
+:paperuseaikarflag
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -84,6 +87,7 @@ goto ngrok
 echo:
 echo:
 echo:
+:purpur1194
 echo       秨﹍更 server.jar(Purpur) (MC version 1.19.4)
 curl -O https://api.purpurmc.org/v2/purpur/1.19.4/latest/download  >NUL 2>NUL
 ren download server.jar
@@ -92,6 +96,8 @@ echo:
 echo:
 echo:
 echo       server.jar(Purpur) (MC version 1.19.4) 更ЧΘ
+:dpurpured
+:purpuruseaikarflag
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
