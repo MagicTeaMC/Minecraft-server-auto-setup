@@ -85,8 +85,8 @@ echo       輸入1即使用，輸入2即使用預設啟動參數
 set pachoice=
 set /p pachoice=       請輸入您的選擇：
 if not '%choice%'=='' set choice=%choice:~0,1%
-if '%nchoice%'=='1' goto paperdontuseaikarflag
-if '%nchoice%'=='2' goto paperuseaikarflag
+if '%pachoice%'=='1' goto paperdontuseaikarflag
+if '%pachoice%'=='2' goto paperuseaikarflag
 echo       輸入錯誤，請再試一次
 goto dpapered
 :paperuseaikarflag
@@ -113,11 +113,11 @@ echo       server.jar(Purpur) (MC version 1.19.4) 下載完成
 echo       要使用 Aikar Flags 嗎?
 echo       這是一個在某些情況下可以讓伺服器效能提升的啟動參數
 echo       輸入1即使用，輸入2即使用預設啟動參數
-set pachoice=
-set /p pachoice=       請輸入您的選擇：
+set puachoice=
+set /p puachoice=       請輸入您的選擇：
 if not '%choice%'=='' set choice=%choice:~0,1%
-if '%nchoice%'=='1' goto purpurdontuseaikarflag
-if '%nchoice%'=='2' goto purpuruseaikarflag
+if '%puachoice%'=='1' goto purpurdontuseaikarflag
+if '%puachoice%'=='2' goto purpuruseaikarflag
 echo       輸入錯誤，請再試一次
 goto dpapered
 :purpuruseaikarflag
