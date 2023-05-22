@@ -18,7 +18,7 @@
 - [x] Bungeecord/Waterfall自動架設
 - [x] Velocity 支援
 - [x] 模組服支援
-- [ ] 原版服支援
+- [x] 原版服支援
 - [ ] 可選擇是否使用 Aikar's Flags
 ## 聲明
 本項目部分內容修改自 `SKYYYY#5202` 所製作的 `Minecraft Server Auto Set`。  
