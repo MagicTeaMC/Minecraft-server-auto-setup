@@ -5,8 +5,21 @@ color B
 where java.exe >nul 2>nul
 IF NOT ERRORLEVEL 0 (
     @echo       請先安裝 Java 才能執行本程式
+	@echo       將自動開啟 Java 下載網站 請確定下載完成後再次執行本程式
 	goto youdonthavejava
 )
+
+java -version 2> javaversion.txt
+findstr /i "17." javaversion.txt > nul
+
+if not %errorlevel% equ 0 (
+  echo       請先安裝 Java 17 才能執行本程式
+  echo       將自動開啟 Java 下載網站 請確定下載完成後再次執行本程式
+  goto youdonthavejava
+)
+
+del version.txt
+
 cls
 color B
 cls
