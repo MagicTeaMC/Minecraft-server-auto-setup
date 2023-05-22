@@ -20,7 +20,7 @@ if not %errorlevel% equ 0 (
   goto youdonthavejava
 )
 
-del version.txt
+del javaversion.txt
 
 cls
 color B
@@ -81,10 +81,9 @@ cd %~dp0
 goto mcsasstart
 
 :dpaper
-echo:
-echo:
-echo:
 :dpaper1194
+cls
+echo:
 echo       秨﹍更 server.jar(Paper) (MC version 1.19.4)
 curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/538/downloads/paper-1.19.4-538.jar  >NUL 2>NUL
 ren paper-1.19.4-538.jar server.jar
@@ -94,6 +93,7 @@ echo:
 echo:
 echo       server.jar(Paper) (MC version 1.19.4) 更ЧΘ
 :dpapered
+:echo
 echo       璶ㄏノ Aikar Flags 盾?
 echo       硂琌琘ㄇ薄猵琵狝竟矗ど币笆把计
 echo       块1ㄏノ块2ㄏノ箇砞币笆把计
@@ -112,10 +112,9 @@ echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dpurpur
-echo:
-echo:
-echo:
 :purpur1194
+cls
+echo:
 echo       秨﹍更 server.jar(Purpur) (MC version 1.19.4)
 curl -O https://api.purpurmc.org/v2/purpur/1.19.4/latest/download  >NUL 2>NUL
 ren download server.jar
@@ -125,6 +124,7 @@ echo:
 echo:
 echo       server.jar(Purpur) (MC version 1.19.4) 更ЧΘ
 :dpurpured
+echo:
 echo       璶ㄏノ Aikar Flags 盾?
 echo       硂琌琘ㄇ薄猵琵狝竟矗ど币笆把计
 echo       块1ㄏノ块2ㄏノ箇砞币笆把计
@@ -143,8 +143,7 @@ echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dcraftbukkit
-echo:
-echo:
+cls
 echo:
 echo       秨﹍更 server.jar(CraftBukkit) (MC version 1.19.4)
 curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-1.19.4.jar  >NUL 2>NUL
@@ -158,8 +157,7 @@ echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dspigot
-echo:
-echo:
+cls
 echo:
 echo       秨﹍更 server.jar(Spigot) (MC version 1.19.4)
 curl -O https://download.getbukkit.org/spigot/spigot-1.19.4.jar  >NUL 2>NUL
@@ -173,8 +171,7 @@ echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dfabric
-echo:
-echo:
+cls
 echo:
 echo       秨﹍更 server.jar(Fabric) (MC version 1.19.4)
 curl -O https://meta.fabricmc.net/v2/versions/loader/1.19.4/0.14.19/0.11.2/server/jar  >NUL 2>NUL
@@ -188,8 +185,7 @@ echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dfolia
-echo:
-echo:
+cls
 echo:
 echo       秨﹍更 server.jar(Folia) (MC version 1.19.4)
 curl -O https://github.com/MagicTeaMC/Folia-CI/releases/download/Build-202305182113/folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
@@ -203,8 +199,7 @@ echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dbungeecord
-echo:
-echo:
+cls
 echo:
 echo       秨﹍更 server.jar(BungeeCord) (MC version 1.19.X)
 curl -O https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar  >NUL 2>NUL
@@ -213,13 +208,14 @@ cls
 echo:
 echo:
 echo:
+cls
+echo:
 echo       server.jar(BungeeCord) (MC version 1.19.X) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :dwaterfall
-echo:
-echo:
+cls
 echo:
 echo       秨﹍更 server.jar(Waterfall) (MC version 1.19.X)
 curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/526/downloads/waterfall-1.19-526.jar  >NUL 2>NUL
@@ -233,8 +229,7 @@ echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :dvelocity
-echo:
-echo:
+cls
 echo:
 echo       秨﹍更 server.jar(Velocity) (MC version 1.19.X)
 curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/256/downloads/velocity-3.2.0-SNAPSHOT-256.jar  >NUL 2>NUL
@@ -248,8 +243,7 @@ echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :dvanilla
-echo:
-echo:
+cls
 echo:
 echo       秨﹍更 server.jar(Vanilla) (MC version 1.19.4)
 curl -O https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar  >NUL 2>NUL
