@@ -6,6 +6,7 @@ where java.exe >nul 2>nul
 IF NOT ERRORLEVEL 0 (
     @echo       請先安裝 Java 才能執行本程式
 	@echo       將自動開啟 Java 下載網站 請確定下載完成後再次執行本程式
+	start "" https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.7%2B7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.msi
 	goto youdonthavejava
 )
 
@@ -15,6 +16,7 @@ findstr /i "17." javaversion.txt > nul
 if not %errorlevel% equ 0 (
   echo       請先安裝 Java 17 才能執行本程式
   echo       將自動開啟 Java 下載網站 請確定下載完成後再次執行本程式
+  start "" https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.7%2B7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.msi
   goto youdonthavejava
 )
 
