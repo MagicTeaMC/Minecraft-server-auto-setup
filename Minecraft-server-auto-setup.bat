@@ -2,6 +2,12 @@
 :mcsasstart
 if exist StartServer.bat goto bungeecordskip
 color B
+ping -n 1 google.com >nul
+
+if not %errorlevel%==0 (
+    echo 無法連線到網路，請確定您的網路連線後再試
+	goto youdonthavejava
+)
 where java.exe >nul 2>nul
 IF NOT ERRORLEVEL 0 (
     @echo       請先安裝 Java 才能執行本程式
