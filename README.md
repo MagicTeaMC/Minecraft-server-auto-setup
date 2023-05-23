@@ -16,10 +16,13 @@
 - [x] Spigot/Paper/Purpur選擇
 - [x] 自動架設ngrok
 - [x] Bungeecord/Waterfall自動架設
-- [ ] velocity 支援
-- [ ] 模組服及原版服支援
+- [x] Velocity 支援
+- [x] 模組服支援
+- [x] 原版服支援
+- [x] 可選擇是否使用 Aikar's Flags
+- [ ] 自動檢測最新版本
 ## 聲明
-本項目部分內容修改自 `ʜᴇʏᴅᴀʏ X (˶'ᵕ'˶)#5202` 所製作的 `Minecraft Server Auto Set`。  
+本項目部分內容修改自 `SKYYYY#5202` 所製作的 `Minecraft Server Auto Set`。  
 本項目使用 GNU General Public License v3.0 許可證。  
 本項目如果造成您的電腦產生任何問題，請自行負責。  
 本項目不以任何方式隸屬於 Mojang AB，也不以任何方式得到 Mojang AB 的認可或支持。
