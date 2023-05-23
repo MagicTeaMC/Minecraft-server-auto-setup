@@ -31,7 +31,7 @@ del javaversion.txt
 cls
 color B
 cls
-echo       
+echo:       
 echo       #     #  #####   #####     #     #####  ####### 
 echo       ##   ## #     # #     #   # #   #     #    #    
 echo       # # # # #       #        #   #  #          #    
@@ -41,7 +41,7 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       歡迎使用  Minecraft server auto setup tool (v1.2.0-b2)
+echo       歡迎使用  Minecraft server auto setup tool (v1.2.0-b3)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo:
