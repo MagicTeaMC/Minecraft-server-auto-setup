@@ -101,17 +101,16 @@ set /p "content2="<"%file2%"
 
 del paper.txt
 del minecraft.txt
-set /p "content2="<"%file2%"
 
-echo       秨﹍更 server.jar(Paper) (MC version 1.19.4)
+echo       秨﹍更 server.jar(Paper) (MC version %content2%)
 curl -O https://api.papermc.io/v2/projects/paper/versions/%content2%/builds/%content1%/downloads/paper-%content2%-%content1%.jar  >NUL 2>NUL
 ren paper-*.jar server.jar
-endlocal
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Paper) (MC version 1.19.4) 更ЧΘ
+echo       server.jar(Paper) (MC version %content2%) 更ЧΘ
+endlocal
 :dpapered
 :echo
 echo       璶ㄏノ Aikar Flags 盾?
@@ -134,15 +133,21 @@ goto ngrok
 :dpurpur
 :purpur1194
 cls
+setlocal
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
+set "file=./minecraft.txt"
+set /p "content="<"%file%"
+del minecraft.txt
 echo:
-echo       秨﹍更 server.jar(Purpur) (MC version 1.19.4)
-curl -O https://api.purpurmc.org/v2/purpur/1.19.4/latest/download  >NUL 2>NUL
+echo       秨﹍更 server.jar(Purpur) (MC version %content%)
+curl -O https://api.purpurmc.org/v2/purpur/%content%/latest/download  >NUL 2>NUL
 ren download server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Purpur) (MC version 1.19.4) 更ЧΘ
+echo       server.jar(Purpur) (MC version %content%) 更ЧΘ
+endlocal
 :dpurpured
 echo:
 echo       璶ㄏノ Aikar Flags 盾?
@@ -164,29 +169,41 @@ goto ngrok
 
 :dcraftbukkit
 cls
+setlocal
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
+set "file=./minecraft.txt"
+set /p "content="<"%file%"
+del minecraft.txt
 echo:
-echo       秨﹍更 server.jar(CraftBukkit) (MC version 1.19.4)
-curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-1.19.4.jar  >NUL 2>NUL
-ren craftbukkit-1.19.4.jar server.jar
+echo       秨﹍更 server.jar(CraftBukkit) (MC version %content%)
+curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-%content%.jar  >NUL 2>NUL
+ren craftbukkit-%content%.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(CraftBukkit) (MC version 1.19.4) 更ЧΘ
+echo       server.jar(CraftBukkit) (MC version %content%) 更ЧΘ
+endlocal
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dspigot
 cls
+setlocal
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
+set "file=./minecraft.txt"
+set /p "content="<"%file%"
+del minecraft.txt
 echo:
-echo       秨﹍更 server.jar(Spigot) (MC version 1.19.4)
-curl -O https://download.getbukkit.org/spigot/spigot-1.19.4.jar  >NUL 2>NUL
-ren spigot-1.19.4.jar server.jar
+echo       秨﹍更 server.jar(Spigot) (MC version %content%)
+curl -O https://download.getbukkit.org/spigot/spigot-%content%.jar  >NUL 2>NUL
+ren spigot-%content%.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Spigot) (MC version 1.19.4) 更ЧΘ
+echo       server.jar(Spigot) (MC version %content%) 更ЧΘ
+endlocal
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
