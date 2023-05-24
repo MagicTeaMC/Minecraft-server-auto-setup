@@ -90,9 +90,23 @@ goto mcsasstart
 :dpaper1194
 cls
 echo:
+setlocal
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/paper.txt  >NUL 2>NUL
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
+set "file1=./paper.txt"
+set "file2=./minecraft.txt"
+
+set /p "content1="<"%file1%"
+set /p "content2="<"%file2%"
+
+del paper.txt
+del minecraft.txt
+set /p "content2="<"%file2%"
+
 echo       ¶}©l¤U¸ü server.jar(Paper) (MC version 1.19.4)
-curl -O https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/538/downloads/paper-1.19.4-538.jar  >NUL 2>NUL
-ren paper-1.19.4-538.jar server.jar
+curl -O https://api.papermc.io/v2/projects/paper/versions/%content2%/builds/%content1%/downloads/paper-%content2%-%content1%.jar  >NUL 2>NUL
+ren paper-*.jar server.jar
+endlocal
 cls
 echo:
 echo:
