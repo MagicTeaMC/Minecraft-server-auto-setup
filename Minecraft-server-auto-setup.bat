@@ -41,7 +41,7 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       歡迎使用  Minecraft server auto setup tool (v1.2.1)
+echo       歡迎使用  Minecraft server auto setup tool (v1.3.0)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo:
@@ -346,7 +346,7 @@ goto ngrok
 :customcore
 echo:
 echo:
-echo       請將 .jar 檔案放在此程式相同目錄下後按任意建
+echo       請將 .jar 檔案放在此程式相同目錄下後按任意鍵(.jar 檔案不須重命名)
 PAUSE
 if exist *.jar (
     goto haveserverjar
