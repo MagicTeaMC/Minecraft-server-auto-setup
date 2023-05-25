@@ -12,7 +12,7 @@ where java.exe >nul 2>nul
 IF NOT ERRORLEVEL 0 (
     @echo       請先安裝 Java 才能執行本程式
 	@echo       將自動開啟 Java 下載網站 請確定下載完成後再次執行本程式
-	start "" https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.7%2B7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.msi
+	start "" https://adoptium.net/temurin/releases/
 	goto youdonthavejava
 )
 
@@ -22,7 +22,7 @@ findstr /i "17." javaversion.txt > nul
 if not %errorlevel% equ 0 (
   echo       請先安裝 Java 17 才能執行本程式
   echo       將自動開啟 Java 下載網站 請確定下載完成後再次執行本程式
-  start "" https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.7%2B7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.msi
+  start "" https://adoptium.net/temurin/releases/
   goto youdonthavejava
 )
 
@@ -60,14 +60,15 @@ echo       7 為 Velocity
 echo:
 echo       模組伺服器核心
 echo       8 為 Fabric
+echo       9 為 Forge
 echo:
 echo       其他類型核心
-echo       9 為 Folia
-echo       10 為 Vanilla(原版服)
+echo       10 為 Folia
+echo       11 為 Vanilla(原版服)
 echo:
-echo       11 為使用自訂核心
+echo       12 為使用自訂核心
 set choice=
-set /p choice=       請選擇一個：
+set /p choice=       請選擇一個(1~12)：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto dspigot
 if '%choice%'=='2' goto dcraftbukkit
@@ -77,9 +78,10 @@ if '%choice%'=='5' goto dbungeecord
 if '%choice%'=='6' goto dwaterfall
 if '%choice%'=='7' goto dvelocity
 if '%choice%'=='8' goto dfabric
-if '%choice%'=='9' goto dfolia
-if '%choice%'=='10' goto dvanilla
-if '%choice%'=='11' goto customcore
+if '%choice%'=='9' goto dforge
+if '%choice%'=='10' goto dfolia
+if '%choice%'=='11' goto dvanilla
+if '%choice%'=='12' goto customcore
 echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
@@ -241,17 +243,33 @@ del fabric-loader.txt
 del fabric-installer.txt
 cls
 echo:
-echo:
-echo       開始下載 server.jar(Fabric) (MC version 1.19.4)
-curl -O https://meta.fabricmc.net/v2/versions/loader/1.19.4/0.14.19/0.11.2/server/jar  >NUL 2>NUL
+echo       開始下載 server.jar(Fabric) (MC version %content1%)
+curl -O https://meta.fabricmc.net/v2/versions/loader/%content1%/%content2%/%content3%/server/jar  >NUL 2>NUL
 ren jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Fabric) (MC version 1.19.4) 下載完成
+echo       server.jar(Fabric) (MC version %content1%) 下載完成
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 endlocal
+goto ngrok
+
+:dforge
+echo:
+echo       開始下載 installer.jar(Forge) (MC version 1.19.4)
+curl -O https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.4-45.0.64/forge-1.19.4-45.0.64-installer.jar  >NUL 2>NUL
+ren forge-*.jar installer.jar
+cls
+echo:
+echo       installer.jar(Forge) (MC version 1.19.X) 下載完成
+echo:
+echo       開始安裝 Forge 伺服器(這可能需要一段時間)
+java -jar installer.jar --installServer  >NUL 2>NUL
+del installer.jar
+del installer.jar.log
+del run.sh
+ren run.bat StartServer.bat
 goto ngrok
 
 :dfolia
