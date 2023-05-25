@@ -69,7 +69,7 @@ echo:
 echo       12 為使用自訂核心
 set choice=
 set /p choice=       請選擇一個(1~12)：
-if not '%choice%'=='' set choice=%choice:~0,1%
+if not '%choice%'=='' set choice=%choice:~0,2%
 if '%choice%'=='1' goto dspigot
 if '%choice%'=='2' goto dcraftbukkit
 if '%choice%'=='3' goto dpaper
