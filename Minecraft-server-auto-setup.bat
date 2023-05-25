@@ -41,7 +41,7 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       舧ㄏノ  Minecraft server auto setup tool (v1.2.0)
+echo       舧ㄏノ  Minecraft server auto setup tool (v1.2.1)
 echo       GitHub https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo:
@@ -91,6 +91,8 @@ goto mcsasstart
 cls
 echo:
 setlocal
+echo:
+echo       タ弄程穝セ戈癟....
 curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/paper.txt  >NUL 2>NUL
 curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
 set "file1=./paper.txt"
@@ -101,7 +103,9 @@ set /p "content2="<"%file2%"
 
 del paper.txt
 del minecraft.txt
+cls
 
+echo:
 echo       秨﹍更 server.jar(Paper) (MC version %content2%)
 curl -O https://api.papermc.io/v2/projects/paper/versions/%content2%/builds/%content1%/downloads/paper-%content2%-%content1%.jar  >NUL 2>NUL
 ren paper-*.jar server.jar
@@ -134,10 +138,15 @@ goto ngrok
 :purpur1194
 cls
 setlocal
+echo:
+echo       タ弄程穝セ戈癟....
 curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
 set "file=./minecraft.txt"
 set /p "content="<"%file%"
+
 del minecraft.txt
+
+cls
 echo:
 echo       秨﹍更 server.jar(Purpur) (MC version %content%)
 curl -O https://api.purpurmc.org/v2/purpur/%content%/latest/download  >NUL 2>NUL
@@ -170,10 +179,13 @@ goto ngrok
 :dcraftbukkit
 cls
 setlocal
+echo:
+echo       タ弄程穝セ戈癟....
 curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
 set "file=./minecraft.txt"
 set /p "content="<"%file%"
 del minecraft.txt
+cls
 echo:
 echo       秨﹍更 server.jar(CraftBukkit) (MC version %content%)
 curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-%content%.jar  >NUL 2>NUL
@@ -190,10 +202,13 @@ goto ngrok
 :dspigot
 cls
 setlocal
+echo:
+echo       タ弄程穝セ戈癟....
 curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
 set "file=./minecraft.txt"
 set /p "content="<"%file%"
 del minecraft.txt
+cls
 echo:
 echo       秨﹍更 server.jar(Spigot) (MC version %content%)
 curl -O https://download.getbukkit.org/spigot/spigot-%content%.jar  >NUL 2>NUL
@@ -209,6 +224,23 @@ goto ngrok
 
 :dfabric
 cls
+setlocal
+echo:
+echo       タ弄程穝セ戈癟....
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/fabric-loader.txt  >NUL 2>NUL
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/fabric-installer.txt  >NUL 2>NUL
+set "file1=./minecraft.txt"
+set "file2=./fabric-loader.txt"
+set "file3=./fabric-installer.txt"
+set /p "content1="<"%file1%"
+set /p "content2="<"%file2%"
+set /p "content3="<"%file3%"
+del minecraft.txt
+del fabric-loader.txt
+del fabric-installer.txt
+cls
+echo:
 echo:
 echo       秨﹍更 server.jar(Fabric) (MC version 1.19.4)
 curl -O https://meta.fabricmc.net/v2/versions/loader/1.19.4/0.14.19/0.11.2/server/jar  >NUL 2>NUL
@@ -219,6 +251,7 @@ echo:
 echo:
 echo       server.jar(Fabric) (MC version 1.19.4) 更ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+endlocal
 goto ngrok
 
 :dfolia
