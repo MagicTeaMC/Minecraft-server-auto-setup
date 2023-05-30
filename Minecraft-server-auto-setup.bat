@@ -258,7 +258,7 @@ goto ngrok
 :dforge
 echo:
 echo       ¶}©l¤U¸ü installer.jar(Forge) (MC version 1.19.4)
-curl -O https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.4-45.0.64/forge-1.19.4-45.0.64-installer.jar  >NUL 2>NUL
+curl -O https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.4-45.0.66/forge-1.19.4-45.0.66-installer.jar  >NUL 2>NUL
 ren forge-*.jar installer.jar
 cls
 echo:
