@@ -256,15 +256,28 @@ endlocal
 goto ngrok
 
 :dforge
+cls
+setlocal
 echo:
-echo       開始下載 installer.jar(Forge) (MC version 1.19.4)
-curl -O https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.4-45.0.66/forge-1.19.4-45.0.66-installer.jar  >NUL 2>NUL
+echo       正在讀取最新版本資訊....
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/forge.txt  >NUL 2>NUL
+set "file1=./minecraft.txt"
+set "file2=./forge.txt"
+set /p "content1="<"%file1%"
+set /p "content2="<"%file2%"
+del minecraft.txt
+del forge.txt
+echo:
+echo       開始下載 installer.jar(Forge) (MC version %content1%)
+curl -O https://maven.minecraftforge.net/net/minecraftforge/forge/%content1%-%content2%/forge-%content1%-%content2%-installer.jar  >NUL 2>NUL
 ren forge-*.jar installer.jar
 cls
 echo:
-echo       installer.jar(Forge) (MC version 1.19.X) 下載完成
+echo       installer.jar(Forge) (MC version %content1%) 下載完成
 echo:
 echo       開始安裝 Forge 伺服器(這可能需要一段時間)
+endlocal
 java -jar installer.jar --installServer  >NUL 2>NUL
 del installer.jar
 del installer.jar.log
