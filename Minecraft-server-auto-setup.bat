@@ -284,6 +284,7 @@ endlocal
 java -jar installer.jar --installServer  >NUL 2>NUL
 del installer.jar
 del installer.jar.log
+del installer.log
 del run.sh
 ren run.bat StartServer.bat
 goto ngrok
@@ -292,7 +293,7 @@ goto ngrok
 cls
 echo:
 echo       ¶}©l¤U¸ü server.jar(Folia) (MC version 1.19.4)
-curl -O https://github.com/MagicTeaMC/Folia-CI/releases/download/Build-202305182113/folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/1097029368141844630/1113084228620537968/folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
 ren folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
