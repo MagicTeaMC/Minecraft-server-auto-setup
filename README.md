@@ -1,5 +1,6 @@
 (readme file written in chinese)
 # Minecraft-server-auto-setup
+[![Discord](https://img.shields.io/discord/891325967203729472?color=5865F2&label=discord&style=for-the-badge)](https://discord.gg/uQ4UXANnP2)  
 **注意！此項目已經盡量完善，但是可能還有一些我們沒注意到的問題，可能導致意想不到的問題發生！**  
 
   
