@@ -1,8 +1,44 @@
+::[Bat To Exe Converter]
+::
+::YAwzoRdxOk+EWAnk
+::fBw5plQjdG8=
+::YAwzuBVtJxjWCl3EqQJgSA==
+::ZR4luwNxJguZRRnk
+::Yhs/ulQjdF+5
+::cxAkpRVqdFKZSjk=
+::cBs/ulQjdF+5
+::ZR41oxFsdFKZSDk=
+::eBoioBt6dFKZSDk=
+::cRo6pxp7LAbNWATEpCI=
+::egkzugNsPRvcWATEpCI=
+::dAsiuh18IRvcCxnZtBJQ
+::cRYluBh/LU+EWAnk
+::YxY4rhs+aU+IeA==
+::cxY6rQJ7JhzQF1fEqQJQ
+::ZQ05rAF9IBncCkqN+0xwdVs0
+::ZQ05rAF9IAHYFVzEqQJQ
+::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
+::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
+::cRolqwZ3JBvQF1fEqQIdIRVRTxaDOn/6gm38YQUuZhxsJLHw0TX6/WoMmtQ=
+::dhA7uBVwLU+EWHSF+1slLXs=
+::YQ03rBFzNR3SWATElA==
+::dhAmsQZ3MwfNWATElA==
+::ZQ0/vhVqMQ3MEVWAtB9wSA==
+::Zg8zqx1/OA3MEVWAtB9wSA==
+::dhA7pRFwIByZRRnk
+::Zh4grVQjdCyDJGyX8VAjFBhYXBfTAE+1EbsQ5+n//Na3sEIaRuMya7P526C6L8UL72bre4AoxG5fivsDHg9ZfB6uUVx6+SAT5irVCMaGvDCzdmqI8n8/Pn1xpGzemi4pdNZ6qswRxyG88EjDsqwe1HvtX68aWHDk07ptKoQB6B67JVrNjqZFBPP2bt0=
+::YB416Ek+Zm8=
+::
+::
+::978f952a14a936cc963da21a135fa983
 @echo off
 :mcsasstart
+title MCSAST v1.3.1
 if exist StartServer.bat goto bungeecordskip
 color B
-ping -n 1 google.com >nul
+echo 正在啟動...
+ping -n 1 github.com >nul
+cls
 
 if not %errorlevel%==0 (
     echo 無法連線到網路，請確定您的網路連線後再試
@@ -44,7 +80,7 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       歡迎使用  Minecraft server auto setup tool (v1.3.0)
+echo       歡迎使用  Minecraft server auto setup tool (v1.3.1)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo:
