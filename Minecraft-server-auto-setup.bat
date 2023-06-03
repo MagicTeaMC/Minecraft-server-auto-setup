@@ -49,30 +49,31 @@ echo                    by Maoyue(MagicTeaMC)
 echo:
 echo       歡迎使用  Minecraft server auto setup tool (v1.4.0)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
+echo       Discord：https://discord.gg/uQ4UXANnP2
 echo:
 echo:
 echo       請先選擇一個核心
 echo:
 echo       插件伺服器核心
-echo       1 為 Spigot
-echo       2 為 CraftBukkit
-echo       3 為 Paper (建議)
-echo       4 為 Purpur
+echo       1.Spigot
+echo       2.CraftBukkit
+echo       3.Paper (建議)
+echo       4.Purpur
 echo:
 echo       分流伺服器核心
-echo       5 為 BungeeCord
-echo       6 為 Waterfall
-echo       7 為 Velocity
+echo       5.BungeeCord
+echo       6.Waterfall
+echo       7.Velocity
 echo:
 echo       模組伺服器核心
-echo       8 為 Fabric
-echo       9 為 Forge
+echo       8.Fabric
+echo       9.Forge
 echo:
 echo       其他類型核心
-echo       10 為 Folia
-echo       11 為 Vanilla(原版服)
+echo       10.Folia
+echo       11.Vanilla(原版服)
 echo:
-echo       12 為使用自訂核心
+echo       12.使用自訂核心
 set choice=
 set /p choice=       請選擇一個(1~12)：
 if not '%choice%'=='' set choice=%choice:~0,2%
@@ -547,7 +548,7 @@ echo       請輸入 5 結束插件安裝
 echo:
 echo       注意：插件安裝完成後請自行設定插件，相關方法請自行學習
 set pchoice=
-set /p pchoice=       請輸入您的選擇：
+set /p pchoice=       請輸入您的選擇(1~5)：
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%pchoice%'=='1' goto EssentialsX
 if '%pchoice%'=='2' goto LuckPerms
