@@ -1,6 +1,6 @@
 @echo off
 :mcsasstart
-title MCSAST v1.3.1
+title MCSAST v1.4.0
 if exist StartServer.bat goto bungeecordskip
 color B
 echo 正在啟動...
@@ -47,7 +47,7 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       歡迎使用  Minecraft server auto setup tool (v1.3.1)
+echo       歡迎使用  Minecraft server auto setup tool (v1.4.0)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo:
 echo:
@@ -468,12 +468,9 @@ echo       NGROK 設定完成
 goto allsetup
 
 :labe51
-@echo off
-title=Minecraft server auto setup tool
 mode con cols=70 lines=30
 color B                
 cls
-@echo off
 echo:
 echo:
 echo:
@@ -529,6 +526,87 @@ set "a=!a:false=true!"
 echo !a!>>$)
 move $ eula.txt
 cls
+
+:plugins
+cls
+echo:
+echo       要安裝一些插件嗎?
+echo       使用插件可以為伺服器添加更多實用功能
+echo       您也可以自行以下網站下載插件後，放入 plugins 資料夾後重啟伺服器
+echo       https://modrinth.com
+:secondplugin
+echo:
+echo:
+echo:
+echo       1.EssentialsX - EssentialsX 是 Spigot 伺服器必不可少的插件，包括 130 多個指令和適用於任何規模伺服器的無數功能！ 
+echo       2.LuckPerms - Minecraft 伺服器的權限插件（Bukkit/Spigot、BungeeCord 等）
+echo       3.CoreProtect - 快速、高效的塊日誌記錄、回滾和恢復
+echo       4.WorldEdit - 一個 Minecraft 地圖編輯器......在遊戲中運行！  通過選擇、原理圖、複製和粘貼、畫筆和腳本。
+echo       更多插件即將新增....
+echo       請輸入 5 結束插件安裝
+echo:
+echo       注意：插件安裝完成後請自行設定插件，相關方法請自行學習
+set pchoice=
+set /p pchoice=       請輸入您的選擇：
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%pchoice%'=='1' goto EssentialsX
+if '%pchoice%'=='2' goto LuckPerms
+if '%pchoice%'=='3' goto CoreProtect
+if '%pchoice%'=='4' goto WorldEdit
+if '%pchoice%'=='5' goto allsetup
+echo       輸入錯誤，請再試一次
+PAUSE
+cls                          
+goto plugins
+
+:EssentialsX
+cls
+echo:
+echo       正在下載 EssentialsX
+cd ./plugins
+curl -O https://ci.ender.zone/job/EssentialsX/lastSuccessfulBuild/artifact/jars/EssentialsX-2.20.1-dev+11-8d07c4b.jar  >NUL 2>NUL
+cd ../
+cls
+echo:
+echo 還要安裝其他插件嗎？
+goto secondplugin
+
+:LuckPerms
+cls
+echo:
+echo       正在下載 LuckPerms
+cd ./plugins
+curl -O https://download.luckperms.net/1491/bukkit/loader/LuckPerms-Bukkit-5.4.79.jar  >NUL 2>NUL
+cd ../
+cls
+echo:
+echo 還要安裝其他插件嗎？
+goto secondplugin
+
+:CoreProtect
+cls
+echo:
+echo       正在下載 CoreProtect
+cd ./plugins
+curl -O https://cdn.discordapp.com/attachments/935036132851318784/1114529722228027423/CoreProtect-21.3.jar  >NUL 2>NUL
+cd ../
+cls
+echo:
+echo 還要安裝其他插件嗎？
+goto secondplugin
+
+:WorldEdit
+cls
+echo:
+echo       正在下載 WorldEdit
+cd ./plugins
+curl -O https://cdn.discordapp.com/attachments/935036132851318784/1114529721863131237/worldedit-bukkit-7.2.14.jar  >NUL 2>NUL
+cd ../
+cls
+echo:
+echo 還要安裝其他插件嗎？
+goto secondplugin
+
 :bungeecordskip
 :allsetup
 color B
