@@ -16,6 +16,9 @@ IF NOT ERRORLEVEL 0 (
     @echo       叫杆 Java 磅︽セ祘Α
 	@echo       盢笆秨币 Java 更呼 叫絋﹚更ЧΘΩ磅︽セ祘Α
 	start "" https://adoptium.net/temurin/releases/
+	@echo 惠璶腊盾盾 舧玡┕
+	@echo       GitHub https://github.com/MagicTeaMC/Minecraft-server-auto-setup
+    @echo       Discordhttps://discord.gg/uQ4UXANnP2
 	goto youdonthavejava
 )
 
@@ -29,6 +32,9 @@ if not %errorlevel% equ 0 (
   echo       叫杆 Java 171819 ┪ 20 磅︽セ祘Α
   echo       盢笆秨币 Java 更呼叫絋﹚更ЧΘΩ磅︽セ祘Α
   start "" https://adoptium.net/temurin/releases/
+  @echo 惠璶腊盾盾 舧玡┕
+  @echo       GitHub https://github.com/MagicTeaMC/Minecraft-server-auto-setup
+  @echo       Discordhttps://discord.gg/uQ4UXANnP2
   goto youdonthavejava
 )
 
@@ -115,14 +121,14 @@ del minecraft.txt
 cls
 
 echo:
-echo       秨﹍更 server.jar(Paper) (MC version %content2%)
+echo       秨﹍更 Paper (MC version %content2%)
 curl -O https://api.papermc.io/v2/projects/paper/versions/%content2%/builds/%content1%/downloads/paper-%content2%-%content1%.jar  >NUL 2>NUL
 ren paper-*.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Paper) (MC version %content2%) 更ЧΘ
+echo       Paper (MC version %content2%) 更ЧΘ
 endlocal
 :dpapered
 :echo
@@ -157,14 +163,14 @@ del minecraft.txt
 
 cls
 echo:
-echo       秨﹍更 server.jar(Purpur) (MC version %content%)
+echo       秨﹍更 Purpur (MC version %content%)
 curl -O https://api.purpurmc.org/v2/purpur/%content%/latest/download  >NUL 2>NUL
 ren download server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Purpur) (MC version %content%) 更ЧΘ
+echo       Purpur (MC version %content%) 更ЧΘ
 endlocal
 :dpurpured
 echo:
@@ -196,14 +202,14 @@ set /p "content="<"%file%"
 del minecraft.txt
 cls
 echo:
-echo       秨﹍更 server.jar(CraftBukkit) (MC version %content%)
+echo       秨﹍更 CraftBukkit (MC version %content%)
 curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-%content%.jar  >NUL 2>NUL
 ren craftbukkit-%content%.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(CraftBukkit) (MC version %content%) 更ЧΘ
+echo       CraftBukkit (MC version %content%) 更ЧΘ
 endlocal
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
@@ -219,14 +225,14 @@ set /p "content="<"%file%"
 del minecraft.txt
 cls
 echo:
-echo       秨﹍更 server.jar(Spigot) (MC version %content%)
+echo       秨﹍更 Spigot (MC version %content%)
 curl -O https://download.getbukkit.org/spigot/spigot-%content%.jar  >NUL 2>NUL
 ren spigot-%content%.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Spigot) (MC version %content%) 更ЧΘ
+echo       Spigot (MC version %content%) 更ЧΘ
 endlocal
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
@@ -250,14 +256,14 @@ del fabric-loader.txt
 del fabric-installer.txt
 cls
 echo:
-echo       秨﹍更 server.jar(Fabric) (MC version %content1%)
+echo       秨﹍更 Fabric (MC version %content1%)
 curl -O https://meta.fabricmc.net/v2/versions/loader/%content1%/%content2%/%content3%/server/jar  >NUL 2>NUL
 ren jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Fabric) (MC version %content1%) 更ЧΘ
+echo       Fabric (MC version %content1%) 更ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 endlocal
 goto ngrok
@@ -276,12 +282,12 @@ set /p "content2="<"%file2%"
 del minecraft.txt
 del forge.txt
 echo:
-echo       秨﹍更 installer.jar(Forge) (MC version %content1%)
+echo       秨﹍更 Forge 杆祘Α (MC version %content1%)
 curl -O https://maven.minecraftforge.net/net/minecraftforge/forge/%content1%-%content2%/forge-%content1%-%content2%-installer.jar  >NUL 2>NUL
 ren forge-*.jar installer.jar
 cls
 echo:
-echo       installer.jar(Forge) (MC version %content1%) 更ЧΘ
+echo       Forge 杆祘Α (MC version %content1%) 更ЧΘ
 echo:
 echo       秨﹍杆 Forge 狝竟(硂惠璶琿丁)
 endlocal
@@ -296,21 +302,21 @@ goto ngrok
 :dfolia
 cls
 echo:
-echo       秨﹍更 server.jar(Folia) (MC version 1.19.4)
+echo       秨﹍更 Folia (MC version 1.19.4)
 curl -O https://cdn.discordapp.com/attachments/1097029368141844630/1113084228620537968/folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
 ren folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Folia) (MC version 1.19.4) 更ЧΘ
+echo       Folia (MC version 1.19.4) 更ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dbungeecord
 cls
 echo:
-echo       秨﹍更 server.jar(BungeeCord) (MC version 1.19.X)
+echo       秨﹍更 BungeeCord (MC version 1.19.X)
 curl -O https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar  >NUL 2>NUL
 ren BungeeCord.jar server.jar
 cls
@@ -319,48 +325,48 @@ echo:
 echo:
 cls
 echo:
-echo       server.jar(BungeeCord) (MC version 1.19.X) 更ЧΘ
+echo       BungeeCord (MC version 1.19.X) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :dwaterfall
 cls
 echo:
-echo       秨﹍更 server.jar(Waterfall) (MC version 1.19.X)
+echo       秨﹍更 Waterfall (MC version 1.19.X)
 curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/526/downloads/waterfall-1.19-526.jar  >NUL 2>NUL
 ren waterfall-1.19-526.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Waterfall) (MC version 1.19.X) 更ЧΘ
+echo       Waterfall (MC version 1.19.X) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :dvelocity
 cls
 echo:
-echo       秨﹍更 server.jar(Velocity) (MC version 1.19.X)
+echo       秨﹍更 Velocity (MC version 1.19.X)
 curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/256/downloads/velocity-3.2.0-SNAPSHOT-256.jar  >NUL 2>NUL
 ren velocity-3.2.0-SNAPSHOT-256.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Waterfall) (MC version 1.19.X) 更ЧΘ
+echo       Waterfall (MC version 1.19.X) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :dvanilla
 cls
 echo:
-echo       秨﹍更 server.jar(Vanilla) (MC version 1.19.4)
+echo       秨﹍更 Vanilla (MC version 1.19.4)
 curl -O https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar  >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
-echo       server.jar(Vanilla) (MC version 1.19.4) 更ЧΘ
+echo       Vanilla (MC version 1.19.4) 更ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -382,7 +388,7 @@ cls
 echo:
 echo:
 echo:
-echo       server.jar 矪瞶ЧΘ
+echo       狝竟 .jar 郎矪瞶ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
