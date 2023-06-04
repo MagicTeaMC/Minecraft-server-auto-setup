@@ -10,18 +10,26 @@
 ## 使用方法
 1.前往 [Releases](https://github.com/MagicTeaMC/Minecraft-server-auto-setup/releases/) 下載 `Minecraft-server-auto-setup.exe`  
 2.安裝 [Java 17](https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.7%2B7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.msi)  
-3.將 `Minecraft-server-auto-setup.exe` 放在一個全新的資料夾中執行，並且依照顯示的步驟進行即可
+3.將 `Minecraft-server-auto-setup.exe` 放在一個全新的資料夾中執行，並且依照顯示的步驟進行即可  
+## 功能
+- 自動下載最新版本的伺服器
+- 支援多種伺服器，如：Vallina/Paper/Fabric/Forge
+- 自動架設 ngrok
+- 支援 BungeeCord/Waterfall/Velocity
+- 可自動安裝各種插件
+
 ## TODO
 - [x] 自動下載
 - [ ] Minecraft版本選擇(1.19.3/1.19.4)
 - [x] Spigot/Paper/Purpur選擇
-- [x] 自動架設ngrok
+- [x] 自動架設 ngrok
 - [x] Bungeecord/Waterfall自動架設
 - [x] Velocity 支援
 - [x] 模組服支援
 - [x] 原版服支援
 - [x] 可選擇是否使用 Aikar's Flags
 - [x] 自動檢測最新版本
+- [x] 插件自動安裝
 ## 聲明
 本項目部分內容修改自 `SKYYYY#5202` 所製作的 `Minecraft Server Auto Set`。  
 本項目使用 GNU General Public License v3.0 許可證。  
