@@ -534,6 +534,7 @@ echo !a!>>$)
 move $ eula.txt
 cls
 
+md plugins  >NUL 2>NUL
 :plugins
 cls
 echo:
