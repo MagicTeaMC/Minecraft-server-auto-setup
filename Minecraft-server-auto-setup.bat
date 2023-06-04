@@ -623,7 +623,7 @@ cls
 echo       即將啟動伺服器...                
 @echo off
 start StartServer.bat
-ping -n 5 127.0.0.1 >NUL
+ping -n 3 127.0.0.1 >NUL
 cls
 powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('伺服器已經安裝完成，之後只要啟動"StartServer.bat"即可，並且可使用"stop"指令關閉伺服器(BungeeCord請用"end")。如果您有設定NGROK，請在每次開服時自行啟動StartNgrok.bat，才能讓玩家連線至外網', 'Minecraft server auto setup tool (重要訊息，請詳細閱讀)', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information);}" >NUL
 cls
