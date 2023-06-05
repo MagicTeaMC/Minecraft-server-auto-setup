@@ -138,15 +138,15 @@ echo       輸入1即使用，輸入2即使用預設啟動參數
 set pachoice=
 set /p pachoice=       請輸入您的選擇：
 if not '%choice%'=='' set choice=%choice:~0,1%
-if '%pachoice%'=='1' goto paperdontuseaikarflag
-if '%pachoice%'=='2' goto paperuseaikarflag
+if '%pachoice%'=='1' goto paperuseaikarflag
+if '%pachoice%'=='2' goto paperdontuseaikarflag
 echo       輸入錯誤，請再試一次
 goto dpapered
 :paperuseaikarflag
-echo java -Xms4096M -Xmx4096M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -jar server.jar --nogui> StartServer.bat
+echo java -Xms4096M -Xmx4096M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -jar server.jar --nogui >> StartServer.bat
 goto ngrok
 :paperdontuseaikarflag
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui >> StartServer.bat
 goto ngrok
 
 :dpurpur
@@ -180,8 +180,8 @@ echo       輸入1即使用，輸入2即使用預設啟動參數
 set puachoice=
 set /p puachoice=       請輸入您的選擇：
 if not '%choice%'=='' set choice=%choice:~0,1%
-if '%puachoice%'=='1' goto purpurdontuseaikarflag
-if '%puachoice%'=='2' goto purpuruseaikarflag
+if '%puachoice%'=='1' goto purpuruseaikarflag
+if '%puachoice%'=='2' goto purpurdontuseaikarflag
 echo       輸入錯誤，請再試一次
 goto dpapered
 :purpuruseaikarflag
@@ -549,7 +549,7 @@ echo:
 echo       1.EssentialsX - EssentialsX 是 Spigot 伺服器必不可少的插件，包括 130 多個指令和適用於任何規模伺服器的無數功能！ 
 echo       2.LuckPerms - Minecraft 伺服器的權限插件（Bukkit/Spigot、BungeeCord 等）
 echo       3.CoreProtect - 快速、高效的塊日誌記錄、回滾和恢復
-echo       4.WorldEdit - 一個 Minecraft 地圖編輯器......在遊戲中運行！  通過選擇、原理圖、複製和粘貼、畫筆和腳本。
+echo       4.WorldEdit - 一個 Minecraft 地圖編輯器......在遊戲中運行！通過選擇、原理圖、複製和粘貼、畫筆和腳本。
 echo       更多插件即將新增....
 echo       請輸入 5 結束插件安裝
 echo:
