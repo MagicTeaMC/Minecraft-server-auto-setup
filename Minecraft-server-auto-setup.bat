@@ -506,7 +506,8 @@ echo:
 echo       伺服器即將開始運行......
 @echo off
 cls
-color B
+color B                          
+cd %~dp0
 echo:
 echo:
 echo:
@@ -549,7 +550,7 @@ echo:
 echo       1.EssentialsX - EssentialsX 是 Spigot 伺服器必不可少的插件，包括 130 多個指令和適用於任何規模伺服器的無數功能！ 
 echo       2.LuckPerms - Minecraft 伺服器的權限插件（Bukkit/Spigot、BungeeCord 等）
 echo       3.CoreProtect - 快速、高效的塊日誌記錄、回滾和恢復
-echo       4.WorldEdit - 一個 Minecraft 地圖編輯器......在遊戲中運行！通過選擇、原理圖、複製和粘貼、畫筆和腳本。
+echo       4.WorldEdit - 一個實用的 Minecraft 地圖編輯器。
 echo       更多插件即將新增....
 echo       請輸入 5 結束插件安裝
 echo:
@@ -572,7 +573,7 @@ cls
 echo:
 echo       正在下載 EssentialsX
 cd ./plugins
-curl -O https://ci.ender.zone/job/EssentialsX/lastSuccessfulBuild/artifact/jars/EssentialsX-2.20.1-dev+11-8d07c4b.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/935036132851318784/1115282815974637598/EssentialsX-2.20.0.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
