@@ -1,6 +1,6 @@
 @echo off
 :mcsasstart
-title MCSAST v1.4.0
+title MCSAST v1.4.1
 if exist StartServer.bat goto bungeecordskip
 color B
 echo 正在啟動...
@@ -53,7 +53,7 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       歡迎使用  Minecraft server auto setup tool (v1.4.0)
+echo       歡迎使用  Minecraft server auto setup tool (v1.4.1)
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo       Discord：https://discord.gg/uQ4UXANnP2
 echo:
