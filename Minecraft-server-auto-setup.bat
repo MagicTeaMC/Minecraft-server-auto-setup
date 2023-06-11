@@ -1,6 +1,6 @@
 @echo off
 :mcsasstart
-title MCSAST v1.4.0
+title MCSAST v1.4.1
 if exist StartServer.bat goto bungeecordskip
 color B
 echo タ币笆...
@@ -53,7 +53,8 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       舧ㄏノ  Minecraft server auto setup tool (v1.4.0)
+echo       舧ㄏノ  Minecraft server auto setup tool (v1.4.1)
+echo:
 echo       GitHub https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo       Discordhttps://discord.gg/uQ4UXANnP2
 echo:
@@ -102,7 +103,6 @@ cd %~dp0
 goto mcsasstart
 
 :dpaper
-:dpaper1194
 cls
 echo:
 setlocal
@@ -150,7 +150,6 @@ echo java -Xmx4096M -Xms1024M -jar server.jar nogui >> StartServer.bat
 goto ngrok
 
 :dpurpur
-:purpur1194
 cls
 setlocal
 echo:
@@ -302,21 +301,21 @@ goto ngrok
 :dfolia
 cls
 echo:
-echo       秨﹍更 Folia (MC version 1.19.4)
-curl -O https://cdn.discordapp.com/attachments/1097029368141844630/1113084228620537968/folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
-ren folia-paperclip-1.19.4-R0.1-SNAPSHOT-reobf.jar server.jar
+echo       秨﹍更 Folia (MC version 1.20)
+curl -O https://cdn.discordapp.com/attachments/1097029368141844630/1117236112172253184/folia-paperclip-1.20-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
+ren folia-paperclip-1.20-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       Folia (MC version 1.19.4) 更ЧΘ
+echo       Folia (MC version 1.20) 更ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dbungeecord
 cls
 echo:
-echo       秨﹍更 BungeeCord (MC version 1.19.X)
+echo       秨﹍更 BungeeCord (MC version 1.20)
 curl -O https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar  >NUL 2>NUL
 ren BungeeCord.jar server.jar
 cls
@@ -325,48 +324,48 @@ echo:
 echo:
 cls
 echo:
-echo       BungeeCord (MC version 1.19.X) 更ЧΘ
+echo       BungeeCord (MC version 1.20) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :dwaterfall
 cls
 echo:
-echo       秨﹍更 Waterfall (MC version 1.19.X)
-curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.19/builds/526/downloads/waterfall-1.19-526.jar  >NUL 2>NUL
-ren waterfall-1.19-526.jar server.jar
+echo       秨﹍更 Waterfall (MC version 1.20)
+curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.20/builds/536/downloads/waterfall-1.20-536.jar  >NUL 2>NUL
+ren waterfall-1.20-536.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       Waterfall (MC version 1.19.X) 更ЧΘ
+echo       Waterfall (MC version 1.20) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :dvelocity
 cls
 echo:
-echo       秨﹍更 Velocity (MC version 1.19.X)
-curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/256/downloads/velocity-3.2.0-SNAPSHOT-256.jar  >NUL 2>NUL
-ren velocity-3.2.0-SNAPSHOT-256.jar server.jar
+echo       秨﹍更 Velocity (MC version 1.20)
+curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/258/downloads/velocity-3.2.0-SNAPSHOT-258.jar  >NUL 2>NUL
+ren velocity-3.2.0-SNAPSHOT-258.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       Waterfall (MC version 1.19.X) 更ЧΘ
+echo       Waterfall (MC version 1.20) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :dvanilla
 cls
 echo:
-echo       秨﹍更 Vanilla (MC version 1.19.4)
-curl -O https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar  >NUL 2>NUL
+echo       秨﹍更 Vanilla (MC version 1.20)
+curl -O https://piston-data.mojang.com/v1/objects/15c777e2cfe0556eef19aab534b186c0c6f277e1/server.jar  >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
-echo       Vanilla (MC version 1.19.4) 更ЧΘ
+echo       Vanilla (MC version 1.20) 更ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -585,7 +584,7 @@ cls
 echo:
 echo       タ更 LuckPerms
 cd ./plugins
-curl -O https://download.luckperms.net/1491/bukkit/loader/LuckPerms-Bukkit-5.4.79.jar  >NUL 2>NUL
+curl -O https://download.luckperms.net/1494/bukkit/loader/LuckPerms-Bukkit-5.4.82.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
@@ -609,7 +608,7 @@ cls
 echo:
 echo       タ更 WorldEdit
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/935036132851318784/1114529721863131237/worldedit-bukkit-7.2.14.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/1097029368141844630/1117230480207646822/worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
