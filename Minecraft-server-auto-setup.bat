@@ -54,6 +54,7 @@ echo       #     #  #####   #####  #     #  #####     #
 echo                    by Maoyue(MagicTeaMC)
 echo:
 echo       Åwªï¨Ï¥Î  Minecraft server auto setup tool (v1.4.1)
+echo:
 echo       GitHub¡G https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo       Discord¡Ghttps://discord.gg/uQ4UXANnP2
 echo:
@@ -102,7 +103,6 @@ cd %~dp0
 goto mcsasstart
 
 :dpaper
-:dpaper1194
 cls
 echo:
 setlocal
@@ -150,7 +150,6 @@ echo java -Xmx4096M -Xms1024M -jar server.jar nogui >> StartServer.bat
 goto ngrok
 
 :dpurpur
-:purpur1194
 cls
 setlocal
 echo:
