@@ -346,7 +346,7 @@ goto bungeengrok
 cls
 echo:
 echo       ¶}©l¤U¸ü Velocity (MC version 1.20)
-curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/258/downloads/velocity-3.2.0-SNAPSHOT-258.jar  >NUL 2>NUL
+curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/259/downloads/velocity-3.2.0-SNAPSHOT-259.jar  >NUL 2>NUL
 ren velocity-3.2.0-SNAPSHOT-258.jar server.jar
 cls
 echo:
