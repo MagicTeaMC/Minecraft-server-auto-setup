@@ -344,9 +344,17 @@ goto bungeengrok
 
 :dvelocity
 cls
+setlocal
+echo:
+echo       正在讀取最新版本資訊....
+curl -O https://github.com/MagicTeaMC/Minecraft-server-auto-setup/raw/version/velocity.txt  >NUL 2>NUL
+set "file1=./velocity.txt"
+set /p "content1="<"%file1%"
+del velocity.txt
+cls
 echo:
 echo       開始下載 Velocity (MC version 1.20)
-curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/259/downloads/velocity-3.2.0-SNAPSHOT-259.jar  >NUL 2>NUL
+curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/%content1%/downloads/velocity-3.2.0-SNAPSHOT-%content1%.jar  >NUL 2>NUL
 ren velocity-3.2.0-SNAPSHOT-258.jar server.jar
 cls
 echo:
@@ -354,6 +362,7 @@ echo:
 echo:
 echo       Waterfall (MC version 1.20) 下載完成
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
+endlocal
 goto bungeengrok
 
 :dvanilla
