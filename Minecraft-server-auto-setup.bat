@@ -1,6 +1,6 @@
 @echo off
 :mcsasstart
-title MCSAST v1.4.2
+title MCSAST v1.4.3
 if exist StartServer.bat goto bungeecordskip
 color B
 echo タ币笆...
@@ -53,7 +53,7 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       舧ㄏノ  Minecraft server auto setup tool (v1.4.2)
+echo       舧ㄏノ  Minecraft server auto setup tool (v1.4.3)
 echo:
 echo       GitHub https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo       Discordhttps://discord.gg/uQ4UXANnP2
@@ -301,21 +301,21 @@ goto ngrok
 :dfolia
 cls
 echo:
-echo       秨﹍更 Folia (MC version 1.20)
+echo       秨﹍更 Folia (MC version 1.20.1)
 curl -O https://cdn.discordapp.com/attachments/1097029368141844630/1117236112172253184/folia-paperclip-1.20-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
-ren folia-paperclip-1.20-R0.1-SNAPSHOT-reobf.jar server.jar
+ren folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       Folia (MC version 1.20) 更ЧΘ
+echo       Folia (MC version 1.20.1) 更ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
 :dbungeecord
 cls
 echo:
-echo       秨﹍更 BungeeCord (MC version 1.20)
+echo       秨﹍更 BungeeCord (MC version 1.20.X)
 curl -O https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar  >NUL 2>NUL
 ren BungeeCord.jar server.jar
 cls
@@ -324,21 +324,21 @@ echo:
 echo:
 cls
 echo:
-echo       BungeeCord (MC version 1.20) 更ЧΘ
+echo       BungeeCord (MC version 1.20.X) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :dwaterfall
 cls
 echo:
-echo       秨﹍更 Waterfall (MC version 1.20)
+echo       秨﹍更 Waterfall (MC version 1.20.X)
 curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.20/builds/536/downloads/waterfall-1.20-536.jar  >NUL 2>NUL
 ren waterfall-1.20-536.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       Waterfall (MC version 1.20) 更ЧΘ
+echo       Waterfall (MC version 1.20.X) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
@@ -353,14 +353,14 @@ set /p "content1="<"%file1%"
 del velocity.txt
 cls
 echo:
-echo       秨﹍更 Velocity (MC version 1.20)
+echo       秨﹍更 Velocity (MC version 1.20.X)
 curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/%content1%/downloads/velocity-3.2.0-SNAPSHOT-%content1%.jar  >NUL 2>NUL
 ren velocity-3.2.0-SNAPSHOT-258.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       Waterfall (MC version 1.20) 更ЧΘ
+echo       Waterfall (MC version 1.20.X) 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 endlocal
 goto bungeengrok
@@ -368,13 +368,13 @@ goto bungeengrok
 :dvanilla
 cls
 echo:
-echo       秨﹍更 Vanilla (MC version 1.20)
-curl -O https://piston-data.mojang.com/v1/objects/15c777e2cfe0556eef19aab534b186c0c6f277e1/server.jar  >NUL 2>NUL
+echo       秨﹍更 Vanilla (MC version 1.20.1)
+curl -O https://piston-data.mojang.com/v1/objects/84194a2f286ef7c14ed7ce0090dba59902951553/server.jar  >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
-echo       Vanilla (MC version 1.20) 更ЧΘ
+echo       Vanilla (MC version 1.20.1) 更ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
