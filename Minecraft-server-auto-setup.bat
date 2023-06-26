@@ -1,6 +1,6 @@
 @echo off
 :mcsasstart
-title MCSAST v1.4.2
+title MCSAST v1.4.3
 if exist StartServer.bat goto bungeecordskip
 color B
 echo 正在啟動...
@@ -53,7 +53,7 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       歡迎使用  Minecraft server auto setup tool (v1.4.2)
+echo       歡迎使用  Minecraft server auto setup tool (v1.4.3)
 echo:
 echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo       Discord：https://discord.gg/uQ4UXANnP2
@@ -83,7 +83,6 @@ echo:
 echo       12.使用自訂核心
 set choice=
 set /p choice=       請選擇一個(1~12)：
-if not '%choice%'=='' set choice=%choice:~0,2%
 if '%choice%'=='1' goto dspigot
 if '%choice%'=='2' goto dcraftbukkit
 if '%choice%'=='3' goto dpaper
@@ -137,7 +136,6 @@ echo       這是一個在某些情況下可以讓伺服器效能提升的啟動參數
 echo       輸入1即使用，輸入2即使用預設啟動參數
 set pachoice=
 set /p pachoice=       請輸入您的選擇：
-if not '%choice%'=='' set choice=%choice:~0,1%
 if '%pachoice%'=='1' goto paperuseaikarflag
 if '%pachoice%'=='2' goto paperdontuseaikarflag
 echo       輸入錯誤，請再試一次
@@ -178,7 +176,6 @@ echo       這是一個在某些情況下可以讓伺服器效能提升的啟動參數
 echo       輸入1即使用，輸入2即使用預設啟動參數
 set puachoice=
 set /p puachoice=       請輸入您的選擇：
-if not '%choice%'=='' set choice=%choice:~0,1%
 if '%puachoice%'=='1' goto purpuruseaikarflag
 if '%puachoice%'=='2' goto purpurdontuseaikarflag
 echo       輸入錯誤，請再試一次
@@ -302,7 +299,7 @@ goto ngrok
 cls
 echo:
 echo       開始下載 Folia (MC version 1.20.1)
-curl -O https://cdn.discordapp.com/attachments/1097029368141844630/1117236112172253184/folia-paperclip-1.20-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/1097029368141844630/1122699869270855680/folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
 ren folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
@@ -408,7 +405,6 @@ echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
 set /p nchoice=       請輸入您的選擇：
-if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto yngrok
 if '%nchoice%'=='2' goto labe51
 echo       輸入錯誤，請再試一次
@@ -449,7 +445,6 @@ echo       這是一個可以讓在不同個網路環境下的人加入伺服器的工具
 echo       輸入1即開始設定，輸入2即跳過
 set nchoice=
 set /p nchoice=       請輸入您的選擇：
-if not '%choice%'=='' set choice=%choice:~0,1%
 if '%nchoice%'=='1' goto ybngrok
 if '%nchoice%'=='2' goto allsetup
 echo       輸入錯誤，請再試一次
@@ -543,6 +538,15 @@ echo !a!>>$)
 move $ eula.txt
 cls
 
+if '%choice%'=='5' goto allsetup
+if '%choice%'=='6' goto allsetup
+if '%choice%'=='7' goto allsetup
+if '%choice%'=='8' goto allsetup
+if '%choice%'=='9' goto allsetup
+if '%choice%'=='10' goto allsetup
+if '%choice%'=='11' goto allsetup
+if '%choice%'=='12' goto allsetup
+
 md plugins  >NUL 2>NUL
 :plugins
 cls
@@ -565,7 +569,6 @@ echo:
 echo       注意：插件安裝完成後請自行設定插件，相關方法請自行學習
 set pchoice=
 set /p pchoice=       請輸入您的選擇(1~5)：
-if not '%choice%'=='' set choice=%choice:~0,1%
 if '%pchoice%'=='1' goto EssentialsX
 if '%pchoice%'=='2' goto LuckPerms
 if '%pchoice%'=='3' goto CoreProtect
