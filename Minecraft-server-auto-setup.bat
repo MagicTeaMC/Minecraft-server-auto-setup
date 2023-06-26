@@ -1,6 +1,9 @@
 @echo off
 :mcsasstart
-title MCSAST v1.4.3
+
+set version=1.4.3
+
+title MCSAST v%version%
 if exist StartServer.bat goto bungeecordskip
 color B
 echo タ币笆...
@@ -40,6 +43,17 @@ if not %errorlevel% equ 0 (
 
 del javaversion.txt
 
+setlocal
+echo:
+echo       タ弄程穝セ戈癟....
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/version.txt  >NUL 2>NUL
+set "file1=./version.txt"
+
+set /p "content1="<"%file1%"
+
+del version.txt
+cls
+
 cls
 color B
 cls
@@ -53,7 +67,13 @@ echo       #     # #     # #     # #     # #     #    #
 echo       #     #  #####   #####  #     #  #####     #  
 echo                    by Maoyue(MagicTeaMC)
 echo:
-echo       舧ㄏノ  Minecraft server auto setup tool (v1.4.3)
+echo       舧ㄏノ  Minecraft server auto setup tool (v%version%)
+
+if not %version% equ %content1% (
+    echo       浪代Τ穝セ v%content1%
+)
+endlocal
+
 echo:
 echo       GitHub https://github.com/MagicTeaMC/Minecraft-server-auto-setup
 echo       Discordhttps://discord.gg/uQ4UXANnP2
@@ -312,7 +332,7 @@ goto ngrok
 :dbungeecord
 cls
 echo:
-echo       秨﹍更 BungeeCord (MC version 1.20.X)
+echo       秨﹍更 BungeeCord
 curl -O https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar  >NUL 2>NUL
 ren BungeeCord.jar server.jar
 cls
@@ -321,22 +341,31 @@ echo:
 echo:
 cls
 echo:
-echo       BungeeCord (MC version 1.20.X) 更ЧΘ
+echo       BungeeCord 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 goto bungeengrok
 
 :dwaterfall
 cls
+setlocal
 echo:
-echo       秨﹍更 Waterfall (MC version 1.20.X)
-curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.20/builds/536/downloads/waterfall-1.20-536.jar  >NUL 2>NUL
-ren waterfall-1.20-536.jar server.jar
+echo       タ弄程穝セ戈癟....
+curl -O https://github.com/MagicTeaMC/Minecraft-server-auto-setup/raw/version/waterfall.txt  >NUL 2>NUL
+set "file1=./waterfall.txt"
+set /p "content1="<"%file1%"
+del waterfall.txt
+cls
+echo:
+echo       秨﹍更 Waterfall
+curl -O https://api.papermc.io/v2/projects/waterfall/versions/1.20/builds/%content1%/downloads/waterfall-1.20-%content1%.jar  >NUL 2>NUL
+ren waterfall-1.20-%content1%.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       Waterfall (MC version 1.20.X) 更ЧΘ
+echo       Waterfall 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
+endlocal
 goto bungeengrok
 
 :dvelocity
@@ -350,14 +379,14 @@ set /p "content1="<"%file1%"
 del velocity.txt
 cls
 echo:
-echo       秨﹍更 Velocity (MC version 1.20.X)
+echo       秨﹍更 Velocity
 curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/%content1%/downloads/velocity-3.2.0-SNAPSHOT-%content1%.jar  >NUL 2>NUL
 ren velocity-3.2.0-SNAPSHOT-258.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       Waterfall (MC version 1.20.X) 更ЧΘ
+echo       Velocity 更ЧΘ
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 endlocal
 goto bungeengrok
