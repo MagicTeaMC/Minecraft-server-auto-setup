@@ -351,7 +351,7 @@ cls
 setlocal
 echo:
 echo       正在讀取最新版本資訊....
-curl -O https://github.com/MagicTeaMC/Minecraft-server-auto-setup/raw/version/waterfall.txt  >NUL 2>NUL
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/waterfall.txt  >NUL 2>NUL
 set "file1=./waterfall.txt"
 set /p "content1="<"%file1%"
 del waterfall.txt
@@ -374,7 +374,7 @@ cls
 setlocal
 echo:
 echo       正在讀取最新版本資訊....
-curl -O https://github.com/MagicTeaMC/Minecraft-server-auto-setup/raw/version/velocity.txt  >NUL 2>NUL
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/velocity.txt  >NUL 2>NUL
 set "file1=./velocity.txt"
 set /p "content1="<"%file1%"
 del velocity.txt
