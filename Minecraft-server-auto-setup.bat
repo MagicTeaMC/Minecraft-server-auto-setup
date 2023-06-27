@@ -1,9 +1,9 @@
 @echo off
 :mcsasstart
+chcp 65001
 
 set version=1.4.3
 
-chcp 65001
 title MCSAST v%version%
 if exist StartServer.bat goto bungeecordskip
 color B
