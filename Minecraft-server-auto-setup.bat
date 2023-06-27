@@ -381,7 +381,7 @@ cls
 echo:
 echo       開始下載 Velocity
 curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/%content1%/downloads/velocity-3.2.0-SNAPSHOT-%content1%.jar  >NUL 2>NUL
-ren velocity-3.2.0-SNAPSHOT-258.jar server.jar
+ren velocity-3.2.0-SNAPSHOT-%content1%.jar server.jar
 cls
 echo:
 echo:
