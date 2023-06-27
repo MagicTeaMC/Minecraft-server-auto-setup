@@ -2,7 +2,7 @@
 :mcsasstart
 chcp 65001
 
-set version=1.4.3
+set version=1.4.4
 
 title MCSAST v%version%
 if exist StartServer.bat goto bungeecordskip
@@ -71,7 +71,7 @@ echo:
 echo       歡迎使用  Minecraft server auto setup tool (v%version%)
 
 if not %version% equ %content1% (
-    echo       檢測到有新版本 v%content1%
+    echo       檢測到新版本： v%content1%
 )
 endlocal
 
