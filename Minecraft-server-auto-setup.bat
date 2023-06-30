@@ -205,7 +205,7 @@ goto ngrok
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
-:dpurpur
+:dpuffer
 cls
 setlocal
 echo:
@@ -220,14 +220,14 @@ cls
 echo:
 echo       開始下載 Pufferfish (MC version %content%)
 curl -O https://ci.pufferfish.host/job/Pufferfish-1.20/lastSuccessfulBuild/artifact/build/libs/pufferfish-paperclip-%content%-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
-ren download server.jar
+ren pufferfish-paperclip-%content%-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
 echo:
 echo:
 echo       Pufferfish (MC version %content%) 下載完成
 endlocal
-:dpurpured
+:dpuffered
 echo:
 echo       要使用 Aikar Flags 嗎?
 echo       這是一個在某些情況下可以讓伺服器效能提升的啟動參數
