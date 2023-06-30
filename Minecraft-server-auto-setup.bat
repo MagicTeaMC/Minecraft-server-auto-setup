@@ -82,39 +82,35 @@ echo:
 echo       請先選擇一個核心
 echo:
 echo       插件伺服器核心
-echo       1.Spigot
-echo       2.CraftBukkit
-echo       3.Paper (建議)
-echo       4.Purpur
+echo       1.Paper (建議)
+echo       2.Purpur
 echo:
 echo       分流伺服器核心
-echo       5.BungeeCord
-echo       6.Waterfall
-echo       7.Velocity
+echo       3.BungeeCord
+echo       4.Waterfall
+echo       5.Velocity
 echo:
 echo       模組伺服器核心
-echo       8.Fabric
-echo       9.Forge
+echo       6.Fabric
+echo       7.Forge
 echo:
 echo       其他類型核心
-echo       10.Folia
-echo       11.Vanilla(原版服)
+echo       8.Folia
+echo       9.Vanilla(原版服)
 echo:
-echo       12.使用自訂核心
+echo       10.使用自訂核心
 set choice=
 set /p choice=       請選擇一個(1~12)：
-if '%choice%'=='1' goto dspigot
-if '%choice%'=='2' goto dcraftbukkit
-if '%choice%'=='3' goto dpaper
-if '%choice%'=='4' goto dpurpur
-if '%choice%'=='5' goto dbungeecord
-if '%choice%'=='6' goto dwaterfall
-if '%choice%'=='7' goto dvelocity
-if '%choice%'=='8' goto dfabric
-if '%choice%'=='9' goto dforge
-if '%choice%'=='10' goto dfolia
-if '%choice%'=='11' goto dvanilla
-if '%choice%'=='12' goto customcore
+if '%choice%'=='1' goto dpaper
+if '%choice%'=='2' goto dpurpur
+if '%choice%'=='3' goto dbungeecord
+if '%choice%'=='4' goto dwaterfall
+if '%choice%'=='5' goto dvelocity
+if '%choice%'=='6' goto dfabric
+if '%choice%'=='7' goto dforge
+if '%choice%'=='8' goto dfolia
+if '%choice%'=='9' goto dvanilla
+if '%choice%'=='10' goto customcore
 echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
@@ -204,52 +200,6 @@ goto dpapered
 echo java -Xms4096M -Xmx4096M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -jar server.jar --nogui> StartServer.bat
 goto ngrok
 :purpurdontuseaikarflag
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
-goto ngrok
-
-:dcraftbukkit
-cls
-setlocal
-echo:
-echo       正在讀取最新版本資訊....
-curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
-set "file=./minecraft.txt"
-set /p "content="<"%file%"
-del minecraft.txt
-cls
-echo:
-echo       開始下載 CraftBukkit (MC version %content%)
-curl -O https://download.getbukkit.org/craftbukkit/craftbukkit-%content%.jar  >NUL 2>NUL
-ren craftbukkit-%content%.jar server.jar
-cls
-echo:
-echo:
-echo:
-echo       CraftBukkit (MC version %content%) 下載完成
-endlocal
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
-goto ngrok
-
-:dspigot
-cls
-setlocal
-echo:
-echo       正在讀取最新版本資訊....
-curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
-set "file=./minecraft.txt"
-set /p "content="<"%file%"
-del minecraft.txt
-cls
-echo:
-echo       開始下載 Spigot (MC version %content%)
-curl -O https://download.getbukkit.org/spigot/spigot-%content%.jar  >NUL 2>NUL
-ren spigot-%content%.jar server.jar
-cls
-echo:
-echo:
-echo:
-echo       Spigot (MC version %content%) 下載完成
-endlocal
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -567,14 +517,14 @@ echo !a!>>$)
 move $ eula.txt
 cls
 
+if '%choice%'=='3' goto allsetup
+if '%choice%'=='4' goto allsetup
 if '%choice%'=='5' goto allsetup
 if '%choice%'=='6' goto allsetup
 if '%choice%'=='7' goto allsetup
 if '%choice%'=='8' goto allsetup
 if '%choice%'=='9' goto allsetup
 if '%choice%'=='10' goto allsetup
-if '%choice%'=='11' goto allsetup
-if '%choice%'=='12' goto allsetup
 
 md plugins  >NUL 2>NUL
 :plugins
