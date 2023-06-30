@@ -154,16 +154,10 @@ echo       這是一個在某些情況下可以讓伺服器效能提升的啟動參數
 echo       輸入1即使用，輸入2即使用預設啟動參數
 set pachoice=
 set /p pachoice=       請輸入您的選擇：
-if '%pachoice%'=='1' goto paperuseaikarflag
-if '%pachoice%'=='2' goto paperdontuseaikarflag
+if '%pachoice%'=='1' goto useaikarflag
+if '%pachoice%'=='2' goto dontuseaikarflag
 echo       輸入錯誤，請再試一次
 goto dpapered
-:paperuseaikarflag
-echo java -Xms4096M -Xmx4096M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -jar server.jar --nogui >> StartServer.bat
-goto ngrok
-:paperdontuseaikarflag
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui >> StartServer.bat
-goto ngrok
 
 :dpurpur
 cls
@@ -194,16 +188,10 @@ echo       這是一個在某些情況下可以讓伺服器效能提升的啟動參數
 echo       輸入1即使用，輸入2即使用預設啟動參數
 set puachoice=
 set /p puachoice=       請輸入您的選擇：
-if '%puachoice%'=='1' goto purpuruseaikarflag
-if '%puachoice%'=='2' goto purpurdontuseaikarflag
+if '%puachoice%'=='1' goto useaikarflag
+if '%puachoice%'=='2' goto dontuseaikarflag
 echo       輸入錯誤，請再試一次
 goto dpapered
-:purpuruseaikarflag
-echo java -Xms4096M -Xmx4096M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -jar server.jar --nogui> StartServer.bat
-goto ngrok
-:purpurdontuseaikarflag
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
-goto ngrok
 
 :dpuffer
 cls
@@ -234,15 +222,16 @@ echo       這是一個在某些情況下可以讓伺服器效能提升的啟動參數
 echo       輸入1即使用，輸入2即使用預設啟動參數
 set puachoice=
 set /p puachoice=       請輸入您的選擇：
-if '%puachoice%'=='1' goto pufferuseaikarflag
-if '%puachoice%'=='2' goto pufferdontuseaikarflag
+if '%puachoice%'=='1' goto useaikarflag
+if '%puachoice%'=='2' goto dontuseaikarflag
 echo       輸入錯誤，請再試一次
 goto dpapered
-:pufferuseaikarflag
+
+:useaikarflag
 echo java -Xms4096M -Xmx4096M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -jar server.jar --nogui> StartServer.bat
 goto ngrok
-:pufferdontuseaikarflag
-echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+:dontuseaikarflag
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui >> StartServer.bat
 goto ngrok
 
 :dfabric
