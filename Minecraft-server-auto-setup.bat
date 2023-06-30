@@ -82,35 +82,37 @@ echo:
 echo       請先選擇一個核心
 echo:
 echo       插件伺服器核心
-echo       1.Paper (建議)
-echo       2.Purpur
+echo       1. Paper (建議)
+echo       2. Purpur
+echo       3. Pufferfish
 echo:
 echo       分流伺服器核心
-echo       3.BungeeCord
-echo       4.Waterfall
-echo       5.Velocity
+echo       4. BungeeCord
+echo       5. Waterfall
+echo       6. Velocity
 echo:
 echo       模組伺服器核心
-echo       6.Fabric
-echo       7.Forge
+echo       7. Fabric
+echo       8. Forge
 echo:
 echo       其他類型核心
-echo       8.Folia
-echo       9.Vanilla(原版服)
+echo       9. Folia
+echo       10. Vanilla(原版服)
 echo:
-echo       10.使用自訂核心
+echo       11.使用自訂核心
 set choice=
-set /p choice=       請選擇一個(1~12)：
+set /p choice=       請選擇一個(1~11)：
 if '%choice%'=='1' goto dpaper
 if '%choice%'=='2' goto dpurpur
-if '%choice%'=='3' goto dbungeecord
-if '%choice%'=='4' goto dwaterfall
-if '%choice%'=='5' goto dvelocity
-if '%choice%'=='6' goto dfabric
-if '%choice%'=='7' goto dforge
-if '%choice%'=='8' goto dfolia
-if '%choice%'=='9' goto dvanilla
-if '%choice%'=='10' goto customcore
+if '%choice%'=='3' goto dpuffer
+if '%choice%'=='4' goto dbungeecord
+if '%choice%'=='5' goto dwaterfall
+if '%choice%'=='6' goto dvelocity
+if '%choice%'=='7' goto dfabric
+if '%choice%'=='8' goto dforge
+if '%choice%'=='9' goto dfolia
+if '%choice%'=='10' goto dvanilla
+if '%choice%'=='11' goto customcore
 echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
@@ -200,6 +202,46 @@ goto dpapered
 echo java -Xms4096M -Xmx4096M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -jar server.jar --nogui> StartServer.bat
 goto ngrok
 :purpurdontuseaikarflag
+echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
+goto ngrok
+
+:dpurpur
+cls
+setlocal
+echo:
+echo       正在讀取最新版本資訊....
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
+set "file=./minecraft.txt"
+set /p "content="<"%file%"
+
+del minecraft.txt
+
+cls
+echo:
+echo       開始下載 Pufferfish (MC version %content%)
+curl -O https://ci.pufferfish.host/job/Pufferfish-1.20/lastSuccessfulBuild/artifact/build/libs/pufferfish-paperclip-%content%-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
+ren download server.jar
+cls
+echo:
+echo:
+echo:
+echo       Pufferfish (MC version %content%) 下載完成
+endlocal
+:dpurpured
+echo:
+echo       要使用 Aikar Flags 嗎?
+echo       這是一個在某些情況下可以讓伺服器效能提升的啟動參數
+echo       輸入1即使用，輸入2即使用預設啟動參數
+set puachoice=
+set /p puachoice=       請輸入您的選擇：
+if '%puachoice%'=='1' goto pufferuseaikarflag
+if '%puachoice%'=='2' goto pufferdontuseaikarflag
+echo       輸入錯誤，請再試一次
+goto dpapered
+:pufferuseaikarflag
+echo java -Xms4096M -Xmx4096M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -jar server.jar --nogui> StartServer.bat
+goto ngrok
+:pufferdontuseaikarflag
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
