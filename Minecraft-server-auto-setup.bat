@@ -548,7 +548,6 @@ echo !a!>>$)
 move $ eula.txt
 cls
 
-if '%choice%'=='3' goto allsetup
 if '%choice%'=='4' goto allsetup
 if '%choice%'=='5' goto allsetup
 if '%choice%'=='6' goto allsetup
@@ -556,6 +555,7 @@ if '%choice%'=='7' goto allsetup
 if '%choice%'=='8' goto allsetup
 if '%choice%'=='9' goto allsetup
 if '%choice%'=='10' goto allsetup
+if '%choice%'=='11' goto allsetup
 
 md plugins  >NUL 2>NUL
 :plugins
@@ -569,10 +569,10 @@ echo       https://modrinth.com
 echo:
 echo:
 echo:
-echo       1.EssentialsX - EssentialsX 是 Spigot 伺服器必不可少的插件，包括 130 多個指令和適用於任何規模伺服器的無數功能！ 
-echo       2.LuckPerms - Minecraft 伺服器的權限插件（Bukkit/Spigot、BungeeCord 等）
-echo       3.CoreProtect - 快速、高效的塊日誌記錄、回滾和恢復
-echo       4.WorldEdit - 一個實用的 Minecraft 地圖編輯器。
+echo       1. EssentialsX - 伺服器必不可少的插件，包括 130 多個指令和無數功能！ 
+echo       2. LuckPerms - Minecraft 伺服器的權限插件（Bukkit/Spigot、BungeeCord 等）
+echo       3. CoreProtect - 快速、高效的塊日誌記錄、回滾和恢復
+echo       4. WorldEdit - 一個實用的 Minecraft 地圖編輯器。
 echo       更多插件即將新增....
 echo       請輸入 5 結束插件安裝
 echo:
