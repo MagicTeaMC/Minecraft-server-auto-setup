@@ -1,7 +1,7 @@
 @echo off
 :mcsasstart
 
-set version=1.4.4
+set version=1.4.5
 
 title MCSAST v%version%
 if exist StartServer.bat goto bungeecordskip
@@ -300,7 +300,7 @@ goto ngrok
 cls
 echo:
 echo       秨﹍更 Folia (MC version 1.20.1)
-curl -O https://cdn.discordapp.com/attachments/891325967736385569/1124254953184174092/folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/891325967736385569/1125056585685803131/folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
 ren folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
@@ -594,7 +594,7 @@ cls
 echo:
 echo       タ更 EssentialsX
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/935036132851318784/1115282815974637598/EssentialsX-2.20.0.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/891325967736385569/1125056426461630464/EssentialsX-2.20.1-dev27-1022f7a.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
@@ -606,7 +606,7 @@ cls
 echo:
 echo       タ更 LuckPerms
 cd ./plugins
-curl -O https://download.luckperms.net/1494/bukkit/loader/LuckPerms-Bukkit-5.4.82.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/891325967736385569/1125056426776199188/LuckPerms-Bukkit-5.4.98.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
@@ -630,7 +630,7 @@ cls
 echo:
 echo       タ更 WorldEdit
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/1097029368141844630/1117230480207646822/worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/891325967736385569/1125056426151260252/worldedit-bukkit-7.2.15.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
