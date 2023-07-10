@@ -300,7 +300,7 @@ goto ngrok
 cls
 echo:
 echo       開始下載 Folia (MC version 1.20.1)
-curl -O https://cdn.discordapp.com/attachments/891325967736385569/1125056585685803131/folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/891325967736385569/1127964451157590137/folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
 ren folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
@@ -594,7 +594,7 @@ cls
 echo:
 echo       正在下載 EssentialsX
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/891325967736385569/1125056426461630464/EssentialsX-2.20.1-dev27-1022f7a.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/891325967736385569/1127964451451195472/EssentialsX-2.20.1-dev29-6012959.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
