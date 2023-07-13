@@ -300,7 +300,7 @@ goto ngrok
 cls
 echo:
 echo       ¶}©l¤U¸ü Folia (MC version 1.20.1)
-curl -O https://cdn.discordapp.com/attachments/891325967736385569/1127964451157590137/folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/891325967736385569/1129044942417833984/folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar  >NUL 2>NUL
 ren folia-paperclip-1.20.1-R0.1-SNAPSHOT-reobf.jar server.jar
 cls
 echo:
