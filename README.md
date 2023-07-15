@@ -1,4 +1,4 @@
-English | [繁體中文](./README_TW.md) | Please help me translate this into more languages through pull request.
+English | [繁體中文](./README_TW.md) | Please help me translate this into more languages through a pull request.
 # Minecraft Server Auto Setup
 [![Discord](https://img.shields.io/discord/891325967203729472?color=5865F2&label=discord&style=for-the-badge)](https://discord.gg/uQ4UXANnP2)
 
@@ -11,7 +11,7 @@ Designed specifically for beginners, this tool allows you to easily set up a Min
 2. Install [Java 17](https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.7%2B7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.msi).
 3. Place `Minecraft-server-auto-setup.exe` in a new folder and execute it, following the displayed instructions.
 
-**If you're using NGROK, please refer to [this guide](./NGROK.md) on how to obtain an IP address. (We plan to simplify this process in the future.)**
+**If you're using NGROK, please follow [this guide](./NGROK.md) on how to obtain an IP address. (We plan to simplify this process in the future.)**
 
 ## Features
 - Automatically downloads the latest version of the server.
