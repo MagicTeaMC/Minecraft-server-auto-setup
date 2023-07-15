@@ -34,8 +34,7 @@ Designed specifically for beginners, this tool allows you to easily set up a Min
 - [x] Automatic plugin installation
 
 ## Disclaimer
-Some parts of this project were modified from the "Minecraft Server Auto Set" created by SKYYYY#5202.
-This project is licensed under the GNU General Public License v3.0.
-If this project causes any problems with your computer, we are not responsible for them.
-This project is not affiliated with Mojang AB in any way and does not have Mojang AB's endorsement or support.
+This project is licensed under the GNU General Public License v3.0.  
+If this project causes any issues with your computer, you are responsible for them.  
+This project is not affiliated with Mojang AB in any way and does not have Mojang AB's endorsement or support.  
 

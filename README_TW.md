@@ -1,4 +1,4 @@
-[Englist](./README.md) | 繁體中文
+[English](./README.md) | 繁體中文
 # Minecraft-server-auto-setup
 [![Discord](https://img.shields.io/discord/891325967203729472?color=5865F2&label=discord&style=for-the-badge)](https://discord.gg/uQ4UXANnP2)  
 **注意！此項目已經盡量完善，但是可能還有一些我們沒注意到的問題，可能導致意想不到的問題發生！**  
@@ -34,7 +34,6 @@
 - [x] 自動檢測最新版本
 - [x] 插件自動安裝
 ## 聲明
-本項目部分內容修改自 `SKYYYY#5202` 所製作的 `Minecraft Server Auto Set`。  
 本項目使用 GNU General Public License v3.0 許可證。  
 本項目如果造成您的電腦產生任何問題，請自行負責。  
 本項目不以任何方式隸屬於 Mojang AB，也不以任何方式得到 Mojang AB 的認可或支持。
