@@ -1,7 +1,7 @@
 @echo off
 :mcsasstart
 
-set version=1.4.5
+set version=1.4.6
 
 title MCSAST v%version%
 if exist StartServer.bat goto bungeecordskip
@@ -87,32 +87,34 @@ echo       2. Purpur
 echo       3. Pufferfish
 echo:
 echo       分流伺服器核心
-echo       4. BungeeCord
-echo       5. Waterfall
-echo       6. Velocity
+echo       4. Velocity
+echo       5. BungeeCord
+echo       6. Waterfall
+echo       7. IvanCord
 echo:
 echo       模組伺服器核心
-echo       7. Fabric
-echo       8. Forge
+echo       8. Fabric
+echo       9. Forge
 echo:
 echo       其他類型核心
-echo       9. Folia
-echo       10. Vanilla(原版服)
+echo       10. Folia
+echo       11. Vanilla(原版服)
 echo:
-echo       11.使用自訂核心
+echo       12.使用自訂核心
 set choice=
 set /p choice=       請選擇一個(1~11)：
 if '%choice%'=='1' goto dpaper
 if '%choice%'=='2' goto dpurpur
 if '%choice%'=='3' goto dpuffer
-if '%choice%'=='4' goto dbungeecord
-if '%choice%'=='5' goto dwaterfall
-if '%choice%'=='6' goto dvelocity
-if '%choice%'=='7' goto dfabric
-if '%choice%'=='8' goto dforge
-if '%choice%'=='9' goto dfolia
-if '%choice%'=='10' goto dvanilla
-if '%choice%'=='11' goto customcore
+if '%choice%'=='4' goto dvelocity
+if '%choice%'=='5' goto dbungeecord
+if '%choice%'=='6' goto dwaterfall
+if '%choice%'=='7' goto dIvanCord
+if '%choice%'=='8' goto dfabric
+if '%choice%'=='9' goto dforge
+if '%choice%'=='10' goto dfolia
+if '%choice%'=='11' goto dvanilla
+if '%choice%'=='12' goto customcore
 echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
@@ -388,6 +390,22 @@ echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 endlocal
 goto bungeengrok
 
+:dIvanCord
+cls
+setlocal
+echo:
+echo       開始下載 IvanCord
+curl -O https://ci.mrivanplays.com/job/IvanCord/lastSuccessfulBuild/artifact/IvanCord-Proxy/bootstrap/target/IvanCord.jar  >NUL 2>NUL
+ren IvanCord.jar server.jar
+cls
+echo:
+echo:
+echo:
+echo       IvanCord 下載完成
+echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
+endlocal
+goto bungeengrok
+
 :dvanilla
 cls
 echo:
@@ -512,13 +530,6 @@ echo:
 echo:
 echo       正在設定檔案......
 echo       這可能需要一段時間
-if not exist StartServer.bat goto label5
-if exist 伺服器架設中.bat goto label3
-:label3
-if not exist usercache.json goto label5
-if exist usercache.json goto label6
-:label4
-:label5
 call StartServer.bat >NUL 2>NUL
 :mceula
 color B
@@ -547,11 +558,7 @@ echo       https://account.mojang.com/documents/minecraft_eula
 @echo off
 echo:
 echo:
-set eulayn=
-set /p eulayn=       請輸入"1"同意 Minecraft EULA：
-if not '%eulayn%'=='' set choice=%choice:~0,1%
-if '%eulayn%'=='1' goto label6
-echo       輸入錯誤，請再試一次
+echo       請按任意鍵同意 Minecraft EULA
 PAUSE
 cls                          
 goto mceula
@@ -610,7 +617,7 @@ cls
 echo:
 echo       正在下載 EssentialsX
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/891325967736385569/1127964451451195472/EssentialsX-2.20.1-dev29-6012959.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/891325967736385569/1132463193411833867/EssentialsX-2.20.1-dev31-f26e1b2.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
