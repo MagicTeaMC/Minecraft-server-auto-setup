@@ -410,13 +410,13 @@ goto bungeengrok
 :dvanilla
 cls
 echo:
-echo       秨﹍更 Vanilla (MC version 1.20.1)
-curl -O https://piston-data.mojang.com/v1/objects/84194a2f286ef7c14ed7ce0090dba59902951553/server.jar  >NUL 2>NUL
+echo       秨﹍更 Vanilla (MC version 1.20.2)
+curl -O https://piston-data.mojang.com/v1/objects/5b868151bd02b41319f54c8d4061b8cae84e665c/server.jar  >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
-echo       Vanilla (MC version 1.20.1) 更ЧΘ
+echo       Vanilla (MC version 1.20.2) 更ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
