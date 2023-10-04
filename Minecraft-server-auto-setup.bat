@@ -7,7 +7,7 @@ title MCSAST v%version%
 if exist StartServer.bat goto bungeecordskip
 color B
 echo 正在啟動...
-ping -n 1 github.com >nul
+ping -n 1 maoyue.tw >nul
 cls
 
 if not %errorlevel%==0 (
@@ -24,24 +24,29 @@ IF NOT ERRORLEVEL 0 (
     @echo       Discord：https://discord.gg/uQ4UXANnP2
 	goto youdonthavejava
 )
-
 java -version 2> javaversion.txt
 findstr /i "17." javaversion.txt > nul
+if %errorlevel% equ 0 goto foundJavaVersion
 findstr /i "18." javaversion.txt > nul
+if %errorlevel% equ 0 goto foundJavaVersion
 findstr /i "19." javaversion.txt > nul
+if %errorlevel% equ 0 goto foundJavaVersion
 findstr /i "20." javaversion.txt > nul
+if %errorlevel% equ 0 goto foundJavaVersion
 findstr /i "21." javaversion.txt > nul
+if %errorlevel% equ 0 goto foundJavaVersion
 
-if not %errorlevel% equ 0 (
-  echo       請先安裝 Java 17、18、19、20 或 21 才能執行本程式
-  echo       將自動開啟 Java 下載網站，請確定下載完成後再次執行本程式
-  start "" https://adoptium.net/temurin/releases/
-  @echo 需要幫助嗎嗎？ 歡迎前往
-  @echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
-  @echo       Discord：https://discord.gg/uQ4UXANnP2
-  goto youdonthavejava
-)
+del javaversion.txt
 
+echo       請先安裝 Java 17、18、19、20 或 21 才能執行本程式
+echo       將自動開啟 Java 下載網站，請確定下載完成後再次執行本程式
+start "" https://adoptium.net/temurin/releases/
+@echo 需要幫助嗎嗎？ 歡迎前往
+@echo       GitHub： https://github.com/MagicTeaMC/Minecraft-server-auto-setup
+@echo       Discord：https://discord.gg/uQ4UXANnP2
+goto youdonthavejava
+
+:foundJavaVersion
 del javaversion.txt
 
 setlocal
