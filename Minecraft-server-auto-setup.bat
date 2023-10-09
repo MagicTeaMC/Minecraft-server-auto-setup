@@ -623,7 +623,7 @@ cls
 echo:
 echo       タ更 EssentialsX
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/891325967736385569/1132463193411833867/EssentialsX-2.20.1-dev31-f26e1b2.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/944809403054452736/1160774954523033631/EssentialsX-2.21.0-dev17-79449ef.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
@@ -635,7 +635,7 @@ cls
 echo:
 echo       タ更 LuckPerms
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/891325967736385569/1125056426776199188/LuckPerms-Bukkit-5.4.98.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/944809403054452736/1160773804226793492/LuckPerms-Bukkit-5.4.104.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
@@ -647,7 +647,7 @@ cls
 echo:
 echo       タ更 CoreProtect
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/935036132851318784/1114529722228027423/CoreProtect-21.3.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/944809403054452736/1160783093989384223/CoreProtect-22.2.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
@@ -659,7 +659,7 @@ cls
 echo:
 echo       タ更 WorldEdit
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/891325967736385569/1125056426151260252/worldedit-bukkit-7.2.15.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/944809403054452736/1160775412264222770/worldedit-bukkit-7.2.16.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
