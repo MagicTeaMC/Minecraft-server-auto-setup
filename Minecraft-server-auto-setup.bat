@@ -98,14 +98,14 @@ echo       5. BungeeCord
 echo       6. Waterfall
 echo:
 echo       模組伺服器核心
-echo       8. Fabric
-echo       9. Forge
+echo       7. Fabric
+echo       8. Forge
 echo:
 echo       其他類型核心
-echo       10. Folia
-echo       11. Vanilla(原版服)
+echo       9. Folia
+echo       10. Vanilla(原版服)
 echo:
-echo       12.使用自訂核心
+echo       11.使用自訂核心
 set choice=
 set /p choice=       請選擇一個(1~11)：
 if '%choice%'=='1' goto dpaper
