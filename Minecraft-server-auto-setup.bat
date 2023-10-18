@@ -96,7 +96,6 @@ echo       分流伺服器核心
 echo       4. Velocity
 echo       5. BungeeCord
 echo       6. Waterfall
-echo       7. IvanCord
 echo:
 echo       模組伺服器核心
 echo       8. Fabric
@@ -115,12 +114,11 @@ if '%choice%'=='3' goto dpuffer
 if '%choice%'=='4' goto dvelocity
 if '%choice%'=='5' goto dbungeecord
 if '%choice%'=='6' goto dwaterfall
-if '%choice%'=='7' goto dIvanCord
-if '%choice%'=='8' goto dfabric
-if '%choice%'=='9' goto dforge
-if '%choice%'=='10' goto dfolia
-if '%choice%'=='11' goto dvanilla
-if '%choice%'=='12' goto customcore
+if '%choice%'=='7' goto dfabric
+if '%choice%'=='8' goto dforge
+if '%choice%'=='9' goto dfolia
+if '%choice%'=='10' goto dvanilla
+if '%choice%'=='11' goto customcore
 echo       輸入錯誤，請再試一次
 PAUSE
 cls                          
@@ -392,22 +390,6 @@ echo:
 echo:
 echo:
 echo       Velocity 下載完成
-echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
-endlocal
-goto bungeengrok
-
-:dIvanCord
-cls
-setlocal
-echo:
-echo       開始下載 IvanCord
-curl -O https://ci.mrivanplays.com/job/IvanCord/lastSuccessfulBuild/artifact/IvanCord-Proxy/bootstrap/target/IvanCord.jar  >NUL 2>NUL
-ren IvanCord.jar server.jar
-cls
-echo:
-echo:
-echo:
-echo       IvanCord 下載完成
 echo java -Xmx512M -Xms124M -jar server.jar nogui> StartServer.bat
 endlocal
 goto bungeengrok
