@@ -659,7 +659,7 @@ cls
 echo:
 echo       ¥¿¦b¤U¸ü WorldEdit
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/944809403054452736/1160775412264222770/worldedit-bukkit-7.2.16.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/944809403054452736/1164122515682103357/worldedit-bukkit-7.2.17.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
