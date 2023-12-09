@@ -565,8 +565,7 @@ echo:
 echo:
 echo       請按任意鍵同意 Minecraft EULA
 PAUSE
-cls                          
-goto mceula
+cls
 :label6
 @echo off&setlocal enabledelayedexpansion
 for /f "eol=* tokens=*" %%i in (eula.txt) do (
