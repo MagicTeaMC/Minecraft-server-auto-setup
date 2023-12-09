@@ -305,23 +305,40 @@ goto ngrok
 :dfolia
 cls
 echo:
-echo       開始下載 Folia (MC version 1.20.2)
-curl -O https://api.papermc.io/v2/projects/folia/versions/1.20.2/builds/20/downloads/folia-1.20.2-20.jar  >NUL 2>NUL
-ren folia-1.20.2-20.jar server.jar
+setlocal
+echo:
+echo       正在讀取最新版本資訊....
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/folia.txt  >NUL 2>NUL
+curl -O https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/version/minecraft.txt  >NUL 2>NUL
+set "file1=./folia.txt"
+set "file2=./minecraft.txt"
+
+set /p "content1="<"%file1%"
+set /p "content2="<"%file2%"
+
+del folia.txt
+del minecraft.txt
+cls
+
+echo:
+echo       開始下載 Folia (MC version %content2%)
+curl -O https://api.papermc.io/v2/projects/folia/versions/%content2%/builds/%content1%/downloads/folia-%content2%-%content1%.jar  >NUL 2>NUL
+ren folia-*.jar server.jar
 cls
 echo:
 echo:
 echo:
-echo       Folia (MC version 1.20.2) 下載完成
+echo       Folia (MC version %content2%) 下載完成
+endlocal
 :dfoliaed
-echo:
+:echo
 echo       要使用 Aikar Flags 嗎?
 echo       這是一個在某些情況下可以讓伺服器效能提升的啟動參數
 echo       輸入1即使用，輸入2即使用預設啟動參數
-set puachoice=
-set /p puachoice=       請輸入您的選擇：
-if '%puachoice%'=='1' goto useaikarflag
-if '%puachoice%'=='2' goto dontuseaikarflag
+set pachoice=
+set /p pachoice=       請輸入您的選擇：
+if '%pachoice%'=='1' goto useaikarflag
+if '%pachoice%'=='2' goto dontuseaikarflag
 echo       輸入錯誤，請再試一次
 goto dfoliaed
 
