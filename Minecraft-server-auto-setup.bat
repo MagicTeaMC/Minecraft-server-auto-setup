@@ -1,7 +1,7 @@
 @echo off
 :mcsasstart
 
-set version=1.4.6
+set version=1.4.7
 
 title MCSAST v%version%
 if exist StartServer.bat goto bungeecordskip
@@ -321,8 +321,8 @@ del minecraft.txt
 cls
 
 echo:
-echo       秨﹍更 Folia (MC version %content2%)
-curl -O https://api.papermc.io/v2/projects/folia/versions/%content2%/builds/%content1%/downloads/folia-%content2%-%content1%.jar  >NUL 2>NUL
+echo       秨﹍更 Folia (MC version 1.20.2)
+curl -O https://api.papermc.io/v2/projects/folia/versions/1.20.2/builds/%content1%/downloads/folia-1.20.2-%content1%.jar  >NUL 2>NUL
 ren folia-*.jar server.jar
 cls
 echo:
@@ -400,7 +400,7 @@ del velocity.txt
 cls
 echo:
 echo       秨﹍更 Velocity
-curl -O https://api.papermc.io/v2/projects/velocity/versions/3.2.0-SNAPSHOT/builds/%content1%/downloads/velocity-3.2.0-SNAPSHOT-%content1%.jar  >NUL 2>NUL
+curl -O https://api.papermc.io/v2/projects/velocity/versions/3.3.0-SNAPSHOT/builds/%content1%/downloads/velocity-3.3.0-SNAPSHOT-%content1%.jar  >NUL 2>NUL
 ren velocity-3.2.0-SNAPSHOT-%content1%.jar server.jar
 cls
 echo:
@@ -414,13 +414,13 @@ goto bungeengrok
 :dvanilla
 cls
 echo:
-echo       秨﹍更 Vanilla (MC version 1.20.2)
-curl -O https://piston-data.mojang.com/v1/objects/5b868151bd02b41319f54c8d4061b8cae84e665c/server.jar  >NUL 2>NUL
+echo       秨﹍更 Vanilla (MC version 1.20.4)
+curl -O https://piston-data.mojang.com/v1/objects/8dd1a28015f51b1803213892b50b7b4fc76e594d/server.jar  >NUL 2>NUL
 cls
 echo:
 echo:
 echo:
-echo       Vanilla (MC version 1.20.2) 更ЧΘ
+echo       Vanilla (MC version 1.20.4) 更ЧΘ
 echo java -Xmx4096M -Xms1024M -jar server.jar nogui> StartServer.bat
 goto ngrok
 
@@ -621,7 +621,7 @@ cls
 echo:
 echo       タ更 EssentialsX
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/944809403054452736/1160774954523033631/EssentialsX-2.21.0-dev17-79449ef.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/944809403054452736/1191369528911876158/EssentialsX-2.21.0-dev24-0af4436.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
@@ -633,7 +633,7 @@ cls
 echo:
 echo       タ更 LuckPerms
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/944809403054452736/1160773804226793492/LuckPerms-Bukkit-5.4.104.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/944809403054452736/1191370041636167680/LuckPerms-Bukkit-5.4.113.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
@@ -657,7 +657,7 @@ cls
 echo:
 echo       タ更 WorldEdit
 cd ./plugins
-curl -O https://cdn.discordapp.com/attachments/944809403054452736/1164122515682103357/worldedit-bukkit-7.2.17.jar  >NUL 2>NUL
+curl -O https://cdn.discordapp.com/attachments/944809403054452736/1191370483430604800/worldedit-bukkit-7.2.18-dist.jar  >NUL 2>NUL
 cd ../
 cls
 echo:
