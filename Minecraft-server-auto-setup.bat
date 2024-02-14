@@ -1,7 +1,7 @@
 @echo off
 :mcsasstart
 
-set version=1.4.7
+set version=1.4.8
 
 title MCSAST v%version%
 if exist StartServer.bat goto bungeecordskip
