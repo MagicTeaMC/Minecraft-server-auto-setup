@@ -321,8 +321,8 @@ del minecraft.txt
 cls
 
 echo:
-echo       開始下載 Folia (MC version 1.20.2)
-curl -O https://api.papermc.io/v2/projects/folia/versions/1.20.2/builds/%content1%/downloads/folia-1.20.2-%content1%.jar  >NUL 2>NUL
+echo       開始下載 Folia (MC version %content2%)
+curl -O https://api.papermc.io/v2/projects/folia/versions/%content2%/builds/%content1%/downloads/folia-%content2%-%content1%.jar  >NUL 2>NUL
 ren folia-*.jar server.jar
 cls
 echo:
