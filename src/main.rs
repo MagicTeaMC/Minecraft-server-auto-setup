@@ -39,7 +39,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     io::stdin().read_line(&mut line)?;
     let line = line.trim();
 
-    if line != "y" {
+    if line == "y" {
+        let mut eula_file = File::create("eula.txt")?;
+        writeln!(eula_file, "eula=true")?;
+        println!("EULA accepted and eula.txt file created.");
+    } else {
         println!("Exiting...");
         process::exit(1);
     }
