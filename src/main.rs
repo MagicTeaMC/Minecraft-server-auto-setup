@@ -1,145 +1,231 @@
-use clap::{Arg, Command};
-use std::fs::File;
-use std::io::{self, Write};
-use std::process;
-use reqwest::blocking::Client;
-use serde_json::Value;
+use std::{io::Write, process::exit};
 
-extern crate reqwest;
-extern crate serde_json;
-extern crate clap;
+use clap::{Parser, ValueEnum};
+use colored::Colorize;
+use inquire::{Confirm, Select, Text};
+
+mod eula;
+mod softwares;
+
+#[derive(Parser)]
+#[command(
+    version = "2.0.0-SNAPSHOT",
+    author = "Maoyue (MagicTeaMC)",
+    about = "Minecraft server auto setup tool, simplified!"
+)]
+struct CLI {
+    /// Software to use (paper/folia/purpur)
+    #[arg(short, long, value_enum)]
+    software: Option<Software>,
+
+    /// Minecraft version (e.g., 1.21.1)
+    #[arg(short, long)]
+    mc_version: Option<String>,
+
+    /// EULA agreement (true/false), reference: www.minecraft.net/en-us/eula
+    #[arg(short, long)]
+    eula: Option<bool>,
+
+    /// Skip confirmation prompt?
+    #[arg(short, default_value_t = false)]
+    yes: bool,
+}
+
+#[derive(ValueEnum, Clone)]
+enum Software {
+    Paper,
+    Folia,
+    Purpur,
+}
+
+fn inquired<T>(binding: Result<T, inquire::InquireError>) -> T {
+    match binding {
+        Ok(t) => t,
+        Err(e) => {
+            println!("{}: failed to inquire ({:?})", "error".red().bold(), e);
+            exit(-1);
+        }
+    }
+}
+
+impl Software {
+    fn from_name(name: String) -> Self {
+        match name.as_str() {
+            "paper" => Self::Paper,
+            "folia" => Self::Folia,
+            "purpur" => Self::Purpur,
+            _ => panic!("Invalid software name: {}", name),
+        }
+    }
+
+    fn name(&self) -> String {
+        match self {
+            Self::Paper => "paper",
+            Self::Folia => "folia",
+            Self::Purpur => "purpur",
+        }
+        .to_string()
+    }
+}
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-        println!("{}", format!("
+    let cli = CLI::parse();
+
+    println!(
+        r#"
 ░▒▓██████████████▓▒░ ░▒▓██████▓▒░ ░▒▓███████▓▒░░▒▓██████▓▒░ ░▒▓███████▓▒░▒▓████████▓▒░ 
 ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░         ░▒▓█▓▒░     
 ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░         ░▒▓█▓▒░     
 ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       ░▒▓██████▓▒░░▒▓████████▓▒░░▒▓██████▓▒░   ░▒▓█▓▒░     
 ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░     
 ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░     
-░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░   ░▒▓█▓▒░                                                                   
-                                                                                       
-                    by Maoyue(MagicTeaMC)
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░   ░▒▓█▓▒░
 
-       Welcome to use Minecraft server auto setup tool ({})
-    
-    ", env!("CARGO_PKG_VERSION")));
+                              {}                                
+"#,
+        "By Maoyue (MagicTeaMC)".yellow()
+    );
 
-    let matches = Command::new("Minecraft Server Auto Setup Tool")
-        .version(env!("CARGO_PKG_VERSION"))
-        .author("Maoyue (MagicTeaMC)")
-        .about("Automatically downloads and sets up a Minecraft server")
-        .disable_version_flag(true)  // Disable the auto-generated --version flag
-        .arg(
-            Arg::new("software")
-                .long("software")
-                .value_name("SOFTWARE")
-                .help("Server software to use (paper/folia/purpur)"),
-        )
-        .arg(
-            Arg::new("version")
-                .long("version")
-                .value_name("VERSION")
-                .help("Minecraft version (e.g., 1.21.1)"),
-        )
-        .arg(
-            Arg::new("eula")
-                .long("eula")
-                .value_name("EULA")
-                .help("Accept Mojang EULA (true/false)"),
-        )
-        .get_matches();
+    let software = {
+        if cli.software.is_none() {
+            let binding = Select::new(
+                "💽 What server software are you using?",
+                vec!["paper", "folia", "purpur"],
+            )
+            .prompt();
 
-    let project = if let Some(software) = matches.get_one::<String>("software") {
-        software.clone()
-    } else {
-        let mut input = String::new();
-        print!("Enter which server software do you want to use (paper/folia/purpur): ");
-        io::stdout().flush()?;
-        io::stdin().read_line(&mut input)?;
-        input.trim().to_string()
-    };
-
-    let minecraft_version = if let Some(version) = matches.get_one::<String>("version") {
-        version.clone()
-    } else {
-        let mut input = String::new();
-        print!("Enter the Minecraft version (e.g., 1.21.1): ");
-        io::stdout().flush()?;
-        io::stdin().read_line(&mut input)?;
-        input.trim().to_string()
-    };
-
-    let eula = if let Some(eula) = matches.get_one::<String>("eula") {
-        eula.clone()
-    } else {
-        let mut input = String::new();
-        print!("I accept Mojang EULA https://www.minecraft.net/en-us/eula (true/false): ");
-        io::stdout().flush()?;
-        io::stdin().read_line(&mut input)?;
-        input.trim().to_string()
-    };
-
-    if eula != "true" {
-        println!("You must accept the Mojang EULA to continue.");
-        process::exit(1);
-    }
-
-    let mut eula_file = File::create("eula.txt")?;
-    writeln!(eula_file, "eula=true")?;
-    println!("EULA accepted and eula.txt file created.");
-
-    println!("Start downloading some essential files...");
-
-    let client = Client::new();
-
-    if project == "purpur" {
-        let purpur_download_url = format!(
-            "https://api.purpurmc.org/v2/purpur/{}/latest/download",
-            minecraft_version
-        );
-
-        println!("Downloading the latest Purpur version...");
-        let mut response = client.get(&purpur_download_url).send()?;
-        let mut file = File::create("server.jar")?;
-        io::copy(&mut response, &mut file)?;
-
-        println!("Download completed");
-    } else {
-        let url = format!(
-            "https://api.papermc.io/v2/projects/{}/versions/{}/builds",
-            project, minecraft_version
-        );
-
-        let response = client.get(&url).send()?;
-        let json: Value = response.json()?;
-
-        let latest_build = json["builds"]
-            .as_array()
-            .ok_or("Unexpected JSON structure")?
-            .iter()
-            .filter_map(|build| build["build"].as_u64())
-            .max();
-
-        if let Some(build) = latest_build {
-            println!("Latest build is {}", build);
-
-            let jar_name = format!("{}-{}-{}.jar", project, minecraft_version, build);
-            let paper_download_url = format!(
-                "https://api.papermc.io/v2/projects/{}/versions/{}/builds/{}/downloads/{}",
-                project, minecraft_version, build, jar_name
-            );
-
-            println!("Downloading the latest {} version...", project);
-            let mut response = client.get(&paper_download_url).send()?;
-            let mut file = File::create("server.jar")?;
-            io::copy(&mut response, &mut file)?;
-
-            println!("Download completed");
+            Software::from_name(inquired(binding).to_string())
         } else {
-            println!("No stable build for version {} found :(", minecraft_version);
+            cli.software.unwrap()
+        }
+    };
+    let version = {
+        if cli.mc_version.is_none() {
+            let binding = Text::new("🪨  What version of Minecraft are you using?")
+                .with_default("1.21.1")
+                .prompt();
+
+            inquired::<String>(binding)
+        } else {
+            cli.mc_version.unwrap()
+        }
+    };
+    let eula = {
+        if cli.eula.is_none() {
+            let binding = Confirm::new(
+                format!(
+                    "📄 Do you agree to the {}?",
+                    "\x1B]8;;https://www.minecraft.net/en-us/eula\x1B\\Mojang EULA\x1B]8;;\x1B\\"
+                        .purple()
+                )
+                .as_str(),
+            )
+            .with_placeholder("Y/n")
+            .prompt();
+
+            inquired::<bool>(binding)
+        } else {
+            cli.eula.unwrap()
+        }
+    };
+
+    println!(
+        "\n✨ I will setup {}, with Minecraft server version {}, {} Mojang's EULA in this directory {}{}{}.",
+        software.name().bold().yellow(),
+        version.bold().blue(),
+        {
+            if eula {
+                "accepting".bold().green()
+            } else {
+                "denying".bold().red()
+            }
+        },
+        "(".dimmed(),
+        {
+            let current_dir = std::env::current_dir().unwrap();
+            current_dir
+                .to_owned()
+                .file_name()
+                .and_then(|name| name.to_str())
+                .unwrap_or("<unknown>")
+        }.dimmed(),
+        ")".dimmed()
+    );
+
+    if !cli.yes {
+        match Confirm::new("Proceed?").with_default(true).prompt() {
+            Ok(result) => {
+                if !result {
+                    println!(
+                    "\n🎏 You can pass `--software={} --mc-version={} --eula={}` to get everything up and running!\n",
+                    software.name().bold().yellow(),
+                    version.bold().blue(),
+                    {
+                        if eula {
+                            "true".bold().green()
+                        } else {
+                            "false".bold().red()
+                        }
+                    }
+                );
+                    println!("{}: aborted", "warning".yellow().bold());
+                    exit(-1);
+                }
+            }
+            Err(e) => {
+                println!("{}: failed to inquire ({:?})", "error".red().bold(), e);
+                exit(-1);
+            }
         }
     }
+
+    println!();
+
+    if eula {
+        print!("(1/2) Adding EULA... ");
+        match eula::add_eula() {
+            Err(e) => {
+                println!("{}: failed to add EULA ({:?})", "error".red().bold(), e);
+                exit(-1);
+            }
+            Ok(_) => println!("{}", "✅ done!".bold().green()),
+        }
+    }
+
+    print!(
+        "{}Downloading {}... ",
+        {
+            if eula {
+                "(2/2) "
+            } else {
+                "(1/1) "
+            }
+        },
+        software.name().cyan().bold()
+    );
+    std::io::stdout().flush()?;
+
+    match softwares::get(software.name(), version) {
+        Err(e) => {
+            println!();
+            println!("{}: {}", "error".bold().red(), e);
+            exit(-1);
+        }
+        Ok(_) => println!("{}", "✅ done!".bold().green()),
+    }
+
+    println!("\n{}", "Summary".bold().underline());
+    if eula {
+        println!("  {} eula.txt", "+".green().bold());
+    }
+
+    println!(
+        "  {} server.jar {}{}{}",
+        "+".green().bold(),
+        "(".dimmed(),
+        software.name().dimmed(),
+        ")".dimmed()
+    );
 
     Ok(())
 }
