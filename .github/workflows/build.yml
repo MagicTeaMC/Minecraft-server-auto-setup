@@ -14,8 +14,6 @@ jobs:
             target: [x86_64-unknown-linux-musl, x86_64-pc-windows-gnu, x86_64-apple-darwin]
     steps:
       - uses: actions/checkout@master
-      - name: Set macOS SDK version
-        run: echo "MACOSX_DEPLOYMENT_TARGET=10.12" >> $GITHUB_ENV
       - name: Compile
         id: compile
         uses: rust-build/rust-build.action@v1.4.5
