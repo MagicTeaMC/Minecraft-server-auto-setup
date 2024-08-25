@@ -6,25 +6,24 @@ on:
 
 jobs:
   build:
+    name: Build
+    runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-        target: [x86_64-unknown-linux-musl, x86_64-pc-windows-gnu, x86_64-apple-darwin]
-    runs-on: ${{ matrix.os }}
+        fail-fast: false
+        matrix:
+            target: [x86_64-unknown-linux-musl, x86_64-pc-windows-gnu]
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Install Rust
-        run: rustup target add ${{ matrix.target }}
-        
+      - uses: actions/checkout@master
       - name: Compile
-        run: cargo build --release --target ${{ matrix.target }}
-        
+        id: compile
+        uses: rust-build/rust-build.action@v1.4.5
+        with:
+          RUSTTARGET: ${{ matrix.target }}
+          UPLOAD_MODE: none
       - name: Upload artifact
-        if: success()
         uses: actions/upload-artifact@v3
         with:
-          name: Binary-${{ matrix.target }}
+          name: Binary
           path: |
-            target/${{ matrix.target }}/release/
+            ${{ steps.compile.outputs.BUILT_ARCHIVE }}
+            ${{ steps.compile.outputs.BUILT_CHECKSUM }}
