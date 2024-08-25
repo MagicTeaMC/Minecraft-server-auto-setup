@@ -9,7 +9,3 @@ colored = "2.1.0"
 inquire = "0.7.5"
 reqwest = { version = "0.12.7", features = ["blocking", "json"] }
 serde_json = "1.0.127"
-
-[target.x86_64-apple-darwin]
-linker = "clang"
-rustflags = ["-C", "link-arg=-mmacosx-version-min=10.12"]
