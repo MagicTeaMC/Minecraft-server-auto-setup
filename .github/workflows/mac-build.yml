@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [macos-latest]
         target: [x86_64-apple-darwin, aarch64-apple-darwin]
     runs-on: ${{ matrix.os }}
     steps:
