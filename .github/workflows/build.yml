@@ -7,13 +7,16 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
     strategy:
-        fail-fast: false
-        matrix:
-            target: [x86_64-unknown-linux-musl, x86_64-pc-windows-gnu, x86_64-apple-darwin]
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest] # Add macOS runner
+        target: [x86_64-unknown-linux-musl, x86_64-pc-windows-gnu, x86_64-apple-darwin]
+    runs-on: ${{ matrix.os }} # Run on both Ubuntu and macOS
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
+      - name: Install Rust
+        run: rustup update stable
       - name: Compile
         id: compile
         uses: rust-build/rust-build.action@v1.4.5
