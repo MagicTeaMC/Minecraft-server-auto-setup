@@ -43,10 +43,11 @@ pub fn get_other(software: String, version: String) -> Result<(), Box<dyn std::e
             .max();
 
         if let Some(latest_build) = latest_build {
+            let jar_name = format!("{}-{}-{}.jar", software, version, latest_build);
             let res = client
                 .get(format!(
-                    "https://api.purpurmc.org/v2/purpur/{}/builds/{}/download",
-                    version, latest_build
+                    "https://api.papermc.io/v2/projects/{}/versions/{}/builds/{}/downloads/{}",
+                software, version, latest_build, jar_name
                 ))
                 .send();
             if let Ok(res) = res {
