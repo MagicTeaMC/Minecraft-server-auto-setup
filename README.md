@@ -7,5 +7,5 @@ Give information to us with terminal (Don't be afraid, it's very easy):
 
 If you want it to setup automantic, here is a command (If you are using Windows, please add .exe after the file name, like `./Minecraft-server-auto-setup.exe`):
 ```
-./Minecraft-server-auto-setup --software=Paper --version=1.21.1 --eula=true
+./Minecraft-server-auto-setup --software=paper --mc-version=1.21.1 --eula=true -y
 ```

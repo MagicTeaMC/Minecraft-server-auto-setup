@@ -51,18 +51,18 @@ fn inquired<T>(binding: Result<T, inquire::InquireError>) -> T {
 impl Software {
     fn from_name(name: String) -> Self {
         match name.as_str() {
-            "Paper" => Self::Paper,
-            "Folia" => Self::Folia,
-            "Purpur" => Self::Purpur,
+            "paper" => Self::Paper,
+            "folia" => Self::Folia,
+            "purpur" => Self::Purpur,
             _ => panic!("Invalid software name: {}", name),
         }
     }
 
     fn name(&self) -> String {
         match self {
-            Self::Paper => "Paper",
-            Self::Folia => "Folia",
-            Self::Purpur => "Purpur",
+            Self::Paper => "paper",
+            Self::Folia => "folia",
+            Self::Purpur => "purpur",
         }
         .to_string()
     }
@@ -94,7 +94,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             )
             .prompt();
 
-            Software::from_name(inquired(binding).to_string())
+            Software::from_name(inquired(binding).to_lowercase().to_string())
         } else {
             cli.software.unwrap()
         }

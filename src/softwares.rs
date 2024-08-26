@@ -28,7 +28,7 @@ pub fn get_other(software: String, version: String) -> Result<(), Box<dyn std::e
     let res = client
         .get(format!(
             "https://api.papermc.io/v2/projects/{}/versions/{}/builds",
-            software.to_lowercase(), version
+            software, version
         ))
         .send();
 
@@ -66,7 +66,7 @@ pub fn get_other(software: String, version: String) -> Result<(), Box<dyn std::e
 
 pub fn get(name: String, version: String) -> Result<(), Box<dyn std::error::Error>> {
     match name.as_str() {
-        "Purpur" => get_purpur(version),
+        "purpur" => get_purpur(version),
         _ => get_other(name, version),
     }
 }
