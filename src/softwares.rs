@@ -28,7 +28,7 @@ pub fn get_other(software: String, version: String) -> Result<(), Box<dyn std::e
     let res = client
         .get(format!(
             "https://api.papermc.io/v2/projects/{}/versions/{}/builds",
-            software, version
+            software.to_lowercase(), version
         ))
         .send();
 
@@ -47,7 +47,7 @@ pub fn get_other(software: String, version: String) -> Result<(), Box<dyn std::e
             let res = client
                 .get(format!(
                     "https://api.papermc.io/v2/projects/{}/versions/{}/builds/{}/downloads/{}",
-                software, version, latest_build, jar_name
+                software.to_lowercase(), version, latest_build, jar_name
                 ))
                 .send();
             if let Ok(res) = res {
