@@ -51,18 +51,18 @@ fn inquired<T>(binding: Result<T, inquire::InquireError>) -> T {
 impl Software {
     fn from_name(name: String) -> Self {
         match name.as_str() {
-            "paper" => Self::Paper,
-            "folia" => Self::Folia,
-            "purpur" => Self::Purpur,
+            "Paper" => Self::Paper,
+            "Folia" => Self::Folia,
+            "Purpur" => Self::Purpur,
             _ => panic!("Invalid software name: {}", name),
         }
     }
 
     fn name(&self) -> String {
         match self {
-            Self::Paper => "paper",
-            Self::Folia => "folia",
-            Self::Purpur => "purpur",
+            Self::Paper => "Paper",
+            Self::Folia => "Folia",
+            Self::Purpur => "Purpur",
         }
         .to_string()
     }
@@ -90,7 +90,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         if cli.software.is_none() {
             let binding = Select::new(
                 "💽 What server software are you using?",
-                vec!["paper", "folia", "purpur"],
+                vec!["Paper", "Folia", "Purpur"],
             )
             .prompt();
 

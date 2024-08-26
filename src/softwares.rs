@@ -66,7 +66,7 @@ pub fn get_other(software: String, version: String) -> Result<(), Box<dyn std::e
 
 pub fn get(name: String, version: String) -> Result<(), Box<dyn std::error::Error>> {
     match name.as_str() {
-        "purpur" => get_purpur(version),
+        "Purpur" => get_purpur(version),
         _ => get_other(name, version),
     }
 }
