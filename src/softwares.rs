@@ -19,7 +19,7 @@ pub fn get_purpur(version: String) -> Result<(), Box<dyn std::error::Error>> {
         download_jar(res)?;
         Ok(())
     } else {
-        Err(format!("failed to download purpur").into())
+        Err(format!("failed to download Purpur").into())
     }
 }
 
