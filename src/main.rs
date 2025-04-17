@@ -9,7 +9,7 @@ mod softwares;
 
 #[derive(Parser)]
 #[command(
-    version = "2.0.0-SNAPSHOT",
+    version = "2.0.0",
     author = "Maoyue (MagicTeaMC)",
     about = "Minecraft server auto setup tool, simplified!"
 )]

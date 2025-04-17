@@ -1,7 +1,7 @@
 # MCSAST v2
 [![Discord](https://img.shields.io/discord/891325967203729472?color=5865F2&label=discord&style=for-the-badge)](https://discord.gg/uQ4UXANnP2)   
 
-Setup a new Paper / Purpur / Spigot server quickly and easily.
+Setup a new Paper / Purpur / Folia server quickly and easily.
 ## Usage
 Install via Cargo  
 ```
