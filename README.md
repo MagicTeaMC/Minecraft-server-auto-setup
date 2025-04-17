@@ -1,11 +1,11 @@
 # MCSAST v2
 [![Discord](https://img.shields.io/discord/891325967203729472?color=5865F2&label=discord&style=for-the-badge)](https://discord.gg/uQ4UXANnP2)  
-I don't use Windows anymore, so v2 is written in rust
+Setup a new Paper / Purpur / Spigot server quickly and easily.
 ## Usage
-Give information to us with terminal (Don't be afraid, it's very easy):
+Give information to us with terminal:
 <img width="970" alt="image" src="https://github.com/user-attachments/assets/6c42d27c-d4fe-4bad-bb36-ce5d6b3debad">
 
-If you want it to setup automantic, here is a command (If you are using Windows, please add .exe after the file name, like `./Minecraft-server-auto-setup.exe`):
+If you want it to setup automantic, here is a command (If you are using Windows, please add .exe after the file name, like `.\Minecraft-server-auto-setup.exe`):
 ```
 ./Minecraft-server-auto-setup --software=paper --mc-version=1.21.1 --eula=true -y
 ```

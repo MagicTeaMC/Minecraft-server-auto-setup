@@ -1,7 +1,10 @@
 [package]
-name = "Minecraft-server-auto-setup"
-version = "2.0.0-SNAPSHOT"
+name = "mcsast"
+authors = ["MagicTeaMC <maoyue@maoyue.tw>"]
+description = "Minecraft server auto setup tool, simplified!"
+version = "2.0.0"
 edition = "2021"
+license = " GPL-3.0"
 
 [dependencies]
 clap = { version = "4.5.16", features = ["derive"] }
