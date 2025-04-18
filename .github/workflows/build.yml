@@ -20,6 +20,7 @@ jobs:
         with:
           RUSTTARGET: ${{ matrix.target }}
           UPLOAD_MODE: none
+          TOOLCHAIN_VERSION: stable
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
