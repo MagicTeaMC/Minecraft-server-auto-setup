@@ -36,6 +36,7 @@ enum Software {
     Paper,
     Folia,
     Purpur,
+    Velocity,
 }
 
 fn inquired<T>(binding: Result<T, inquire::InquireError>) -> T {
@@ -54,6 +55,7 @@ impl Software {
             "paper" => Self::Paper,
             "folia" => Self::Folia,
             "purpur" => Self::Purpur,
+            "velocity" => Self::Velocity,
             _ => panic!("Invalid software name: {}", name),
         }
     }
@@ -63,6 +65,7 @@ impl Software {
             Self::Paper => "paper",
             Self::Folia => "folia",
             Self::Purpur => "purpur",
+            Self::Velocity => "velocity",
         }
         .to_string()
     }
@@ -71,26 +74,11 @@ impl Software {
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cli = CLI::parse();
 
-    println!(
-        r#"
-░▒▓██████████████▓▒░ ░▒▓██████▓▒░ ░▒▓███████▓▒░░▒▓██████▓▒░ ░▒▓███████▓▒░▒▓████████▓▒░ 
-░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░         ░▒▓█▓▒░     
-░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░         ░▒▓█▓▒░     
-░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░       ░▒▓██████▓▒░░▒▓████████▓▒░░▒▓██████▓▒░   ░▒▓█▓▒░     
-░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░     
-░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░     
-░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░   ░▒▓█▓▒░
-
-                              {}                                
-"#,
-        "By Maoyue (MagicTeaMC)".yellow()
-    );
-
     let software = {
         if cli.software.is_none() {
             let binding = Select::new(
-                "💽 What server software are you using?",
-                vec!["Paper", "Folia", "Purpur"],
+                "💽 Which server software are you using?",
+                vec!["Paper", "Folia", "Purpur", "Velocity"],
             )
             .prompt();
 
@@ -100,7 +88,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     };
     let version = {
-        if cli.mc_version.is_none() {
+        if software.name() == "velocity" {
+            "3.4.0-SNAPSHOT".to_string()
+        } else if cli.mc_version.is_none() {
             let binding = Text::new("🪨  What version of Minecraft are you using?")
                 .with_default("1.21.1")
                 .prompt();
@@ -111,7 +101,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     };
     let eula = {
-        if cli.eula.is_none() {
+        if software.name() == "velocity" {
+            false
+        } else if cli.eula.is_none() {
             let binding = Confirm::new(
                 format!(
                     "📄 Do you agree to the {}?",
@@ -129,7 +121,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     };
 
-    println!(
+    if software.name() != "velocity" {
+        println!(
         "\n✨ I will setup {}, with Minecraft server version {}, {} Mojang's EULA in this directory {}{}{}.",
         software.name().bold().yellow(),
         version.bold().blue(),
@@ -149,25 +142,42 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .and_then(|name| name.to_str())
                 .unwrap_or("<unknown>")
         }.dimmed(),
-        ")".dimmed()
-    );
+            ")".dimmed()
+        );
+    } else {
+        println!(
+            "\n✨ I will setup {} in this directory {}{}{}.",
+            software.name().bold().yellow(),
+            "(".dimmed(),
+            {
+                let current_dir = std::env::current_dir().unwrap();
+                current_dir
+                    .to_owned()
+                    .file_name()
+                    .and_then(|name| name.to_str())
+                    .unwrap_or("<unknown>")
+            }
+            .dimmed(),
+            ")".dimmed()
+        );
+    }
 
     if !cli.yes {
         match Confirm::new("Proceed?").with_default(true).prompt() {
             Ok(result) => {
                 if !result {
                     println!(
-                    "\n🎏 You can pass `--software={} --mc-version={} --eula={}` to get everything up and running!\n",
-                    software.name().bold().yellow(),
-                    version.bold().blue(),
-                    {
-                        if eula {
-                            "true".bold().green()
-                        } else {
-                            "false".bold().red()
+                        "\n🎏 You can pass `--software={} --mc-version={} --eula={}` to get everything up and running!\n",
+                        software.name().bold().yellow(),
+                        version.bold().blue(),
+                        {
+                            if eula {
+                                "true".bold().green()
+                            } else {
+                                "false".bold().red()
+                            }
                         }
-                    }
-                );
+                    );
                     println!("{}: aborted", "warning".yellow().bold());
                     exit(-1);
                 }
@@ -181,7 +191,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     println!();
 
-    if eula {
+    if eula && software.name() != "velocity" {
         print!("(1/2) Adding EULA... ");
         match eula::add_eula() {
             Err(e) => {
@@ -195,7 +205,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     print!(
         "{}Downloading {}... ",
         {
-            if eula {
+            if eula && software.name() != "velocity" {
                 "(2/2) "
             } else {
                 "(1/1) "
@@ -215,7 +225,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     println!("\n{}", "Summary".bold().underline());
-    if eula {
+    if eula && software.name() != "velocity" {
         println!("  {} eula.txt", "+".green().bold());
     }
 
