@@ -12,7 +12,7 @@ Run with command
 mcsast
 ```
 Give information to us with terminal:
-<img width="1378" alt="圖片" src="https://github.com/user-attachments/assets/a4cdfe71-de7b-4aab-9fb7-cfd1052a7edb" />
+<img width="1378" alt="image" src="https://github.com/user-attachments/assets/a4cdfe71-de7b-4aab-9fb7-cfd1052a7edb" />
 
 If you want it to setup automantic, here is a command  
 Note: Use `--mc-version=3.4.0-SNAPSHOT --eula=false` if you are installing Velocity
