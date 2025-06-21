@@ -19,3 +19,7 @@ Note: Use `--mc-version=3.4.0-SNAPSHOT --eula=false` if you are installing Veloc
 ```
 mcsast --software=paper --mc-version=1.21.1 --eula=true -y
 ```
+## TODO
+- [ ] Update command
+- [ ] Modrinth support
+- [ ] Project config
