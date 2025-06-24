@@ -803,6 +803,7 @@ dependencies = [
  "colored",
  "inquire",
  "reqwest",
+ "serde",
  "serde_json",
 ]
 

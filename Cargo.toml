@@ -1,9 +1,9 @@
 [package]
 name = "mcsast"
 authors = ["MagicTeaMC <maoyue@maoyue.tw>"]
-description = "Minecraft server auto setup tool, simplified!"
+description = "Manage Paper / Purpur / Folia / Velocity server quickly and easily!"
 version = "2.1.0"
-edition = "2021"
+edition = "2024"
 license = "GPL-3.0"
 
 [dependencies]
@@ -11,4 +11,5 @@ clap = { version = "4.5.16", features = ["derive"] }
 colored = "2.1.0"
 inquire = "0.7.5"
 reqwest = { version = "0.12.7", features = ["blocking", "json"] }
+serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.127"
