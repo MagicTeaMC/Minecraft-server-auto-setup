@@ -1,4 +1,5 @@
 use std::{fs, io::Write};
+use colored::Colorize;
 
 fn download_jar(res: reqwest::blocking::Response) -> Result<(), Box<dyn std::error::Error>> {
     let mut file = fs::File::create("server.jar")?;
@@ -14,7 +15,6 @@ pub fn get_purpur(version: String) -> Result<(), Box<dyn std::error::Error>> {
             version
         ))
         .send();
-
     if let Ok(res) = res {
         download_jar(res)?;
         Ok(())
@@ -27,43 +27,43 @@ pub fn get_other(software: String, version: String) -> Result<(), Box<dyn std::e
     let client = reqwest::blocking::Client::new();
     let res = client
         .get(format!(
-            "https://api.papermc.io/v2/projects/{}/versions/{}/builds",
+            "https://fill.papermc.io/v3/projects/{}/versions/{}/builds",
             software, version
         ))
         .send();
 
     if let Ok(res) = res {
-        let json: serde_json::Value = res.json()?;
-
-        let latest_build = json["builds"]
-            .as_array()
-            .unwrap_or(&vec![])
-            .iter()
-            .filter_map(|build| build["build"].as_u64())
-            .max();
-
-        if let Some(latest_build) = latest_build {
-            let jar_name = format!("{}-{}-{}.jar", software, version, latest_build);
-            let res = client
-                .get(format!(
-                    "https://api.papermc.io/v2/projects/{}/versions/{}/builds/{}/downloads/{}",
-                    software.to_lowercase(),
-                    version,
-                    latest_build,
-                    jar_name
-                ))
-                .send();
-            if let Ok(res) = res {
-                download_jar(res)?;
-                Ok(())
-            } else {
-                Err(format!("failed to download {}", software).into())
-            }
+        let builds: serde_json::Value = res.json()?;
+        
+        let builds_array = builds.as_array()
+            .ok_or("Invalid response format: expected array of builds")?;
+        
+        if builds_array.is_empty() {
+            return Err(format!("No builds available for {} version {}", software, version).into());
+        }
+        
+        let latest_build = &builds_array[0];
+        
+        // Extract the download URL from the build object
+        let download_url = latest_build["downloads"]["server:default"]["url"]
+            .as_str()
+            .ok_or("Download URL not found in build response")?;
+        
+        if latest_build["channel"] != "STABLE" && latest_build["channel"] != "RECOMMENDED" {
+            println!("You are downloading an {} build, {} use it in production environment!", "unstable".red(), "DON'T".red());
+        }
+        
+        // Download the jar file directly using the provided URL
+        let res = client.get(download_url).send();
+        
+        if let Ok(res) = res {
+            download_jar(res)?;
+            Ok(())
         } else {
-            Err(format!("failed to download {}", software).into())
+            Err(format!("failed to download {} jar file", software).into())
         }
     } else {
-        Err(format!("failed to download {}", software).into())
+        Err(format!("failed to fetch builds for {}", software).into())
     }
 }
 
