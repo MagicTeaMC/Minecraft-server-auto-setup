@@ -5,6 +5,7 @@ description = "Manage Paper / Purpur / Folia / Velocity server quickly and easil
 version = "2.2.1"
 edition = "2024"
 license = "GPL-3.0"
+homepage = "https://github.com/MagicTeaMC/Minecraft-server-auto-setup"
 
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }
