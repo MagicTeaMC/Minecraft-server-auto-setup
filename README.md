@@ -1,8 +1,8 @@
 # MCSAST
 [![Discord](https://img.shields.io/discord/891325967203729472?color=5865F2&label=discord&style=for-the-badge)](https://discord.gg/uQ4UXANnP2)
-![GitHub branch check runs](https://img.shields.io/github/check-runs/MagicTeaMC/Minecraft-server-auto-setup/v2?style=for-the-badge)
-![Crates.io Total Downloads](https://img.shields.io/crates/d/mcsast?style=for-the-badge)
-![Crates.io Version](https://img.shields.io/crates/v/mcsast?style=for-the-badge)
+[![GitHub branch check runs](https://img.shields.io/github/check-runs/MagicTeaMC/Minecraft-server-auto-setup/v2?style=for-the-badge)](https://github.com/MagicTeaMC/Minecraft-server-auto-setup/actions)
+[![Crates.io Total Downloads](https://img.shields.io/crates/d/mcsast?style=for-the-badge)](https://crates.io/crates/mcsast)
+[![Crates.io Version](https://img.shields.io/crates/v/mcsast?style=for-the-badge)](https://crates.io/crates/mcsast)
 
 Manage Minecraft server / proxy quickly and easily!
 ## Quick start
