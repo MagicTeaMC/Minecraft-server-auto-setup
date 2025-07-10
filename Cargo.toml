@@ -5,7 +5,13 @@ description = "Manage Minecraft server / proxy quickly and easily!"
 version = "2.2.2"
 edition = "2024"
 license = "GPL-3.0"
+
 homepage = "https://github.com/MagicTeaMC/Minecraft-server-auto-setup"
+repository = "https://github.com/MagicTeaMC/Minecraft-server-auto-setup"
+readme = "README.md"
+keywords = ["gamedev", "minecraft"]
+categories = ["command-line-utilities"]
+exclude = ["images/"]
 
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }
