@@ -13,7 +13,16 @@ cargo install mcsast
 mcsast setup
 ```
 Give information to us with terminal:
-<img width="1378" alt="terminal look" src="/image/terminal.png" />
+<img width="1378" alt="terminal look" src="https://raw.githubusercontent.com/MagicTeaMC/Minecraft-server-auto-setup/refs/heads/v2/images/terminal.png" />
+## Supported softwares
+- [Paper](https://github.com/PaperMC/Paper)
+- [Folia](https://github.com/PaperMC/Folia)
+- [Purpur](https://github.com/PurpurMC/Purpur/)
+- [Velocity](https://github.com/PaperMC/Velocity)
+- [Gate](https://github.com/minekube/gate)
+- [Nukkit](https://github.com/CloudburstMC/Nukkit)
+
+Want to add other software support? [Open an Issue](https://github.com/MagicTeaMC/Minecraft-server-auto-setup/issues).  
 
 ## Commands
 ### Setup a server
