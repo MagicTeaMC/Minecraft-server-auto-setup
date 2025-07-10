@@ -2,7 +2,8 @@ use std::{fs, io::Write};
 
 fn download_jar(res: reqwest::blocking::Response) -> Result<(), Box<dyn std::error::Error>> {
     let mut file = fs::File::create("server.jar")?;
-    file.write_all(&res.bytes().unwrap())?;
+    let bytes = res.bytes()?;
+    file.write_all(&bytes)?;
     Ok(())
 }
 
@@ -46,7 +47,9 @@ fn get_platform_info() -> (String, String, String) {
 }
 
 pub fn get_nukkit(_version: String) -> Result<(), Box<dyn std::error::Error>> {
-    let client = reqwest::blocking::Client::new();
+    let client = reqwest::blocking::Client::builder()
+        .timeout(std::time::Duration::from_secs(120))
+        .build()?;
     
     let url = "https://repo.opencollab.dev/api/maven/latest/file/maven-snapshots/cn/nukkit/nukkit/1.0-SNAPSHOT?extension=jar";
     
