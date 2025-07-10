@@ -33,7 +33,7 @@ Want to add other software support? [Open an Issue](https://github.com/MagicTeaM
 mcsast setup
 ```
 If you want it to setup automantic, here is a command  
-Note: The `--mc-version` and `--eula` flags are only required for Java Edition servers.
+Note: The `--mc-version` and `--eula` flags are only required for Java Edition servers (not proxies).
 ```
 mcsast setup --software=paper --mc-version=1.21.1 --eula=true -y
 ```
