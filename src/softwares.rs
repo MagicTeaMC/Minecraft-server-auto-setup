@@ -26,26 +26,16 @@ pub fn get_other(software: String, version: String) -> Result<(), Box<dyn std::e
     let client = reqwest::blocking::Client::new();
     let res = client
         .get(format!(
-            "https://fill.papermc.io/v3/projects/{}/versions/{}/builds",
+            "https://fill.papermc.io/v3/projects/{}/versions/{}/builds/latest",
             software, version
         ))
         .send();
 
     if let Ok(res) = res {
-        let builds: serde_json::Value = res.json()?;
-
-        let builds_array = builds
-            .as_array()
-            .ok_or("Invalid response format: expected array of builds")?;
-
-        if builds_array.is_empty() {
-            return Err(format!("No builds available for {} version {}", software, version).into());
-        }
-
-        let latest_build = &builds_array[0];
+        let build: serde_json::Value = res.json()?;
 
         // Extract the download URL from the build object
-        let download_url = latest_build["downloads"]["server:default"]["url"]
+        let download_url = build["downloads"]["server:default"]["url"]
             .as_str()
             .ok_or("Download URL not found in build response")?;
 
@@ -59,7 +49,7 @@ pub fn get_other(software: String, version: String) -> Result<(), Box<dyn std::e
             Err(format!("failed to download {} jar file", software).into())
         }
     } else {
-        Err(format!("failed to fetch builds for {}", software).into())
+        Err(format!("failed to fetch latest build for {}", software).into())
     }
 }
 
