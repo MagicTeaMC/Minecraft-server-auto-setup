@@ -12,7 +12,7 @@ const CONFIG_FILE: &str = "mcsast.config.json";
 
 #[derive(Parser)]
 #[command(
-    version = "2.2.1",
+    version = "2.2.2",
     author = "Maoyue (MagicTeaMC)",
     about = "Manage Paper / Purpur / Folia / Velocity server quickly and easily!"
 )]
