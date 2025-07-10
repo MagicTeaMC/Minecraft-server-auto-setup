@@ -21,6 +21,7 @@ Give information to us with terminal:
 - [Velocity](https://github.com/PaperMC/Velocity)
 - [Gate](https://github.com/minekube/gate)
 - [Nukkit](https://github.com/CloudburstMC/Nukkit)
+- [Geyser](https://github.com/GeyserMC/Geyser)
 
 Want to add other software support? [Open an Issue](https://github.com/MagicTeaMC/Minecraft-server-auto-setup/issues).  
 
