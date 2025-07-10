@@ -46,6 +46,23 @@ fn get_platform_info() -> (String, String, String) {
     (os.to_string(), arch.to_string(), ext.to_string())
 }
 
+pub fn get_geyser(_version: String) -> Result<(), Box<dyn std::error::Error>> {
+    let client = reqwest::blocking::Client::builder()
+        .timeout(std::time::Duration::from_secs(120))
+        .build()?;
+    
+    let url = "https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/standalone";
+    
+    let res = client.get(url).send()?;
+
+    if res.status().is_success() {
+        download_jar(res)?;
+        Ok(())
+    } else {
+        Err(format!("Failed to download Geyser: HTTP {}", res.status()).into())
+    }
+}
+
 pub fn get_nukkit(_version: String) -> Result<(), Box<dyn std::error::Error>> {
     let client = reqwest::blocking::Client::builder()
         .timeout(std::time::Duration::from_secs(120))
@@ -149,6 +166,7 @@ pub fn get(name: String, version: String) -> Result<(), Box<dyn std::error::Erro
         "gate" => get_gate(version),
         "purpur" => get_purpur(version),
         "nukkit" => get_nukkit(version),
+        "geyser" => get_geyser(version),
         _ => get_other(name, version),
     }
 }

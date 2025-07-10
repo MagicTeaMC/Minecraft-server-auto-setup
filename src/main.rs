@@ -25,7 +25,7 @@ struct CLI {
 enum Commands {
     /// initial setup
     Setup {
-        /// software to use (paper/folia/purpur/velocity/gate/nukkit)
+        /// software to use (paper/folia/purpur/velocity/gate/nukkit/geyser)
         #[arg(short, long, value_enum)]
         software: Option<Software>,
 
@@ -59,6 +59,7 @@ enum Software {
     Velocity,
     Gate,
     Nukkit,
+    Geyser,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -87,6 +88,7 @@ impl Software {
             "velocity" => Self::Velocity,
             "gate" => Self::Gate,
             "nukkit" => Self::Nukkit,
+            "geyser" => Self::Geyser,
             _ => panic!("Invalid software name: {}", name),
         }
     }
@@ -99,6 +101,7 @@ impl Software {
             Self::Velocity => "velocity",
             Self::Gate => "gate",
             Self::Nukkit => "nukkit",
+            Self::Geyser => "geyser",
         }
         .to_string()
     }
@@ -132,7 +135,7 @@ fn handle_setup(
         if software.is_none() {
             let binding = Select::new(
                 "💽 Which server software are you using?",
-                vec!["Paper", "Folia", "Purpur", "Velocity", "Gate", "Nukkit"],
+                vec!["Paper", "Folia", "Purpur", "Velocity", "Gate", "Nukkit", "Geyser"],
             )
             .prompt();
 
@@ -145,7 +148,7 @@ fn handle_setup(
     let version = {
         if software.name() == "velocity" {
             "3.4.0-SNAPSHOT".to_string()
-        } else if software.name() == "gate" || software.name() == "nukkit" {
+        } else if software.name() == "gate" || software.name() == "nukkit" || software.name() == "geyser" {
             "ignore".to_string()
         } else if mc_version.is_none() {
             let binding = Text::new("🪨  What version of Minecraft are you using?")
@@ -159,7 +162,7 @@ fn handle_setup(
     };
 
     let eula = {
-        if software.name() == "velocity" || software.name() == "gate" || software.name() == "nukkit" {
+        if software.name() == "velocity" || software.name() == "gate" || software.name() == "nukkit" || software.name() == "geyser" {
             false
         } else if eula.is_none() {
             let binding = Confirm::new(
@@ -179,7 +182,7 @@ fn handle_setup(
         }
     };
 
-    if software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" {
+    if software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" && software.name() != "geyser" {
         println!(
             "\n✨ I will setup {}, with Minecraft server version {}, {} Mojang's EULA in this directory {}{}{}.",
             software.name().bold().yellow(),
@@ -250,7 +253,7 @@ fn handle_setup(
 
     println!();
 
-    if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" {
+    if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" && software.name() != "geyser" {
         print!("(1/3) Adding EULA... ");
         match eula::add_eula() {
             Err(e) => {
@@ -264,7 +267,7 @@ fn handle_setup(
     print!(
         "{}Downloading {}... ",
         {
-            if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" {
+            if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" && software.name() != "geyser" {
                 "(2/3) "
             } else {
                 "(1/2) "
@@ -284,7 +287,7 @@ fn handle_setup(
     }
 
     print!("{}Saving configuration... ", {
-        if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" {
+        if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" && software.name() != "geyser" {
             "(3/3) "
         } else {
             "(2/2) "
@@ -307,7 +310,7 @@ fn handle_setup(
     }
 
     println!("\n{}", "Summary".bold().underline());
-    if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" {
+    if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" && software.name() != "geyser" {
         println!("  {} eula.txt", "+".green().bold());
     }
 
@@ -343,7 +346,7 @@ fn handle_setup(
 fn handle_update() -> Result<(), Box<dyn std::error::Error>> {
     let config = Config::load()?;
 
-    if config.software.name().to_lowercase() == "gate" || config.software.name().to_lowercase() == "nukkit" {
+    if config.software.name().to_lowercase() == "gate" || config.software.name().to_lowercase() == "nukkit" || config.software.name().to_lowercase() == "geyser" {
         println!(
             "🔄 Updating {} to latest build...",
             config.software.name().bold().yellow()
@@ -400,9 +403,9 @@ fn handle_upgrade(target_version: Option<String>) -> Result<(), Box<dyn std::err
 
     let target_version = {
         if target_version.is_none() {
-            if config.software.name() == "velocity" || config.software.name() == "gate" || config.software.name() == "nukkit" {
-                eprintln!("❌ Velocity / Gate / Nukkit upgrades are currently unsupported.");
-                return Err("Velocity / Gate / Nukkit upgrades are not supported".into());
+            if config.software.name() == "velocity" || config.software.name() == "gate" || config.software.name() == "nukkit" || config.software.name() == "geyser" {
+                let not_supported_message = format!("❌ {} upgrades are currently unsupported.", config.software.name());
+                return Err(not_supported_message.into());
             } else {
                 let binding =
                     Text::new("🚀 What version of Minecraft would you like to upgrade to?")
