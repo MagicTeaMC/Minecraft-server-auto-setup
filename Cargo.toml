@@ -1,7 +1,7 @@
 [package]
 name = "mcsast"
 authors = ["MagicTeaMC <maoyue@maoyue.tw>"]
-description = "Manage Paper / Purpur / Folia / Velocity server quickly and easily!"
+description = "Manage Minecraft server / proxy quickly and easily!"
 version = "2.2.2"
 edition = "2024"
 license = "GPL-3.0"

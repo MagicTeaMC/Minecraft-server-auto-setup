@@ -14,7 +14,7 @@ const CONFIG_FILE: &str = "mcsast.config.json";
 #[command(
     version = "2.2.2",
     author = "Maoyue (MagicTeaMC)",
-    about = "Manage Paper / Purpur / Folia / Velocity server quickly and easily!"
+    about = "Manage Minecraft server / proxy quickly and easily!"
 )]
 struct CLI {
     #[command(subcommand)]
@@ -57,6 +57,7 @@ enum Software {
     Folia,
     Purpur,
     Velocity,
+    Gate,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -83,6 +84,7 @@ impl Software {
             "folia" => Self::Folia,
             "purpur" => Self::Purpur,
             "velocity" => Self::Velocity,
+            "gate" => Self::Gate,
             _ => panic!("Invalid software name: {}", name),
         }
     }
@@ -93,6 +95,7 @@ impl Software {
             Self::Folia => "folia",
             Self::Purpur => "purpur",
             Self::Velocity => "velocity",
+            Self::Gate => "gate",
         }
         .to_string()
     }
@@ -126,7 +129,7 @@ fn handle_setup(
         if software.is_none() {
             let binding = Select::new(
                 "💽 Which server software are you using?",
-                vec!["Paper", "Folia", "Purpur", "Velocity"],
+                vec!["Paper", "Folia", "Purpur", "Velocity", "Gate"],
             )
             .prompt();
 
@@ -139,6 +142,8 @@ fn handle_setup(
     let version = {
         if software.name() == "velocity" {
             "3.4.0-SNAPSHOT".to_string()
+        } else if software.name() == "gate" {
+            "ignore".to_string()
         } else if mc_version.is_none() {
             let binding = Text::new("🪨  What version of Minecraft are you using?")
                 .with_default("1.21.1")
@@ -151,7 +156,7 @@ fn handle_setup(
     };
 
     let eula = {
-        if software.name() == "velocity" {
+        if software.name() == "velocity" || software.name() == "gate" {
             false
         } else if eula.is_none() {
             let binding = Confirm::new(
@@ -171,7 +176,7 @@ fn handle_setup(
         }
     };
 
-    if software.name() != "velocity" {
+    if software.name() != "velocity" && software.name() != "gate" {
         println!(
             "\n✨ I will setup {}, with Minecraft server version {}, {} Mojang's EULA in this directory {}{}{}.",
             software.name().bold().yellow(),
@@ -242,7 +247,7 @@ fn handle_setup(
 
     println!();
 
-    if eula && software.name() != "velocity" {
+    if eula && software.name() != "velocity" && software.name() != "gate" {
         print!("(1/3) Adding EULA... ");
         match eula::add_eula() {
             Err(e) => {
@@ -256,7 +261,7 @@ fn handle_setup(
     print!(
         "{}Downloading {}... ",
         {
-            if eula && software.name() != "velocity" {
+            if eula && software.name() != "velocity" && software.name() != "gate" {
                 "(2/3) "
             } else {
                 "(1/2) "
@@ -276,7 +281,7 @@ fn handle_setup(
     }
 
     print!("{}Saving configuration... ", {
-        if eula && software.name() != "velocity" {
+        if eula && software.name() != "velocity" && software.name() != "gate" {
             "(3/3) "
         } else {
             "(2/2) "
@@ -299,17 +304,33 @@ fn handle_setup(
     }
 
     println!("\n{}", "Summary".bold().underline());
-    if eula && software.name() != "velocity" {
+    if eula && software.name() != "velocity" && software.name() != "gate" {
         println!("  {} eula.txt", "+".green().bold());
     }
 
-    println!(
-        "  {} server.jar {}{}{}",
-        "+".green().bold(),
-        "(".dimmed(),
-        software.name().dimmed(),
-        ")".dimmed()
-    );
+    let need_exe = match std::env::consts::OS {
+        "windows" => ".exe",
+        _ => "",
+    };
+
+    if software.name() == "gate" {
+        println!(
+            "  {} gate{} {}{}{}",
+            "+".green().bold(),
+            need_exe,
+            "(".dimmed(),
+            software.name().dimmed(),
+            ")".dimmed()
+        );
+    } else {
+        println!(
+            "  {} server.jar {}{}{}",
+            "+".green().bold(),
+            "(".dimmed(),
+            software.name().dimmed(),
+            ")".dimmed()
+        );
+    }
 
     println!("  {} {}", "+".green().bold(), CONFIG_FILE);
 
@@ -319,11 +340,18 @@ fn handle_setup(
 fn handle_update() -> Result<(), Box<dyn std::error::Error>> {
     let config = Config::load()?;
 
-    println!(
-        "🔄 Updating {}-{} to latest build...",
-        config.software.name().bold().yellow(),
-        config.minecraft_version.bold().blue()
-    );
+    if config.software.name().to_lowercase() == "gate" {
+        println!(
+            "🔄 Updating {} to latest build...",
+            config.software.name().bold().yellow()
+        );
+    } else {
+        println!(
+            "🔄 Updating {}-{} to latest build...",
+            config.software.name().bold().yellow(),
+            config.minecraft_version.bold().blue()
+        );
+    }
 
     print!(
         "(1/1) Downloading latest {}... ",
@@ -340,12 +368,26 @@ fn handle_update() -> Result<(), Box<dyn std::error::Error>> {
         Ok(_) => println!("{}", "✅ done!".bold().green()),
     }
 
+    let need_exe = match std::env::consts::OS {
+        "windows" => ".exe",
+        _ => "",
+    };
+
     println!("\n{}", "Summary".bold().underline());
-    println!(
-        "  {} server.jar {}",
-        "↻".green().bold(),
-        "(updated to latest build}".dimmed()
-    );
+    if config.software.name() != "gate" {
+        println!(
+            "  {} server.jar {}",
+            "↻".green().bold(),
+            "(updated to latest build)".dimmed()
+        );
+    } else {
+        println!(
+            "  {} gate{} {}",
+            "↻".green().bold(),
+            need_exe,
+            "(updated to latest build)".dimmed()
+        );
+    }
 
     Ok(())
 }
@@ -355,9 +397,9 @@ fn handle_upgrade(target_version: Option<String>) -> Result<(), Box<dyn std::err
 
     let target_version = {
         if target_version.is_none() {
-            if config.software.name() == "velocity" {
-                eprintln!("❌ Velocity upgrades are currently unsupported.");
-                return Err("Velocity upgrades are not supported".into());
+            if config.software.name() == "velocity" || config.software.name() == "gate" {
+                eprintln!("❌ Velocity / Gate upgrades are currently unsupported.");
+                return Err("Velocity / Gate upgrades are not supported".into());
             } else {
                 let binding =
                     Text::new("🚀 What version of Minecraft would you like to upgrade to?")
