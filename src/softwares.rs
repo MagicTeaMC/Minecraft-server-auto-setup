@@ -45,6 +45,21 @@ fn get_platform_info() -> (String, String, String) {
     (os.to_string(), arch.to_string(), ext.to_string())
 }
 
+pub fn get_nukkit(_version: String) -> Result<(), Box<dyn std::error::Error>> {
+    let client = reqwest::blocking::Client::new();
+    
+    let url = "https://repo.opencollab.dev/api/maven/latest/file/maven-snapshots/cn/nukkit/nukkit/1.0-SNAPSHOT?extension=jar";
+    
+    let res = client.get(url).send()?;
+
+    if res.status().is_success() {
+        download_jar(res)?;
+        Ok(())
+    } else {
+        Err(format!("Failed to download Nukkit: HTTP {}", res.status()).into())
+    }
+}
+
 pub fn get_gate(_version: String) -> Result<(), Box<dyn std::error::Error>> {
     let (os, arch, ext) = get_platform_info();
     let filename = format!("gate{}", ext);
@@ -130,6 +145,7 @@ pub fn get(name: String, version: String) -> Result<(), Box<dyn std::error::Erro
     match name.as_str() {
         "gate" => get_gate(version),
         "purpur" => get_purpur(version),
+        "nukkit" => get_nukkit(version),
         _ => get_other(name, version),
     }
 }

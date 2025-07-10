@@ -25,7 +25,7 @@ struct CLI {
 enum Commands {
     /// initial setup
     Setup {
-        /// software to use (paper/folia/purpur/velocity)
+        /// software to use (paper/folia/purpur/velocity/gate/nukkit)
         #[arg(short, long, value_enum)]
         software: Option<Software>,
 
@@ -58,6 +58,7 @@ enum Software {
     Purpur,
     Velocity,
     Gate,
+    Nukkit,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -85,6 +86,7 @@ impl Software {
             "purpur" => Self::Purpur,
             "velocity" => Self::Velocity,
             "gate" => Self::Gate,
+            "nukkit" => Self::Nukkit,
             _ => panic!("Invalid software name: {}", name),
         }
     }
@@ -96,6 +98,7 @@ impl Software {
             Self::Purpur => "purpur",
             Self::Velocity => "velocity",
             Self::Gate => "gate",
+            Self::Nukkit => "nukkit",
         }
         .to_string()
     }
@@ -129,7 +132,7 @@ fn handle_setup(
         if software.is_none() {
             let binding = Select::new(
                 "💽 Which server software are you using?",
-                vec!["Paper", "Folia", "Purpur", "Velocity", "Gate"],
+                vec!["Paper", "Folia", "Purpur", "Velocity", "Gate", "Nukkit"],
             )
             .prompt();
 
@@ -142,7 +145,7 @@ fn handle_setup(
     let version = {
         if software.name() == "velocity" {
             "3.4.0-SNAPSHOT".to_string()
-        } else if software.name() == "gate" {
+        } else if software.name() == "gate" || software.name() == "nukkit" {
             "ignore".to_string()
         } else if mc_version.is_none() {
             let binding = Text::new("🪨  What version of Minecraft are you using?")
@@ -156,7 +159,7 @@ fn handle_setup(
     };
 
     let eula = {
-        if software.name() == "velocity" || software.name() == "gate" {
+        if software.name() == "velocity" || software.name() == "gate" || software.name() == "nukkit" {
             false
         } else if eula.is_none() {
             let binding = Confirm::new(
@@ -176,7 +179,7 @@ fn handle_setup(
         }
     };
 
-    if software.name() != "velocity" && software.name() != "gate" {
+    if software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" {
         println!(
             "\n✨ I will setup {}, with Minecraft server version {}, {} Mojang's EULA in this directory {}{}{}.",
             software.name().bold().yellow(),
@@ -247,7 +250,7 @@ fn handle_setup(
 
     println!();
 
-    if eula && software.name() != "velocity" && software.name() != "gate" {
+    if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" {
         print!("(1/3) Adding EULA... ");
         match eula::add_eula() {
             Err(e) => {
@@ -261,7 +264,7 @@ fn handle_setup(
     print!(
         "{}Downloading {}... ",
         {
-            if eula && software.name() != "velocity" && software.name() != "gate" {
+            if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" {
                 "(2/3) "
             } else {
                 "(1/2) "
@@ -281,7 +284,7 @@ fn handle_setup(
     }
 
     print!("{}Saving configuration... ", {
-        if eula && software.name() != "velocity" && software.name() != "gate" {
+        if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" {
             "(3/3) "
         } else {
             "(2/2) "
@@ -304,7 +307,7 @@ fn handle_setup(
     }
 
     println!("\n{}", "Summary".bold().underline());
-    if eula && software.name() != "velocity" && software.name() != "gate" {
+    if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" {
         println!("  {} eula.txt", "+".green().bold());
     }
 
@@ -340,7 +343,7 @@ fn handle_setup(
 fn handle_update() -> Result<(), Box<dyn std::error::Error>> {
     let config = Config::load()?;
 
-    if config.software.name().to_lowercase() == "gate" {
+    if config.software.name().to_lowercase() == "gate" || config.software.name().to_lowercase() == "nukkit" {
         println!(
             "🔄 Updating {} to latest build...",
             config.software.name().bold().yellow()
@@ -397,9 +400,9 @@ fn handle_upgrade(target_version: Option<String>) -> Result<(), Box<dyn std::err
 
     let target_version = {
         if target_version.is_none() {
-            if config.software.name() == "velocity" || config.software.name() == "gate" {
-                eprintln!("❌ Velocity / Gate upgrades are currently unsupported.");
-                return Err("Velocity / Gate upgrades are not supported".into());
+            if config.software.name() == "velocity" || config.software.name() == "gate" || config.software.name() == "nukkit" {
+                eprintln!("❌ Velocity / Gate / Nukkit upgrades are currently unsupported.");
+                return Err("Velocity / Gate / Nukkit upgrades are not supported".into());
             } else {
                 let binding =
                     Text::new("🚀 What version of Minecraft would you like to upgrade to?")
