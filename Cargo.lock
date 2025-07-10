@@ -790,7 +790,7 @@ checksum = "13dc2df351e3202783a1fe0d44375f7295ffb4049267b0f3018346dc122a1d94"
 
 [[package]]
 name = "mcsast"
-version = "2.2.2"
+version = "2.3.0"
 dependencies = [
  "clap",
  "colored",
@@ -798,6 +798,7 @@ dependencies = [
  "reqwest",
  "serde",
  "serde_json",
+ "tokio",
 ]
 
 [[package]]
@@ -1394,9 +1395,23 @@ dependencies = [
  "bytes",
  "libc",
  "mio 1.0.3",
+ "parking_lot",
  "pin-project-lite",
+ "signal-hook-registry",
  "socket2",
+ "tokio-macros",
  "windows-sys 0.52.0",
+]
+
+[[package]]
+name = "tokio-macros"
+version = "2.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6e06d43f1345a3bcd39f6a56dbb7dcab2ba47e68e8ac134855e7e2bdbaf8cab8"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]

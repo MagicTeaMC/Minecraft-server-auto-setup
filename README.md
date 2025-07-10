@@ -4,7 +4,7 @@
 [![Crates.io Total Downloads](https://img.shields.io/crates/d/mcsast?style=for-the-badge)](https://crates.io/crates/mcsast)
 [![Crates.io Version](https://img.shields.io/crates/v/mcsast?style=for-the-badge)](https://crates.io/crates/mcsast)
 
-Manage Minecraft server / proxy quickly and easily!
+Manage Minecraft server / proxy / plugins quickly and easily!
 ## Quick start
 ### Install via Cargo  
 ```
@@ -27,25 +27,65 @@ Give information to us with terminal:
 
 Want to add other software support? [Open an Issue](https://github.com/MagicTeaMC/Minecraft-server-auto-setup/issues).  
 
-## Commands
+## Servers commands
 ### Setup a server
-```
+```bash
 mcsast setup
 ```
 If you want it to setup automantic, here is a command  
 Note: The `--mc-version` and `--eula` flags are only required for Java Edition servers (not proxies).
-```
+```bash
 mcsast setup --software=paper --mc-version=1.21.1 --eula=true -y
 ```
 ### Update to latest build of current Minecraft version
-```
+```bash
 mcsast update
 ```
 ### Upgrade Minecraft version
-```
+```bash
 mcsast upgrade
 ```
 or
-```
+```bash
 mcsast upgrade --version 1.21.6
+```
+## Plugins commands
+### Help message
+```bash
+mcsast plugins
+```
+### List plugins
+```bash
+mcsast plugins list
+```
+### Add plugin 
+Note: `--force` to install latest unstable version  
+```bash
+mcsast plugins add <name>
+```
+### Load plugins setup
+```bash
+mcsast plugins load <file.json>
+```
+### Update plugins
+Note: `--force` to install latest unstable version  
+```bash
+mcsast plugins update <name/all>
+```
+### Remove plugin
+```bash
+mcsast plugins remove <name>
+```
+### Search plugins
+```bash
+mcsast plugins search <name>
+```
+### Get plugin information
+```bash
+mcsast plugins info <name/ID>
+```
+### Export plugins setup
+Note: `--output <filename.json>` to custom output file name  
+```bash
+mcsast plugins export
 ```

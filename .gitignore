@@ -4,3 +4,5 @@ eula.txt
 mcsast.config.json
 gate*
 .DS_Store
+plugins
+plugins.json

@@ -8,10 +8,12 @@ mod cli;
 mod config;
 mod eula;
 mod get_files;
+mod modrinth;
+mod plugins;
 mod software;
 mod utils;
 
-use cli::{CLI, Commands};
+use cli::{CLI, Commands, PluginActions};
 use config::Config;
 use software::Software;
 use utils::{get_current_directory_name, get_executable_extension, inquired, print_error_and_exit};
@@ -167,6 +169,7 @@ fn handle_setup(
         software: software.clone(),
         minecraft_version: version.clone(),
         eula_accepted: eula,
+        plugins: Vec::new(),
     };
 
     match config.save() {
@@ -329,6 +332,19 @@ fn handle_upgrade(target_version: Option<String>) -> Result<(), Box<dyn std::err
     Ok(())
 }
 
+async fn handle_plugins(action: PluginActions) -> Result<(), Box<dyn std::error::Error>> {
+    match action {
+        PluginActions::List => plugins::list_plugins().await,
+        PluginActions::Add { name, force } => plugins::get_plugin(&name, force).await,
+        PluginActions::Load { config } => plugins::load_plugins_from_config(&config).await,
+        PluginActions::Update { target, force } => plugins::update_plugins(&target, force).await,
+        PluginActions::Remove { name } => plugins::remove_plugin(&name).await,
+        PluginActions::Search { query, limit } => plugins::search_plugins(&query, limit).await,
+        PluginActions::Info { name } => plugins::show_plugin_info(&name).await,
+        PluginActions::Export { output } => plugins::export_plugins_config(&output).await,
+    }
+}
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cli = CLI::parse();
 
@@ -341,5 +357,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         } => handle_setup(software, mc_version, eula, yes),
         Commands::Update => handle_update(),
         Commands::Upgrade { version } => handle_upgrade(version),
+        Commands::Plugins { action } => {
+            let rt = tokio::runtime::Runtime::new()?;
+            rt.block_on(handle_plugins(action))
+        }
     }
 }
