@@ -1,129 +1,20 @@
-use std::{fs, io::Write, path::Path, process::exit};
+use std::{io::Write, process::exit};
 
-use clap::{Parser, Subcommand, ValueEnum};
+use clap::Parser;
 use colored::Colorize;
 use inquire::{Confirm, Select, Text};
-use serde::{Deserialize, Serialize};
 
+mod cli;
+mod config;
 mod eula;
-mod softwares;
+mod get_files;
+mod software;
+mod utils;
 
-const CONFIG_FILE: &str = "mcsast.config.json";
-
-#[derive(Parser)]
-#[command(
-    version = "2.2.2",
-    author = "Maoyue (MagicTeaMC)",
-    about = "Manage Minecraft server / proxy quickly and easily!"
-)]
-struct CLI {
-    #[command(subcommand)]
-    command: Commands,
-}
-
-#[derive(Subcommand)]
-enum Commands {
-    /// initial setup
-    Setup {
-        /// software to use (paper/folia/purpur/velocity/gate/nukkit/geyser)
-        #[arg(short, long, value_enum)]
-        software: Option<Software>,
-
-        /// Minecraft version (eg. 1.21.1)
-        #[arg(short, long)]
-        mc_version: Option<String>,
-
-        /// do you agree www.minecraft.net/en-us/eula?
-        #[arg(short, long)]
-        eula: Option<bool>,
-
-        /// skip confirmation prompt
-        #[arg(short, default_value_t = false)]
-        yes: bool,
-    },
-    /// update to latest build of this version
-    Update,
-    /// upgrade to another version
-    Upgrade {
-        /// your target minecraft version
-        #[arg(short, long)]
-        version: Option<String>,
-    },
-}
-
-#[derive(ValueEnum, Clone, Serialize, Deserialize)]
-enum Software {
-    Paper,
-    Folia,
-    Purpur,
-    Velocity,
-    Gate,
-    Nukkit,
-    Geyser,
-}
-
-#[derive(Serialize, Deserialize)]
-struct Config {
-    software: Software,
-    minecraft_version: String,
-    eula_accepted: bool,
-}
-
-fn inquired<T>(binding: Result<T, inquire::InquireError>) -> T {
-    match binding {
-        Ok(t) => t,
-        Err(e) => {
-            println!("{}: failed to inquire ({:?})", "error".red().bold(), e);
-            exit(-1);
-        }
-    }
-}
-
-impl Software {
-    fn from_name(name: String) -> Self {
-        match name.as_str() {
-            "paper" => Self::Paper,
-            "folia" => Self::Folia,
-            "purpur" => Self::Purpur,
-            "velocity" => Self::Velocity,
-            "gate" => Self::Gate,
-            "nukkit" => Self::Nukkit,
-            "geyser" => Self::Geyser,
-            _ => panic!("Invalid software name: {}", name),
-        }
-    }
-
-    fn name(&self) -> String {
-        match self {
-            Self::Paper => "paper",
-            Self::Folia => "folia",
-            Self::Purpur => "purpur",
-            Self::Velocity => "velocity",
-            Self::Gate => "gate",
-            Self::Nukkit => "nukkit",
-            Self::Geyser => "geyser",
-        }
-        .to_string()
-    }
-}
-
-impl Config {
-    fn load() -> Result<Self, Box<dyn std::error::Error>> {
-        if !Path::new(CONFIG_FILE).exists() {
-            return Err("No config file found. Please run 'mcsast setup' first.".into());
-        }
-
-        let content = fs::read_to_string(CONFIG_FILE)?;
-        let config: Config = serde_json::from_str(&content)?;
-        Ok(config)
-    }
-
-    fn save(&self) -> Result<(), Box<dyn std::error::Error>> {
-        let content = serde_json::to_string_pretty(self)?;
-        fs::write(CONFIG_FILE, content)?;
-        Ok(())
-    }
-}
+use cli::{CLI, Commands};
+use config::Config;
+use software::Software;
+use utils::{get_current_directory_name, get_executable_extension, inquired, print_error_and_exit};
 
 fn handle_setup(
     software: Option<Software>,
@@ -135,7 +26,7 @@ fn handle_setup(
         if software.is_none() {
             let binding = Select::new(
                 "💽 Which server software are you using?",
-                vec!["Paper", "Folia", "Purpur", "Velocity", "Gate", "Nukkit", "Geyser"],
+                Software::display_names(),
             )
             .prompt();
 
@@ -146,13 +37,11 @@ fn handle_setup(
     };
 
     let version = {
-        if software.name() == "velocity" {
-            "3.4.0-SNAPSHOT".to_string()
-        } else if software.name() == "gate" || software.name() == "nukkit" || software.name() == "geyser" {
-            "ignore".to_string()
+        if !software.supports_minecraft_version() {
+            software.default_version()
         } else if mc_version.is_none() {
             let binding = Text::new("🪨  What version of Minecraft are you using?")
-                .with_default("1.21.1")
+                .with_default(&software.default_version())
                 .prompt();
 
             inquired::<String>(binding)
@@ -162,7 +51,7 @@ fn handle_setup(
     };
 
     let eula = {
-        if software.name() == "velocity" || software.name() == "gate" || software.name() == "nukkit" || software.name() == "geyser" {
+        if !software.requires_eula() {
             false
         } else if eula.is_none() {
             let binding = Confirm::new(
@@ -182,7 +71,7 @@ fn handle_setup(
         }
     };
 
-    if software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" && software.name() != "geyser" {
+    if software.requires_eula() {
         println!(
             "\n✨ I will setup {}, with Minecraft server version {}, {} Mojang's EULA in this directory {}{}{}.",
             software.name().bold().yellow(),
@@ -195,15 +84,7 @@ fn handle_setup(
                 }
             },
             "(".dimmed(),
-            {
-                let current_dir = std::env::current_dir().unwrap();
-                current_dir
-                    .file_name()
-                    .and_then(|name| name.to_str())
-                    .unwrap_or("<unknown>")
-                    .to_string()
-            }
-            .dimmed(),
+            get_current_directory_name().dimmed(),
             ")".dimmed()
         );
     } else {
@@ -211,15 +92,7 @@ fn handle_setup(
             "\n✨ I will setup {} in this directory {}{}{}.",
             software.name().bold().yellow(),
             "(".dimmed(),
-            {
-                let current_dir = std::env::current_dir().unwrap();
-                current_dir
-                    .file_name()
-                    .and_then(|name| name.to_str())
-                    .unwrap_or("<unknown>")
-                    .to_string()
-            }
-            .dimmed(),
+            get_current_directory_name().dimmed(),
             ")".dimmed()
         );
     }
@@ -244,22 +117,16 @@ fn handle_setup(
                     exit(-1);
                 }
             }
-            Err(e) => {
-                println!("{}: failed to inquire ({:?})", "error".red().bold(), e);
-                exit(-1);
-            }
+            Err(e) => print_error_and_exit("failed to inquire", e),
         }
     }
 
     println!();
 
-    if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" && software.name() != "geyser" {
+    if eula && software.requires_eula() {
         print!("(1/3) Adding EULA... ");
         match eula::add_eula() {
-            Err(e) => {
-                println!("{}: failed to add EULA ({:?})", "error".red().bold(), e);
-                exit(-1);
-            }
+            Err(e) => print_error_and_exit("failed to add EULA", e),
             Ok(_) => println!("{}", "✅ done!".bold().green()),
         }
     }
@@ -267,7 +134,7 @@ fn handle_setup(
     print!(
         "{}Downloading {}... ",
         {
-            if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" && software.name() != "geyser" {
+            if eula && software.requires_eula() {
                 "(2/3) "
             } else {
                 "(1/2) "
@@ -277,7 +144,7 @@ fn handle_setup(
     );
     std::io::stdout().flush()?;
 
-    match softwares::get(software.name(), version.clone()) {
+    match get_files::get(software.name(), version.clone()) {
         Err(e) => {
             println!();
             println!("{}: {}", "error".bold().red(), e);
@@ -287,7 +154,7 @@ fn handle_setup(
     }
 
     print!("{}Saving configuration... ", {
-        if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" && software.name() != "geyser" {
+        if eula && software.requires_eula() {
             "(3/3) "
         } else {
             "(2/2) "
@@ -301,23 +168,16 @@ fn handle_setup(
     };
 
     match config.save() {
-        Err(e) => {
-            println!();
-            println!("{}: failed to save config ({:?})", "error".bold().red(), e);
-            exit(-1);
-        }
+        Err(e) => print_error_and_exit("failed to save config", e),
         Ok(_) => println!("{}", "✅ done!".bold().green()),
     }
 
     println!("\n{}", "Summary".bold().underline());
-    if eula && software.name() != "velocity" && software.name() != "gate" && software.name() != "nukkit" && software.name() != "geyser" {
+    if eula && software.requires_eula() {
         println!("  {} eula.txt", "+".green().bold());
     }
 
-    let need_exe = match std::env::consts::OS {
-        "windows" => ".exe",
-        _ => "",
-    };
+    let need_exe = get_executable_extension();
 
     if software.name() == "gate" {
         println!(
@@ -338,7 +198,7 @@ fn handle_setup(
         );
     }
 
-    println!("  {} {}", "+".green().bold(), CONFIG_FILE);
+    println!("  {} {}", "+".green().bold(), Config::config_file());
 
     Ok(())
 }
@@ -346,7 +206,7 @@ fn handle_setup(
 fn handle_update() -> Result<(), Box<dyn std::error::Error>> {
     let config = Config::load()?;
 
-    if config.software.name().to_lowercase() == "gate" || config.software.name().to_lowercase() == "nukkit" || config.software.name().to_lowercase() == "geyser" {
+    if !config.software.supports_minecraft_version() {
         println!(
             "🔄 Updating {} to latest build...",
             config.software.name().bold().yellow()
@@ -365,7 +225,7 @@ fn handle_update() -> Result<(), Box<dyn std::error::Error>> {
     );
     std::io::stdout().flush()?;
 
-    match softwares::get(config.software.name(), config.minecraft_version.clone()) {
+    match get_files::get(config.software.name(), config.minecraft_version.clone()) {
         Err(e) => {
             println!();
             println!("{}: {}", "error".bold().red(), e);
@@ -374,10 +234,7 @@ fn handle_update() -> Result<(), Box<dyn std::error::Error>> {
         Ok(_) => println!("{}", "✅ done!".bold().green()),
     }
 
-    let need_exe = match std::env::consts::OS {
-        "windows" => ".exe",
-        _ => "",
-    };
+    let need_exe = get_executable_extension();
 
     println!("\n{}", "Summary".bold().underline());
     if config.software.name() != "gate" {
@@ -403,8 +260,11 @@ fn handle_upgrade(target_version: Option<String>) -> Result<(), Box<dyn std::err
 
     let target_version = {
         if target_version.is_none() {
-            if config.software.name() == "velocity" || config.software.name() == "gate" || config.software.name() == "nukkit" || config.software.name() == "geyser" {
-                let not_supported_message = format!("❌ {} upgrades are currently unsupported.", config.software.name());
+            if !config.software.supports_upgrade() {
+                let not_supported_message = format!(
+                    "❌ {} upgrades are currently unsupported.",
+                    config.software.name()
+                );
                 return Err(not_supported_message.into());
             } else {
                 let binding =
@@ -432,7 +292,7 @@ fn handle_upgrade(target_version: Option<String>) -> Result<(), Box<dyn std::err
     );
     std::io::stdout().flush()?;
 
-    match softwares::get(config.software.name(), target_version.clone()) {
+    match get_files::get(config.software.name(), target_version.clone()) {
         Err(e) => {
             println!();
             println!("{}: {}", "error".bold().red(), e);
@@ -445,15 +305,7 @@ fn handle_upgrade(target_version: Option<String>) -> Result<(), Box<dyn std::err
 
     print!("(2/2) Updating configuration... ");
     match config.save() {
-        Err(e) => {
-            println!();
-            println!(
-                "{}: failed to update config ({:?})",
-                "error".bold().red(),
-                e
-            );
-            exit(-1);
-        }
+        Err(e) => print_error_and_exit("failed to update config", e),
         Ok(_) => println!("{}", "✅ done!".bold().green()),
     }
 
@@ -468,7 +320,7 @@ fn handle_upgrade(target_version: Option<String>) -> Result<(), Box<dyn std::err
     println!(
         "  {} {} {}",
         "↻".green().bold(),
-        CONFIG_FILE,
+        Config::config_file(),
         "(updated)".dimmed()
     );
 

@@ -50,9 +50,9 @@ pub fn get_geyser(_version: String) -> Result<(), Box<dyn std::error::Error>> {
     let client = reqwest::blocking::Client::builder()
         .timeout(std::time::Duration::from_secs(120))
         .build()?;
-    
+
     let url = "https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/standalone";
-    
+
     let res = client.get(url).send()?;
 
     if res.status().is_success() {
@@ -67,9 +67,9 @@ pub fn get_nukkit(_version: String) -> Result<(), Box<dyn std::error::Error>> {
     let client = reqwest::blocking::Client::builder()
         .timeout(std::time::Duration::from_secs(120))
         .build()?;
-    
+
     let url = "https://repo.opencollab.dev/api/maven/latest/file/maven-snapshots/cn/nukkit/nukkit/1.0-SNAPSHOT?extension=jar";
-    
+
     let res = client.get(url).send()?;
 
     if res.status().is_success() {
