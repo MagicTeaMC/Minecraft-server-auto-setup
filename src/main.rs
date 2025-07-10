@@ -39,6 +39,8 @@ fn handle_setup(
     let version = {
         if !software.supports_minecraft_version() {
             software.default_version()
+        } else if software.name() == "velocity" {
+            "3.4.0-SNAPSHOT".to_string()
         } else if mc_version.is_none() {
             let binding = Text::new("🪨  What version of Minecraft are you using?")
                 .with_default(&software.default_version())
