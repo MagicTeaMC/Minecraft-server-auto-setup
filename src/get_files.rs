@@ -116,17 +116,27 @@ pub fn get_gate(_version: String) -> Result<(), Box<dyn std::error::Error>> {
 
 pub fn get_purpur(version: String) -> Result<(), Box<dyn std::error::Error>> {
     let client = reqwest::blocking::Client::new();
-    let res = client
-        .get(format!(
-            "https://api.purpurmc.org/v2/purpur/{}/latest/download",
-            version
-        ))
-        .send();
-    if let Ok(res) = res {
-        download_jar(res)?;
-        Ok(())
-    } else {
-        Err(format!("failed to download Purpur").into())
+    let url = format!(
+        "https://api.purpurmc.org/v2/purpur/{}/latest/download",
+        version
+    );
+
+    let res = client.get(&url).send();
+
+    match res {
+        Ok(response) => {
+            if response.status().is_success() {
+                download_jar(response)?;
+                Ok(())
+            } else {
+                Err(format!(
+                    "Failed to download Purpur for version {} (HTTP {}). This version might not exist.",
+                    version,
+                    response.status()
+                ).into())
+            }
+        }
+        Err(e) => Err(format!("Failed to connect to Purpur API: {}", e).into()),
     }
 }
 
