@@ -4,17 +4,26 @@ MCSAST
 [![GitHub branch check runs](https://img.shields.io/github/check-runs/MagicTeaMC/Minecraft-server-auto-setup/v2?style=for-the-badge)](https://github.com/MagicTeaMC/Minecraft-server-auto-setup/actions)
 [![Crates.io Total Downloads](https://img.shields.io/crates/d/mcsast?style=for-the-badge)](https://crates.io/crates/mcsast)
 [![Crates.io Version](https://img.shields.io/crates/v/mcsast?style=for-the-badge)](https://crates.io/crates/mcsast)
+[![AUR Version](https://img.shields.io/aur/version/mcsast?style=for-the-badge)](https://aur.archlinux.org/packages/mcsast)
 
 Manage Minecraft server / proxy / plugins quickly and easily!
 ## Quick start
 ### Install via Cargo  
-#### Latest stable build
-```
+#### Latest stable build from crates.io
+```bash
 cargo install mcsast
 ```
 #### Latest code from GitHub
-```
+```bash
 cargo install --git https://github.com/MagicTeaMC/Minecraft-server-auto-setup.git --branch v2
+```
+#### Latest stable build from AUR
+```bash
+paru -S mcsast
+```
+Or with yay
+```bast
+yay -S mcsast
 ```
 ### Run with command
 ```
