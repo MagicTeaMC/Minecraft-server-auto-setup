@@ -6,7 +6,6 @@ version = "2.3.0"
 edition = "2024"
 license = "GPL-3.0"
 
-homepage = "https://github.com/MagicTeaMC/Minecraft-server-auto-setup"
 repository = "https://github.com/MagicTeaMC/Minecraft-server-auto-setup"
 readme = "README.md"
 keywords = ["gamedev", "minecraft"]
