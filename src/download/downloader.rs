@@ -1,5 +1,5 @@
-use tokio::fs;
 use anyhow::Result;
+use tokio::fs;
 
 async fn download_jar(res: reqwest::Response) -> Result<()> {
     let bytes = res.bytes().await?;
@@ -7,10 +7,7 @@ async fn download_jar(res: reqwest::Response) -> Result<()> {
     Ok(())
 }
 
-async fn download_binary(
-    res: reqwest::Response,
-    filename: &str,
-) -> Result<()> {
+async fn download_binary(res: reqwest::Response, filename: &str) -> Result<()> {
     let bytes = res.bytes().await?;
     fs::write(filename, &bytes).await?;
 
@@ -59,7 +56,10 @@ pub async fn get_geyser(_version: String) -> Result<()> {
         download_jar(res).await?;
         Ok(())
     } else {
-        Err(anyhow::anyhow!("Failed to download Geyser: HTTP {}", res.status()))
+        Err(anyhow::anyhow!(
+            "Failed to download Geyser: HTTP {}",
+            res.status()
+        ))
     }
 }
 
@@ -75,7 +75,10 @@ pub async fn get_nukkit(_version: String) -> Result<()> {
         download_jar(res).await?;
         Ok(())
     } else {
-        Err(anyhow::anyhow!("Failed to download Nukkit: HTTP {}", res.status()))
+        Err(anyhow::anyhow!(
+            "Failed to download Nukkit: HTTP {}",
+            res.status()
+        ))
     }
 }
 
@@ -107,7 +110,10 @@ pub async fn get_gate(_version: String) -> Result<()> {
         download_binary(res, &filename).await?;
         Ok(())
     } else {
-        Err(anyhow::anyhow!("Failed to download Gate: HTTP {}", res.status()))
+        Err(anyhow::anyhow!(
+            "Failed to download Gate: HTTP {}",
+            res.status()
+        ))
     }
 }
 
@@ -150,7 +156,8 @@ pub async fn get_other(software: String, version: String) -> Result<()> {
         if res.status() == 404 {
             return Err(anyhow::anyhow!(
                 "Version {} not found for {}. Please check if this version exists.",
-                version, software
+                version,
+                software
             ));
         } else {
             return Err(anyhow::anyhow!(

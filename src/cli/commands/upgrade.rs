@@ -1,7 +1,7 @@
-use std::{io::Write, process::exit};
+use anyhow::Result;
 use colored::Colorize;
 use inquire::Text;
-use anyhow::Result;
+use std::{io::Write, process::exit};
 
 use crate::core::Config;
 use crate::download;

@@ -1,6 +1,6 @@
+use anyhow::Result;
 use serde::Deserialize;
 use std::collections::HashMap;
-use anyhow::Result;
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct ModrinthVersion {
@@ -99,17 +99,17 @@ impl ModrinthClient {
         let response = self.client.get(&url).query(&params).send().await?;
 
         if !response.status().is_success() {
-            return Err(anyhow::anyhow!("Search request failed: {}", response.status()));
+            return Err(anyhow::anyhow!(
+                "Search request failed: {}",
+                response.status()
+            ));
         }
 
         let result: ModrinthSearchResult = response.json().await?;
         Ok(result)
     }
 
-    pub async fn get_project(
-        &self,
-        id_or_slug: &str,
-    ) -> Result<ModrinthProject> {
+    pub async fn get_project(&self, id_or_slug: &str) -> Result<ModrinthProject> {
         let url = format!("{}/project/{}", self.base_url, id_or_slug);
         let response = self.client.get(&url).send().await?;
 
@@ -145,7 +145,10 @@ impl ModrinthClient {
         let response = self.client.get(&url).query(&params).send().await?;
 
         if !response.status().is_success() {
-            return Err(anyhow::anyhow!("Failed to get versions for project: {}", project_id));
+            return Err(anyhow::anyhow!(
+                "Failed to get versions for project: {}",
+                project_id
+            ));
         }
 
         let mut versions: Vec<ModrinthVersion> = response.json().await?;
@@ -161,15 +164,14 @@ impl ModrinthClient {
         Ok(versions)
     }
 
-    pub async fn download_file(
-        &self,
-        url: &str,
-        path: &std::path::Path,
-    ) -> Result<()> {
+    pub async fn download_file(&self, url: &str, path: &std::path::Path) -> Result<()> {
         let response = self.client.get(url).send().await?;
 
         if !response.status().is_success() {
-            return Err(anyhow::anyhow!("Failed to download file: {}", response.status()));
+            return Err(anyhow::anyhow!(
+                "Failed to download file: {}",
+                response.status()
+            ));
         }
 
         let content = response.bytes().await?;

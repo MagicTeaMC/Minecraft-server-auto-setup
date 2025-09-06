@@ -1,6 +1,9 @@
-use clap::Parser;
 use anyhow::Result;
-use mcsast::{cli::{CLI, Commands}, cli::commands::*};
+use clap::Parser;
+use mcsast::{
+    cli::commands::*,
+    cli::{CLI, Commands},
+};
 
 #[tokio::main]
 async fn main() -> Result<()> {

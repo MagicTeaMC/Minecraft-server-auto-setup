@@ -1,6 +1,6 @@
-use anyhow::Result;
 use crate::cli::PluginActions;
 use crate::plugins;
+use anyhow::Result;
 
 pub async fn handle_plugins(action: PluginActions) -> Result<()> {
     match action {

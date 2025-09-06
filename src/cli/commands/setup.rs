@@ -1,11 +1,13 @@
-use std::{io::Write, process::exit};
+use anyhow::Result;
 use colored::Colorize;
 use inquire::{Confirm, Select, Text};
-use anyhow::Result;
+use std::{io::Write, process::exit};
 
 use crate::core::{Config, Software, eula};
 use crate::download;
-use crate::utils::{get_current_directory_name, get_executable_extension, inquired, print_error_and_exit};
+use crate::utils::{
+    get_current_directory_name, get_executable_extension, inquired, print_error_and_exit,
+};
 
 pub async fn handle_setup(
     software: Option<Software>,

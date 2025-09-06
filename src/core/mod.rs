@@ -1,6 +1,6 @@
 pub mod config;
-pub mod software;
 pub mod eula;
+pub mod software;
 
 pub use config::{Config, PluginConfig};
 pub use software::Software;

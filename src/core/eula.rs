@@ -1,5 +1,5 @@
-use std::{fs, io::Write};
 use anyhow::Result;
+use std::{fs, io::Write};
 
 pub fn add_eula() -> Result<()> {
     let mut file = fs::File::create("eula.txt")?;

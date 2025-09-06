@@ -1,6 +1,6 @@
-use std::{io::Write, process::exit};
-use colored::Colorize;
 use anyhow::Result;
+use colored::Colorize;
+use std::{io::Write, process::exit};
 
 use crate::core::Config;
 use crate::download;

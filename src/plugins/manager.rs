@@ -1,10 +1,10 @@
+use crate::core::Software;
 use crate::core::{Config, PluginConfig};
 use crate::plugins::modrinth::ModrinthClient;
-use crate::core::Software;
+use anyhow::Result;
 use colored::Colorize;
 use std::fs;
 use std::path::Path;
-use anyhow::Result;
 
 const PLUGINS_DIR: &str = "plugins";
 
@@ -138,11 +138,7 @@ pub async fn update_plugins(target: &str, force: bool) -> Result<()> {
     Ok(())
 }
 
-async fn update_single_plugin(
-    config: &mut Config,
-    name: &str,
-    force: bool,
-) -> Result<()> {
+async fn update_single_plugin(config: &mut Config, name: &str, force: bool) -> Result<()> {
     let plugin = config
         .get_plugin(name)
         .ok_or_else(|| anyhow::anyhow!("Plugin '{}' not found", name))?
@@ -395,15 +391,19 @@ pub async fn install_plugins_concurrently(plugin_names: &[&str], force: bool) ->
     }
 
     ensure_plugins_dir()?;
-    println!("📦 Installing {} plugins concurrently...", plugin_names.len());
+    println!(
+        "📦 Installing {} plugins concurrently...",
+        plugin_names.len()
+    );
 
     // Create tasks for each plugin installation
-    let install_tasks: Vec<_> = plugin_names.iter().map(|name| {
-        let name_owned = name.to_string();
-        tokio::spawn(async move {
-            get_plugin(&name_owned, force).await
+    let install_tasks: Vec<_> = plugin_names
+        .iter()
+        .map(|name| {
+            let name_owned = name.to_string();
+            tokio::spawn(async move { get_plugin(&name_owned, force).await })
         })
-    }).collect();
+        .collect();
 
     // Wait for all installations to complete
     let mut success_count = 0;
@@ -415,7 +415,11 @@ pub async fn install_plugins_concurrently(plugin_names: &[&str], force: bool) ->
                 success_count += 1;
             }
             Ok(Err(e)) => {
-                println!("❌ Failed to install {}: {}", plugin_names[i].bold().red(), e);
+                println!(
+                    "❌ Failed to install {}: {}",
+                    plugin_names[i].bold().red(),
+                    e
+                );
                 failure_count += 1;
             }
             Err(e) => {
@@ -425,7 +429,10 @@ pub async fn install_plugins_concurrently(plugin_names: &[&str], force: bool) ->
         }
     }
 
-    println!("✅ Successfully installed: {} | ❌ Failed: {}", success_count, failure_count);
+    println!(
+        "✅ Successfully installed: {} | ❌ Failed: {}",
+        success_count, failure_count
+    );
     println!("🎉 Concurrent plugin installation completed!");
 
     Ok(())
