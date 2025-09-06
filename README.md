@@ -52,9 +52,9 @@ Note: The `--mc-version` and `--eula` flags are only required for Java Edition s
 ```bash
 mcsast setup --software=paper --mc-version=1.21.1 --eula=true -y
 ```
-### Update to latest build of current Minecraft version
+### Sync latest build of current Minecraft version
 ```bash
-mcsast update
+mcsast sync
 ```
 ### Upgrade Minecraft version
 ```bash

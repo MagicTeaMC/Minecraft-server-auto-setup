@@ -1,6 +1,7 @@
 use crate::core::software::Software;
 use serde::{Deserialize, Serialize};
 use std::{fs, path::Path};
+use anyhow::Result;
 
 const CONFIG_FILE: &str = "mcsast.config.json";
 
@@ -24,9 +25,9 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn load() -> Result<Self, Box<dyn std::error::Error>> {
+    pub fn load() -> Result<Self> {
         if !Path::new(CONFIG_FILE).exists() {
-            return Err("No config file found. Please run 'mcsast setup' first.".into());
+            return Err(anyhow::anyhow!("No config file found. Please run 'mcsast setup' first."));
         }
 
         let content = fs::read_to_string(CONFIG_FILE)?;
@@ -34,7 +35,7 @@ impl Config {
         Ok(config)
     }
 
-    pub fn save(&self) -> Result<(), Box<dyn std::error::Error>> {
+    pub fn save(&self) -> Result<()> {
         let content = serde_json::to_string_pretty(self)?;
         fs::write(CONFIG_FILE, content)?;
         Ok(())

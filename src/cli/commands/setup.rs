@@ -1,17 +1,18 @@
 use std::{io::Write, process::exit};
 use colored::Colorize;
 use inquire::{Confirm, Select, Text};
+use anyhow::Result;
 
 use crate::core::{Config, Software, eula};
 use crate::download;
 use crate::utils::{get_current_directory_name, get_executable_extension, inquired, print_error_and_exit};
 
-pub fn handle_setup(
+pub async fn handle_setup(
     software: Option<Software>,
     mc_version: Option<String>,
     eula: Option<bool>,
     yes: bool,
-) -> Result<(), Box<dyn std::error::Error>> {
+) -> Result<()> {
     let software = {
         if software.is_none() {
             let binding = Select::new(
@@ -136,7 +137,7 @@ pub fn handle_setup(
     );
     std::io::stdout().flush()?;
 
-    match download::get(software.name(), version.clone()) {
+    match download::get(&software.name(), version.clone()).await {
         Err(e) => {
             println!();
             println!("{}: {}", "error".bold().red(), e);

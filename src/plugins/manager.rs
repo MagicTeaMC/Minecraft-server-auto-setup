@@ -4,10 +4,11 @@ use crate::core::Software;
 use colored::Colorize;
 use std::fs;
 use std::path::Path;
+use anyhow::Result;
 
 const PLUGINS_DIR: &str = "plugins";
 
-pub async fn list_plugins() -> Result<(), Box<dyn std::error::Error>> {
+pub async fn list_plugins() -> Result<()> {
     let config = Config::load()?;
 
     if config.plugins.is_empty() {
@@ -31,19 +32,15 @@ pub async fn list_plugins() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-pub async fn get_plugin(name: &str, force: bool) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn get_plugin(name: &str, force: bool) -> Result<()> {
     let mut config = Config::load()?;
     ensure_plugins_dir()?;
 
     let client = ModrinthClient::new();
 
-    // Get project info
     let project = client.get_project(name).await?;
-
-    // Get compatible loaders for current software
     let compatible_loaders = get_compatible_loaders(&config.software);
 
-    // Get versions
     let versions = client
         .get_project_versions(
             &project.project_id,
@@ -54,13 +51,12 @@ pub async fn get_plugin(name: &str, force: bool) -> Result<(), Box<dyn std::erro
         .await?;
 
     if versions.is_empty() {
-        return Err(format!(
+        return Err(anyhow::anyhow!(
             "No compatible versions found for {} on {} {}",
             project.title,
             config.software.name(),
             config.minecraft_version
-        )
-        .into());
+        ));
     }
 
     let version = &versions[0];
@@ -70,19 +66,17 @@ pub async fn get_plugin(name: &str, force: bool) -> Result<(), Box<dyn std::erro
         .find(|f| f.primary)
         .unwrap_or(&version.files[0]);
 
-    // Check loader compatibility
     if !force
         && !version
             .loaders
             .iter()
             .any(|l| compatible_loaders.contains(l))
     {
-        return Err(format!(
+        return Err(anyhow::anyhow!(
             "Plugin {} is not compatible with {}. Use --force to override.",
             project.title,
             config.software.name()
-        )
-        .into());
+        ));
     }
 
     println!(
@@ -93,7 +87,6 @@ pub async fn get_plugin(name: &str, force: bool) -> Result<(), Box<dyn std::erro
         config.minecraft_version.bold()
     );
 
-    // Download file
     let plugin_path = Path::new(PLUGINS_DIR).join(&file.filename);
     print!("Downloading... ");
     std::io::Write::flush(&mut std::io::stdout()).unwrap();
@@ -101,7 +94,6 @@ pub async fn get_plugin(name: &str, force: bool) -> Result<(), Box<dyn std::erro
     client.download_file(&file.url, &plugin_path).await?;
     println!("{}", "✅ done!".bold().green());
 
-    // Update config
     let plugin_config = PluginConfig {
         name: project.title.clone(),
         project_id: project.project_id.clone(),
@@ -121,7 +113,7 @@ pub async fn get_plugin(name: &str, force: bool) -> Result<(), Box<dyn std::erro
     Ok(())
 }
 
-pub async fn update_plugins(target: &str, force: bool) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn update_plugins(target: &str, force: bool) -> Result<()> {
     let mut config = Config::load()?;
 
     if target == "all" {
@@ -150,10 +142,10 @@ async fn update_single_plugin(
     config: &mut Config,
     name: &str,
     force: bool,
-) -> Result<(), Box<dyn std::error::Error>> {
+) -> Result<()> {
     let plugin = config
         .get_plugin(name)
-        .ok_or_else(|| format!("Plugin '{}' not found", name))?
+        .ok_or_else(|| anyhow::anyhow!("Plugin '{}' not found", name))?
         .clone();
 
     let client = ModrinthClient::new();
@@ -169,11 +161,10 @@ async fn update_single_plugin(
         .await?;
 
     if versions.is_empty() {
-        return Err("No compatible versions found".into());
+        return Err(anyhow::anyhow!("No compatible versions found"));
     }
 
     let latest_version = &versions[0];
-
     if latest_version.version_number == plugin.version {
         println!("✅ {} is already up to date", plugin.name.bold().green());
         return Ok(());
@@ -185,13 +176,11 @@ async fn update_single_plugin(
         .find(|f| f.primary)
         .unwrap_or(&latest_version.files[0]);
 
-    // Remove old file
     let old_path = Path::new(PLUGINS_DIR).join(&plugin.filename);
     if old_path.exists() {
         fs::remove_file(&old_path)?;
     }
 
-    // Download new file
     let new_path = Path::new(PLUGINS_DIR).join(&file.filename);
     print!(
         "Updating {} to {}... ",
@@ -203,7 +192,6 @@ async fn update_single_plugin(
     client.download_file(&file.url, &new_path).await?;
     println!("{}", "✅ done!".bold().green());
 
-    // Update config
     let updated_plugin = PluginConfig {
         name: plugin.name,
         project_id: plugin.project_id,
@@ -217,32 +205,29 @@ async fn update_single_plugin(
     Ok(())
 }
 
-pub async fn remove_plugin(name: &str) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn remove_plugin(name: &str) -> Result<()> {
     let mut config = Config::load()?;
-
     let plugin = config
         .get_plugin(name)
-        .ok_or_else(|| format!("Plugin '{}' not found", name))?
+        .ok_or_else(|| anyhow::anyhow!("Plugin '{}' not found", name))?
         .clone();
 
-    // Remove file
     let plugin_path = Path::new(PLUGINS_DIR).join(&plugin.filename);
     if plugin_path.exists() {
         fs::remove_file(&plugin_path)?;
     }
 
-    // Update config
     if config.remove_plugin(name) {
         config.save()?;
         println!("✅ {} removed successfully!", name.bold().green());
     } else {
-        return Err(format!("Failed to remove plugin '{}'", name).into());
+        return Err(anyhow::anyhow!("Failed to remove plugin '{}'", name));
     }
 
     Ok(())
 }
 
-pub async fn search_plugins(query: &str, limit: u32) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn search_plugins(query: &str, limit: u32) -> Result<()> {
     let config = Config::load()?;
     let client = ModrinthClient::new();
     let compatible_loaders = get_compatible_loaders(&config.software);
@@ -286,7 +271,7 @@ pub async fn search_plugins(query: &str, limit: u32) -> Result<(), Box<dyn std::
     Ok(())
 }
 
-pub async fn show_plugin_info(name: &str) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn show_plugin_info(name: &str) -> Result<()> {
     let config = Config::load()?;
     let client = ModrinthClient::new();
 
@@ -334,7 +319,7 @@ pub async fn show_plugin_info(name: &str) -> Result<(), Box<dyn std::error::Erro
     Ok(())
 }
 
-pub async fn load_plugins_from_config(config_path: &str) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn load_plugins_from_config(config_path: &str) -> Result<()> {
     let content = fs::read_to_string(config_path)?;
     let plugin_configs: Vec<PluginConfig> = serde_json::from_str(&content)?;
 
@@ -372,11 +357,11 @@ fn get_compatible_loaders(software: &Software) -> Vec<String> {
             "purpur".to_string(),
         ],
         "velocity" => vec!["velocity".to_string()],
-        _ => vec!["bukkit".to_string()], // Default fallback
+        _ => vec!["bukkit".to_string()],
     }
 }
 
-pub async fn export_plugins_config(output_path: &str) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn export_plugins_config(output_path: &str) -> Result<()> {
     let config = Config::load()?;
 
     if config.plugins.is_empty() {
@@ -396,9 +381,52 @@ pub async fn export_plugins_config(output_path: &str) -> Result<(), Box<dyn std:
     Ok(())
 }
 
-fn ensure_plugins_dir() -> Result<(), Box<dyn std::error::Error>> {
+fn ensure_plugins_dir() -> Result<()> {
     if !Path::new(PLUGINS_DIR).exists() {
         fs::create_dir(PLUGINS_DIR)?;
     }
+    Ok(())
+}
+
+/// Demonstrate concurrent plugin installation (for multiple plugins)
+pub async fn install_plugins_concurrently(plugin_names: &[&str], force: bool) -> Result<()> {
+    if plugin_names.is_empty() {
+        return Ok(());
+    }
+
+    ensure_plugins_dir()?;
+    println!("📦 Installing {} plugins concurrently...", plugin_names.len());
+
+    // Create tasks for each plugin installation
+    let install_tasks: Vec<_> = plugin_names.iter().map(|name| {
+        let name_owned = name.to_string();
+        tokio::spawn(async move {
+            get_plugin(&name_owned, force).await
+        })
+    }).collect();
+
+    // Wait for all installations to complete
+    let mut success_count = 0;
+    let mut failure_count = 0;
+
+    for (i, task) in install_tasks.into_iter().enumerate() {
+        match task.await {
+            Ok(Ok(_)) => {
+                success_count += 1;
+            }
+            Ok(Err(e)) => {
+                println!("❌ Failed to install {}: {}", plugin_names[i].bold().red(), e);
+                failure_count += 1;
+            }
+            Err(e) => {
+                println!("❌ Task failed for {}: {}", plugin_names[i].bold().red(), e);
+                failure_count += 1;
+            }
+        }
+    }
+
+    println!("✅ Successfully installed: {} | ❌ Failed: {}", success_count, failure_count);
+    println!("🎉 Concurrent plugin installation completed!");
+
     Ok(())
 }

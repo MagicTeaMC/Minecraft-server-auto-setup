@@ -1,12 +1,13 @@
 use std::{io::Write, process::exit};
 use colored::Colorize;
 use inquire::Text;
+use anyhow::Result;
 
 use crate::core::Config;
 use crate::download;
 use crate::utils::{inquired, print_error_and_exit};
 
-pub fn handle_upgrade(target_version: Option<String>) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn handle_upgrade(target_version: Option<String>) -> Result<()> {
     let mut config = Config::load()?;
 
     let target_version = {
@@ -16,7 +17,7 @@ pub fn handle_upgrade(target_version: Option<String>) -> Result<(), Box<dyn std:
                     "❌ {} upgrades are currently unsupported.",
                     config.software.name()
                 );
-                return Err(not_supported_message.into());
+                return Err(anyhow::anyhow!("{}", not_supported_message));
             } else {
                 let binding =
                     Text::new("🚀 What version of Minecraft would you like to upgrade to?")
@@ -43,7 +44,7 @@ pub fn handle_upgrade(target_version: Option<String>) -> Result<(), Box<dyn std:
     );
     std::io::stdout().flush()?;
 
-    match download::get(config.software.name(), target_version.clone()) {
+    match download::get(&config.software.name(), target_version.clone()).await {
         Err(e) => {
             println!();
             println!("{}: {}", "error".bold().red(), e);

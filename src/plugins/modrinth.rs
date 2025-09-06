@@ -1,7 +1,8 @@
 use serde::Deserialize;
 use std::collections::HashMap;
+use anyhow::Result;
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct ModrinthVersion {
     pub id: String,
     pub project_id: String,
@@ -14,7 +15,7 @@ pub struct ModrinthVersion {
     pub date_published: String,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct ModrinthFile {
     pub url: String,
     pub filename: String,
@@ -22,7 +23,7 @@ pub struct ModrinthFile {
     pub size: u64,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct ModrinthProject {
     #[serde(alias = "id")]
     pub project_id: String,
@@ -67,7 +68,7 @@ impl ModrinthClient {
         limit: u32,
         loaders: &[String],
         game_versions: &[String],
-    ) -> Result<ModrinthSearchResult, Box<dyn std::error::Error>> {
+    ) -> Result<ModrinthSearchResult> {
         let mut facets = vec![];
 
         if !loaders.is_empty() {
@@ -98,7 +99,7 @@ impl ModrinthClient {
         let response = self.client.get(&url).query(&params).send().await?;
 
         if !response.status().is_success() {
-            return Err(format!("Search request failed: {}", response.status()).into());
+            return Err(anyhow::anyhow!("Search request failed: {}", response.status()));
         }
 
         let result: ModrinthSearchResult = response.json().await?;
@@ -108,12 +109,12 @@ impl ModrinthClient {
     pub async fn get_project(
         &self,
         id_or_slug: &str,
-    ) -> Result<ModrinthProject, Box<dyn std::error::Error>> {
+    ) -> Result<ModrinthProject> {
         let url = format!("{}/project/{}", self.base_url, id_or_slug);
         let response = self.client.get(&url).send().await?;
 
         if !response.status().is_success() {
-            return Err(format!("Project not found: {}", id_or_slug).into());
+            return Err(anyhow::anyhow!("Project not found: {}", id_or_slug));
         }
 
         let project: ModrinthProject = response.json().await?;
@@ -126,7 +127,7 @@ impl ModrinthClient {
         game_versions: &[String],
         loaders: &[String],
         version_type: Option<&str>,
-    ) -> Result<Vec<ModrinthVersion>, Box<dyn std::error::Error>> {
+    ) -> Result<Vec<ModrinthVersion>> {
         let mut params = HashMap::new();
 
         if !game_versions.is_empty() {
@@ -144,7 +145,7 @@ impl ModrinthClient {
         let response = self.client.get(&url).query(&params).send().await?;
 
         if !response.status().is_success() {
-            return Err(format!("Failed to get versions for project: {}", project_id).into());
+            return Err(anyhow::anyhow!("Failed to get versions for project: {}", project_id));
         }
 
         let mut versions: Vec<ModrinthVersion> = response.json().await?;
@@ -164,11 +165,11 @@ impl ModrinthClient {
         &self,
         url: &str,
         path: &std::path::Path,
-    ) -> Result<(), Box<dyn std::error::Error>> {
+    ) -> Result<()> {
         let response = self.client.get(url).send().await?;
 
         if !response.status().is_success() {
-            return Err(format!("Failed to download file: {}", response.status()).into());
+            return Err(anyhow::anyhow!("Failed to download file: {}", response.status()));
         }
 
         let content = response.bytes().await?;

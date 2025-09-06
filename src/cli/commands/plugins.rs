@@ -1,7 +1,8 @@
+use anyhow::Result;
 use crate::cli::PluginActions;
 use crate::plugins;
 
-pub async fn handle_plugins(action: PluginActions) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn handle_plugins(action: PluginActions) -> Result<()> {
     match action {
         PluginActions::List => plugins::list_plugins().await,
         PluginActions::Add { name, force } => plugins::get_plugin(&name, force).await,

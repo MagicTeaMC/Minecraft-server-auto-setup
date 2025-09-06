@@ -1,21 +1,22 @@
 use std::{io::Write, process::exit};
 use colored::Colorize;
+use anyhow::Result;
 
 use crate::core::Config;
 use crate::download;
 use crate::utils::get_executable_extension;
 
-pub fn handle_update() -> Result<(), Box<dyn std::error::Error>> {
+pub async fn handle_sync() -> Result<()> {
     let config = Config::load()?;
 
     if !config.software.supports_minecraft_version() {
         println!(
-            "🔄 Updating {} to latest build...",
+            "🔄 Syncing {} to latest build...",
             config.software.name().bold().yellow()
         );
     } else {
         println!(
-            "🔄 Updating {}-{} to latest build...",
+            "🔄 Syncing {}-{} to latest build...",
             config.software.name().bold().yellow(),
             config.minecraft_version.bold().blue()
         );
@@ -27,7 +28,7 @@ pub fn handle_update() -> Result<(), Box<dyn std::error::Error>> {
     );
     std::io::stdout().flush()?;
 
-    match download::get(config.software.name(), config.minecraft_version.clone()) {
+    match download::get(&config.software.name(), config.minecraft_version.clone()).await {
         Err(e) => {
             println!();
             println!("{}: {}", "error".bold().red(), e);
@@ -43,14 +44,14 @@ pub fn handle_update() -> Result<(), Box<dyn std::error::Error>> {
         println!(
             "  {} server.jar {}",
             "↻".green().bold(),
-            "(updated to latest build)".dimmed()
+            "(synced to latest build)".dimmed()
         );
     } else {
         println!(
             "  {} gate{} {}",
             "↻".green().bold(),
             need_exe,
-            "(updated to latest build)".dimmed()
+            "(synced to latest build)".dimmed()
         );
     }
 

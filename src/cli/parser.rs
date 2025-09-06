@@ -32,8 +32,8 @@ pub enum Commands {
         #[arg(short, default_value_t = false)]
         yes: bool,
     },
-    /// update to latest build of this version
-    Update,
+    /// sync to latest build of this version
+    Sync,
     /// upgrade to another version
     Upgrade {
         /// your target minecraft version
