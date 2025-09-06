@@ -1,4 +1,4 @@
-use crate::software::Software;
+use crate::core::Software;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]

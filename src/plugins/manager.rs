@@ -1,6 +1,6 @@
-use crate::config::{Config, PluginConfig};
-use crate::modrinth::ModrinthClient;
-use crate::software::Software;
+use crate::core::{Config, PluginConfig};
+use crate::plugins::modrinth::ModrinthClient;
+use crate::core::Software;
 use colored::Colorize;
 use std::fs;
 use std::path::Path;

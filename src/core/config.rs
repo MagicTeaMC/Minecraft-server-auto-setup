@@ -1,4 +1,4 @@
-use crate::software::Software;
+use crate::core::software::Software;
 use serde::{Deserialize, Serialize};
 use std::{fs, path::Path};
 
