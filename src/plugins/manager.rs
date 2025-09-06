@@ -384,7 +384,6 @@ fn ensure_plugins_dir() -> Result<()> {
     Ok(())
 }
 
-/// Demonstrate concurrent plugin installation (for multiple plugins)
 pub async fn install_plugins_concurrently(plugin_names: &[&str], force: bool) -> Result<()> {
     if plugin_names.is_empty() {
         return Ok(());
@@ -392,7 +391,7 @@ pub async fn install_plugins_concurrently(plugin_names: &[&str], force: bool) ->
 
     ensure_plugins_dir()?;
     println!(
-        "📦 Installing {} plugins concurrently...",
+        "📦 Installing {} plugins...",
         plugin_names.len()
     );
 
@@ -405,7 +404,6 @@ pub async fn install_plugins_concurrently(plugin_names: &[&str], force: bool) ->
         })
         .collect();
 
-    // Wait for all installations to complete
     let mut success_count = 0;
     let mut failure_count = 0;
 
@@ -433,7 +431,6 @@ pub async fn install_plugins_concurrently(plugin_names: &[&str], force: bool) ->
         "✅ Successfully installed: {} | ❌ Failed: {}",
         success_count, failure_count
     );
-    println!("🎉 Concurrent plugin installation completed!");
 
     Ok(())
 }
